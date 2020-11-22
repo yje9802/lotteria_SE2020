@@ -1,0 +1,4 @@
+include kiosk/schema.sql
+graft kiosk/static
+graft kiosk/templates
+global-exclude *.pyc
