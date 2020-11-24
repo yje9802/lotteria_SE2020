@@ -22,12 +22,15 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
-        
-def init_db():
+
+def init_db(demo_data=False):
     db = get_db()
 
     with current_app.open_resource('schema.sql') as f:
         db.executescript(f.read().decode('utf8'))
+    if demo_data:
+        with current_app.open_resource('insert_demo_data.sql') as f:
+            db.executescript(f.read().decode('utf8'))
 
 
 @click.command('init-db')
@@ -36,8 +39,17 @@ def init_db_command():
     """Clear the existing data and create new tables."""
     init_db()
     click.echo('Initialized the database.')
-    
+
+
+@click.command('init-demo-db')
+@with_appcontext
+def init_demo_db_command():
+    """Clear the existing data and create demo database."""
+    init_db(demo_data=True)
+    click.echo('Initialized the demo database.')
+
 
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
+    app.cli.add_command(init_demo_db_command)
