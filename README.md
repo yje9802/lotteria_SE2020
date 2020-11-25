@@ -1,31 +1,32 @@
 # lot_kiosk
 [여기](https://flask.palletsprojects.com/en/1.1.x/tutorial/layout/)에 나오는 리포지토리 구조를 모방하여 생성하였습니다.
 ## 프로젝트 시작하기
-`Flask`를 설치하신 후 프로젝트의 루트 디렉토리에서 
-윈도우 CMD의 경우
-```
-> set FLASK_APP=kiosk
-> set FLASK_ENV=development
-> flask run
-```
-리눅스 터미널의 경우
-```
-$ export FLASK_APP=kiosk
-$ export FLASK_ENV=development
-$ flask run
-```
-를 하시면
-```
-* Serving Flask app "kiosk"
-* Environment: development
-* Debug mode: on
-* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
-* Restarting with stat
-* Debugger is active!
-* Debugger PIN: 855-212-761
-```
-과 같은 화면이 나옵니다.
-http://127.0.0.1:5000/hello 에서 "Hello,World!" 메세지가 나오면 Flask설치와 리포지토리 세팅이 완료된 것입니다.
+1. `Flask`를 [설치](https://flask.palletsprojects.com/en/1.1.x/installation/#installation)하신 후 
+1. 프로젝트의 루트 디렉토리에서
+   * 윈도우 CMD의 경우  
+    ```
+    > set FLASK_APP=kiosk
+    > set FLASK_ENV=development
+    > flask run
+    ```
+   * 리눅스 및 맥 터미널의 경우  
+   ```
+   $ export FLASK_APP=kiosk
+   $ export FLASK_ENV=development
+   $ flask run
+   ```
+    를 하시면
+   ```
+   * Serving Flask app "kiosk"
+   * Environment: development
+   * Debug mode: on
+   * Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+   * Restarting with stat
+   * Debugger is active!
+   * Debugger PIN: 855-212-761
+   ```
+    과 같은 화면이 나옵니다.
+1. http://127.0.0.1:5000/hello 에서 "Hello,World!" 메세지가 나오면 Flask설치와 리포지토리 세팅이 완료된 것입니다.
 ## 데모 데이터베이스
 개발할 때 쓰일 데모용 데이터베이스를 생성하는 기능을 추가하였습니다.
 ### 데이터베이스 변경사항
