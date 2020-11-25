@@ -1,11 +1,36 @@
 # lot_kiosk
 [여기](https://flask.palletsprojects.com/en/1.1.x/tutorial/layout/)에 나오는 리포지토리 구조를 모방하여 생성하였습니다.
-
+## 프로젝트 시작하기
+`Flask`를 설치하신 후 프로젝트의 루트 디렉토리에서 
+윈도우 CMD의 경우
+```
+> set FLASK_APP=kiosk
+> set FLASK_ENV=development
+> flask run
+```
+리눅스 터미널의 경우
+```
+$ export FLASK_APP=kiosk
+$ export FLASK_ENV=development
+$ flask run
+```
+를 하시면
+```
+* Serving Flask app "kiosk"
+* Environment: development
+* Debug mode: on
+* Running on http://127.0.0.1:5000/ (Press CTRL+C to quit)
+* Restarting with stat
+* Debugger is active!
+* Debugger PIN: 855-212-761
+```
+과 같은 화면이 나옵니다.
+http://127.0.0.1:5000/hello 에서 "Hello,World!" 메세지가 나오면 Flask설치와 리포지토리 세팅이 완료된 것입니다.
 ## 데모 데이터베이스
 개발할 때 쓰일 데모용 데이터베이스를 생성하는 기능을 추가하였습니다.
 ### 데이터베이스 변경사항
 #### v0.01(20/11/25 19:00)
-* MENU_OPT 테이블에서 MAX_QTY가 정해져 있지 않은 경우 '?' 대신 NULL 값으로 표기하도록 했습니다.
+* MENU_OPT 테이블에서 MAX_QTY가 정해져 있지 않은 경우 '?' 대신 `NULL` 값으로 표기하도록 했습니다.
 #### v0(20/11/25)
 * 고객주문모듈 개발을 위한 최소한의 데이터셋만 탑재되어 있습니다. 
   * MENU, MENU_CATEGORY, MENU_OPT, OPT_PRICE 테이블에만 데이터가 있습니다.
@@ -15,8 +40,11 @@
 * 메뉴 정보가 실제 매장 데이터와는 차이가 있을 수 있습니다.
 
 ### 사용법
-리포지토리 루트 디렉터리에서 콘솔창에 flask init-demo-db를 입력하시면 됩니다. 정상적으로 초기화가 되면
-콘솔 창에 'Initialized the demo database.' 문구가 뜨고 instance 디렉터리에 .sqlite 데이터베이스 파일이 생성됩니다. 개발/테스트 하실 때 SQLite용 GUI 클라이언트를 이용하면 엑셀을 이용하듯 데이터를 열람할 수 있습니다.
+1. `CTRL-C`를 눌러 작동 중인 웹서버를 중단하거나, 새 콘솔 창을 띄워 환경변수 세팅을 다시 합니다.
+1. 리포지토리 루트 디렉터리에서 콘솔창에 `flask init-demo-db`를 입력하시면 됩니다. 
+1. 정상적으로 초기화가 되면
+콘솔 창에 'Initialized the demo database.' 문구가 뜨고 instance 디렉터리에 .sqlite 데이터베이스 파일이 생성됩니다. 
+1. 개발/테스트 하실 때 SQLite용 GUI 클라이언트를 이용하면 엑셀을 이용하듯 데이터를 열람할 수 있습니다.
 
 ## 프론트엔드 팀원분들에게
 프론트엔드를 담당하시는 경우 html 파일은 kiosk/templates 디렉토리에 넣어 주시고 css파일/javascript가 포함된 파일/
