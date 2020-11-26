@@ -1,0 +1,190 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700;900&display=swap");
+
+body {
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 600px;
+  /* height: 100%; */
+  height: 1000px;
+  background-color: black;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 30px 180px 1fr 60px;
+}
+header {
+  background-color: rgb(240, 240, 240);
+  padding-right: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+.select_lan {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 12px;
+}
+.select_lan span:first-child {
+  color: #ff6b6b;
+}
+.advertisement {
+  background: url("/kiosk/static/img/burgers.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+main {
+  background-color: #f6ddce;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 50px 1fr;
+}
+.select_pay-text {
+  font-size: 25px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.select_pay-imgs {
+  background-color: #fffdfa;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  /* gap: 10px; */
+}
+.imgs-card {
+  grid-column: 1/-1;
+  grid-row: 1/2;
+  margin-bottom: 10px;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border-bottom: 2px solid #bbbbbb;
+}
+.imgs-card img {
+  width: 200px;
+  height: 200px;
+}
+.card-texts {
+  height: 100%;
+  width: 250px;
+  font-size: 23px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: flex-start;
+}
+.card-texts_title {
+  color: #ff6b6b;
+  font-weight: 700;
+  font-size: 40px;
+}
+.card-texts_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  margin-top: 5px;
+}
+.card-texts_text > span {
+  margin-bottom: 5px;
+}
+
+.imgs-coupon {
+  border-right: 2px solid #bbbbbb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  cursor: pointer;
+}
+.imgs-coupon img {
+  width: 130px;
+  height: 130px;
+}
+.coupon-texts_title {
+  color: #6bc895;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.coupon-texts_text {
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.coupon-texts_text > span {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+.imgs-cash {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.imgs-cash img {
+  width: 140px;
+  height: 140px;
+}
+.cash-texts {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.cash-texts_title {
+  color: #6b91c8;
+  font-size: 25px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.cash-texts_text {
+  /* align-self: flex-start; */
+  margin-top: 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.cash-texts_text > span {
+  margin-bottom: 5px;
+  font-size: 18px;
+}
+
+footer {
+  background-color: #ebebeb;
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+footer img {
+  width: 40px;
+  height: 50px;
+}
+.icons-left {
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+}
+.icons-right {
+  margin-right: 10px;
+  border: none;
+  outline: 0;
+  cursor: pointer;
+}
