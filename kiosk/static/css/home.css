@@ -14,8 +14,8 @@ body {
 }
 .container {
   width: 600px;
-  height: 100%;
-  /* height: 1000px; */
+  /* height: 100%; */
+  height: 1000px;
   background-color: black;
   display: grid;
   grid-template-columns: 100%;
@@ -59,7 +59,7 @@ main {
   height: 50px;
 }
 .image {
-  background: url("/static/img/burgers.jpeg");
+  background: url("/kiosk/static/img/burgers.jpeg");
   background-position: center;
   background-size: cover;
 }
