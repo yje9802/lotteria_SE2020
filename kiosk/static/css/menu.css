@@ -1,0 +1,597 @@
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700;900&display=swap");
+/* Noto Sans 폰트 추가 */
+
+:root {
+  /* Color */
+  --color-white: #ffffff;
+  --color-lightgray: #eeeeee;
+  --color-middlegray: #cbc9c9;
+  --color-gray: #bdbdbd;
+  --color-lightbrown: wheat;
+  --color-lightpink: #f4cbcb;
+  --color-middlepink: #dda7a7;
+  --color-red: #f44336;
+  --color-whiteblue: #e1f5fe;
+  --color-blue: #90caf9;
+  --color-brightorange: #ffb74d;
+
+  /* Font size */
+
+  /* Font weight */
+  --weight-bold: 700;
+  --weight-semi-bold: 600;
+  --weight-regular: 400;
+
+  /* Animation */
+  --animation-duration: 300ms;
+}
+html {
+  background-color: black;
+}
+
+body {
+  margin: 0;
+  box-sizing: border-box;
+  width: 100%;
+  height: 1000px;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 600px;
+  height: 100%;
+  background-color: white;
+  display: grid;
+  grid-template-columns: 100%;
+  /* 광고란 사이즈 조정 */
+  grid-template-rows: 180px 50px 2fr 1fr;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+h1,
+h2 {
+  margin: 0;
+}
+
+/* ad */
+.ad {
+  width: 100%;
+}
+
+.ad_img {
+  width: 100%;
+  height: 100%;
+}
+
+/* category*/
+.category {
+  background-color: var(--color-lightbrown);
+  height: 50px;
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 4px;
+}
+
+.category_btn {
+  font-size: 18px;
+  font-weight: var(--weight-semi-bold);
+  transition: all var(--animation-duration) ease;
+  background-color: transparent;
+  width: 120px;
+  border-radius: 20px 20px 0 0;
+  outline: none;
+}
+
+.category_btn.selected,
+.category_btn:hover {
+  background-color: var(--color-white);
+}
+
+/* menu */
+.menu_container {
+  background-color: var(--color-white);
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.menu {
+  display: flex;
+  align-items: center;
+}
+
+.menu:hover {
+  background-color: var(--color-lightgray);
+  border-radius: 10px;
+}
+
+.menu.invisible {
+  display: none;
+}
+
+.menu_name {
+  width: 120px;
+  font-size: 18px;
+}
+.menu_price {
+  color: var(--color-red);
+}
+
+.check {
+  display: flex;
+  background-color: var(--color-lightgray);
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+}
+.check h1 {
+  font-size: 25px;
+}
+.check_price {
+  color: red;
+}
+
+.menu_thumnail.hamburger {
+  width: 150px;
+  height: 110px;
+}
+
+.menu_thumnail.dessert {
+  width: 150px;
+  height: 110px;
+}
+
+.menu_thumnail.drink {
+  width: 150px;
+  height: 110px;
+  /* padding: 0 40px; */
+}
+
+/* shopping list */
+.list {
+  display: grid;
+  /* 총주문 표시내역 크기 50px로 수정*/
+  grid-template-rows: 50px 146px 60px;
+}
+
+.basket {
+  overflow: auto;
+}
+.basket_items {
+  background-color: var(--color-white);
+  margin: 0;
+  padding-left: 25px;
+  font-size: 12px;
+}
+
+.basket_items li {
+  height: 25px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.li_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 5px;
+}
+.li_wrapper h3 {
+  margin: 0;
+}
+.item_name {
+  width: 250px;
+}
+.item_amount {
+  width: 150px;
+  display: flex;
+  align-items: center;
+}
+.item_price {
+  width: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+.item_price button {
+  font-size: 10px;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.order {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-lightgray);
+}
+
+.icons {
+  display: flex;
+}
+
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-weight: var(--weight-semi-bold);
+  margin: 0 10px;
+}
+
+.icon_img {
+  cursor: pointer;
+  height: 50px;
+  width: 40px;
+}
+
+.order_cancle_btn {
+  margin-left: 20px;
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 20px;
+  border: 3px solid var(--color-middlegray);
+  transition: all var(--animation-duration) ease;
+}
+
+.order_order_btn {
+  margin-left: 15px;
+  font-size: 24px;
+  font-weight: var(--weight-bold);
+  height: 48px;
+  padding: 0 20px;
+  border-radius: 20px;
+  border: 3px solid var(--color-middlepink);
+  background-color: var(--color-lightpink);
+  transition: all var(--animation-duration) ease;
+}
+
+.order_cancle_btn:hover {
+  background-color: var(--color-gray);
+}
+
+.order_order_btn:hover {
+  background-color: var(--color-red);
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1; /* Sit on top */
+  text-align: center;
+  width: 600px;
+  height: 1000px; /* 수정함 */
+  /* overflow: auto;  */ /* 수정함 */
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content/Box */
+.modal_content {
+  background-color: #fefefe;
+  margin: 45% auto; /* 15% from the top and centered */
+  border: 1px solid #888;
+  border-radius: 5px;
+  width: 85%;
+  /* 사이즈 키움 */
+  height: 260px;
+  display: grid;
+  grid-template-rows: 50px 1fr;
+}
+
+.modal_top {
+  background-color: var(--color-whiteblue);
+  display: flex;
+  align-items: center;
+}
+
+.modal_question {
+  font-size: 25px;
+  font-weight: 600;
+  padding-left: 135px;
+}
+
+/* The Close Button */
+.modal_close {
+  color: var(--color-blue);
+  float: right;
+  font-size: 40px;
+  font-weight: bold;
+  margin-left: 100px;
+  border: 4px solid var(--color-blue);
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  /* line-height: 30px; */
+  /* x표시가 박스 안에서 항상 정가운데에 놓이도록 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal_close_x {
+  /* x표시가 가운데로 안와서 padding억지로 넣었습니다 */
+  margin: 0;
+  padding-bottom: 7px;
+}
+.modal_close:hover,
+.modal_close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal_bottom {
+  display: flex;
+  margin: auto;
+}
+
+.burger_btn {
+  border: 5px solid var(--color-brightorange);
+  border-radius: 10px;
+  margin: 0 30px;
+}
+
+.burger_name {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.burger_img {
+  height: 80px;
+  width: 80px;
+  padding: 10px 20px;
+}
+
+.burger_price {
+  font-size: 25px;
+  font-weight: 600;
+  color: red;
+  text-align: center;
+  margin-top: 5px;
+}
+
+/* ***Modal Set  */
+.modal_content.set {
+  margin: 100px auto;
+  height: 80%;
+  display: grid;
+  grid-template-rows: 55px 55px 1fr 85px;
+}
+
+.modal_question.set {
+  padding-left: 60px;
+}
+
+.modal_close_set {
+  margin-left: 30px;
+  color: var(--color-blue);
+  float: right;
+  /* 폰트사이즈 조금 줄였어요 */
+  font-size: 40px;
+  font-weight: bold;
+  border: 4px solid var(--color-blue);
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  line-height: 25px;
+  /* x표시가 박스 안에서 항상 정가운데에 놓이도록 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal_close_set:hover,
+.modal_close_set:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal_category {
+  background-color: var(--color-lightgray);
+  display: flex;
+  align-items: center;
+}
+
+.modal_category_btn {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 20px;
+  transition: all var(--animation-duration) ease;
+  background-color: transparent;
+  border-radius: 20px 20px 0 0;
+  outline: none;
+  margin-top: 5px;
+  height: 90%;
+}
+
+.modal_category_btn.selected,
+.modal_category_btn:hover {
+  background-color: var(--color-white);
+}
+
+.modal_menu_set {
+  flex-wrap: wrap;
+}
+
+.menu_set {
+  width: 110px;
+  height: 160px;
+}
+
+.menu_set:hover {
+  background-color: var(--color-lightgray);
+}
+
+.menu_set.invisible {
+  display: none;
+}
+
+.menu_set_thumnail {
+  width: 100px;
+  height: 100px;
+}
+
+.menu_drink_name,
+.menu_drink_price,
+.menu_dessert_name,
+.menu_dessert_price {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.menu_drink_price,
+.menu_dessert_price {
+  color: var(--color-red);
+}
+
+.modal_bottom_set {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  line-height: 30px;
+  padding: 10px;
+}
+
+.modal_num {
+  background-color: var(--color-yellow);
+  border-radius: 10px;
+  display: gird;
+  grid-template-rows: 1fr 1fr;
+  padding: 5px;
+}
+
+.modal_num_choice,
+.modal_num_left {
+  display: flex;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-red);
+  margin-left: 10px;
+}
+
+.many {
+  margin-left: 5px;
+  font-weight: 600;
+}
+.modal_set_btn {
+  width: 150px;
+  font-size: 25px;
+  font-weight: 600;
+  padding: 10px 0;
+  margin-left: 15px;
+  border-radius: 10px;
+}
+
+.modal_set_btn {
+  background-color: var(--color-lightgray);
+  border: 3px solid var(--color-gray);
+}
+
+.modal_set_btn.yes {
+  background-color: var(--color-lightgreen);
+}
+
+.modal_set_btn.no:hover {
+  background-color: var(--color-gray);
+  transition: all var(--animation-duration) ease;
+}
+
+.modal_set_btn.yes:hover {
+  background-color: var(--color-green);
+  transition: all var(--animation-duration) ease;
+}
+
+/* menu data */
+
+.menu_data_container {
+  display: grid;
+  grid-template-rows: 20px 160px;
+}
+
+.menu_data_nav {
+  width: 100%;
+  background-color: rgb(240, 240, 240);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.select_lan {
+  background-color: rgb(240, 240, 240);
+  width: 200px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.select_lan span:first-child {
+  color: #ff6b6b;
+}
+
+.menu_data {
+  display: flex;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 180px 1fr;
+}
+
+.menu_data_img {
+  height: 120px;
+  width: 160px;
+  margin-left: 10px;
+}
+
+.menu_data_top {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 8px;
+  height: 30px;
+}
+
+.menu_data_name {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.menu_data_btn {
+  font-size: 18px;
+  color: var(--color-white);
+  margin-right: 10px;
+  background-color: var(--color-red);
+  padding: 3px 15px;
+  border-radius: 10px;
+  transition: all var(--animation-duration) ease;
+}
+
+.menu_data_bottom {
+  display: grid;
+  grid-template-rows: 60px 25px;
+}
+
+.menu_data_btn:hover {
+  transform: scale(1.1);
+}
+
+.menu_data_specific {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.menu_data_ingredient {
+  display: flex;
+}

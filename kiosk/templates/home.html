@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Home</title>
+		<!-- <link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/home.css') }}"
+		/> -->
+		<link rel="stylesheet" href="/kiosk/static/css/home.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<main onClick="location.href='/payment'">
+				<div class="texts">
+					<h2>기다리지 않고 간편하게</h2>
+					<div class="h1">
+						<h1>여기에서</h1>
+						<h1>주문하세요!</h1>
+					</div>
+					<img src="/kiosk/static/img/touch.png" />
+				</div>
+				<div class="image"></div>
+			</main>
+			<footer>
+				<div class="icons">
+					<img src="/kiosk/static/img/icon/disabled.png" />
+					<img src="/kiosk/static/img/icon/magnifier.png" />
+					<img src="/kiosk/static/img/icon/volume.png" alt="" />
+				</div>
+				<div class="select_lan">
+					<span>한국어</span>
+					<span>English</span>
+					<span>中國語</span>
+					<span>日本語</span>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>

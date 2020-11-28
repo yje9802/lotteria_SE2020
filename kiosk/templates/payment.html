@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Select Payment</title>
+		<!-- <link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/payment.css') }}"
+        /> -->
+        <link rel="stylesheet" href="/kiosk/static/css/payment.css">
+	</head>
+
+	<body>
+		<div class="container">
+			<header>
+				<div class="select_lan">
+					<span>한국어</span>
+					<span>English</span>
+					<span>中國語</span>
+					<span>日本語</span>
+				</div>
+			</header>
+			<div class="advertisement"></div>
+			<main>
+				<div class="select_pay-text">
+					<span>원하시는 결제방법을 선택해주세요</span>
+				</div>
+				<div class="select_pay-imgs">
+					<div class="imgs-card" onClick="location.href='/menu'">
+						<img src="/kiosk/static/img/credit-cards.png" />
+						<div class="card-texts">
+							<h1 class="card-texts_title">카드</h1>
+							<div class="card-texts_text">
+								<span class="text">신용/체크카드</span>
+								<span class="text">모바일금액권</span>
+								<span class="text">간편결제</span>
+								<span class="text"
+									>(L.pay, 삼성페이, LG페이, 알리페이,
+									카카오페이, PAYCO)</span
+								>
+							</div>
+						</div>
+					</div>
+					<div class="imgs-coupon">
+						<img src="/kiosk/static/img/coupon.png" />
+						<div class="coupon-texts">
+							<h1 class="coupon-texts_title">
+								디지털쿠폰/교환권
+							</h1>
+							<div class="coupon-texts_text">
+								<span class="text"
+									>롯데리아제품교환권(지류)</span
+								>
+								<span class="text">모바일제품교환권</span>
+								<span class="text">(스마트쿠폰)</span>
+							</div>
+						</div>
+					</div>
+					<div class="imgs-cash">
+						<img src="/kiosk/static/img/cash.png" />
+						<div class="cash-texts">
+							<h1 class="cash-texts_title">현금</h1>
+							<div class="cash-texts_text">
+								<span class="text">주문과 결제는</span>
+								<span class="text">카운터에서 해주세요</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</main>
+			<footer>
+				<div class="icons-left">
+					<img src="/kiosk/static/img/icon/disabled.png" />
+					<img src="/kiosk/static/img/icon/magnifier.png" />
+					<img src="/kiosk/static/img/icon/volume.png" />
+				</div>
+				<button
+					type="button"
+					class="icons-right"
+					onClick="location.href='/'"
+				>
+					<img src="/kiosk/static/img/icon/back.png" />
+				</button>
+			</footer>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,93 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700;900&display=swap");
+
+body {
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: black;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+.container {
+  width: 600px;
+  /* height: 100%; */
+  height: 1000px;
+  background-color: black;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr 60px;
+}
+
+main {
+  grid-row: 1/-2;
+
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 1fr 1fr;
+}
+.texts {
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f6f6f6;
+  cursor: pointer;
+
+  font-family: "Do Hyeon", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.texts h2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #4f2828;
+}
+.h1 {
+  text-align: center;
+}
+.texts h1 {
+  font-size: 70px;
+  font-weight: 800;
+  color: #712920;
+}
+.texts img {
+  width: 250px;
+  height: 50px;
+}
+.image {
+  background: url("/kiosk/static/img/burgers.jpeg");
+  background-position: center;
+  background-size: cover;
+}
+footer {
+  background-color: rgb(240, 240, 240);
+  padding: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.icons {
+  width: 200px;
+  padding: 0px 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.icons img {
+  height: 50px;
+  width: 45px;
+  margin-right: 10px;
+}
+.select_lan {
+  width: 300px;
+  padding-right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 17px;
+  font-weight: 700;
+}

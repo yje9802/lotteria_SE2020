@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- <link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/menu.css') }}"
+		/>
+		<script
+			src="{{ url_for('static', filename='js/menu.js') }}"
+			defer
+		></script> -->
+        
+
+		<link rel="stylesheet" href="/kiosk/static/css/menu.css"> 
+        <script src="/kiosk/static/js/menu.js" defer></script> 
+		<title>MENU</title>
+	</head>
+	<body>
+		<div class="container">
+			<!-- ad -->
+			<header class="ad">
+				<img
+					src="/kiosk/static/img/ad/military.png"
+					alt="ad"
+					class="ad_img"
+				/>
+			</header>
+
+			<!-- categories -->
+			<div class="category">
+				<button class="category_btn" data-filter="best">
+					추천메뉴
+				</button>
+				<button class="category_btn selected" data-filter="hamburger">
+					햄버거
+				</button>
+				<button class="category_btn" data-filter="dessert">
+					디저트/치킨
+				</button>
+				<button class="category_btn" data-filter="drink">
+					음료/커피
+				</button>
+			</div>
+
+			<!-- menus -->
+			<div class="menu_container">
+				<!-- hamburger -->
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_military.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">밀리터리 버거</h2>
+						<h2 class="menu_price">6400</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_polder.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">폴더버거 핫치킨</h2>
+						<h2 class="menu_price">5700</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_miracle.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">리아미라클 버거</h2>
+						<h2 class="menu_price">5600</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_wagu.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">와규 에디션2</h2>
+						<h2 class="menu_price">5800</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_srimp.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">새우버거</h2>
+						<h2 class="menu_price">3900</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_chicken.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">치킨버거</h2>
+						<h2 class="menu_price">2900</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_trax.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">T-Rex</h2>
+						<h2 class="menu_price">3700</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="hamburger">
+					<img
+						src="/kiosk/static/img/menu/b_clasic.png"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">클래식 치즈 버거</h2>
+						<h2 class="menu_price">4400</h2>
+					</div>
+				</button>
+
+				<!-- drink -->
+				<button class="menu" data-type="drink">
+					<img
+						src="/kiosk/static/img/menu/d_coke.png"
+						alt=""
+						class="menu_thumnail drink"
+					/>
+					<div>
+						<h2 class="menu_name">콜라(R)</h2>
+						<h2 class="menu_price">1700</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="drink">
+					<img
+						src="/kiosk/static/img/menu/d_cider.png"
+						alt=""
+						class="menu_thumnail drink"
+					/>
+					<div>
+						<h2 class="menu_name">사이다(R)</h2>
+						<h2 class="menu_price">1700</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="drink">
+					<img
+						src="/kiosk/static/img/menu/d_ame.png"
+						alt=""
+						class="menu_thumnail drink"
+					/>
+					<div>
+						<h2 class="menu_name">아메리카노</h2>
+						<h2 class="menu_price">2000</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="drink">
+					<img
+						src="/kiosk/static/img/menu/d_milk.png"
+						alt=""
+						class="menu_thumnail drink"
+					/>
+					<div>
+						<h2 class="menu_name">우유</h2>
+						<h2 class="menu_price">1500</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="drink">
+					<img
+						src="/kiosk/static/img/menu/d_oragej.png"
+						alt=""
+						class="menu_thumnail drink"
+					/>
+					<div>
+						<h2 class="menu_name">오렌지주스(PET)</h2>
+						<h2 class="menu_price">2500</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="drink">
+					<img
+						src="/kiosk/static/img/menu/d_icetea.png"
+						alt=""
+						class="menu_thumnail drink"
+					/>
+					<div>
+						<h2 class="menu_name">아이스티</h2>
+						<h2 class="menu_price">2200</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="drink">
+					<img
+						src="/kiosk/static/img/menu/d_iceame_R.png"
+						alt=""
+						class="menu_thumnail drink"
+					/>
+					<div>
+						<h2 class="menu_name">아이스 아메리카노</h2>
+						<h2 class="menu_price">2000</h2>
+					</div>
+				</button>
+
+				<!-- dessert -->
+				<button class="menu" data-type="dessert">
+					<img
+						src="/kiosk/static/img/menu/de_potato.png"
+						alt=""
+						class="menu_thumnail dessert"
+					/>
+					<div>
+						<h2 class="menu_name">포테이토</h2>
+						<h2 class="menu_price">1500</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="dessert">
+					<img
+						src="/kiosk/static/img/menu/de_potato_s.png"
+						alt=""
+						class="menu_thumnail dessert"
+					/>
+					<div>
+						<h2 class="menu_name">양념감자</h2>
+						<h2 class="menu_price">2000</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="dessert">
+					<img
+						src="/kiosk/static/img/menu/de_cheezestick.png"
+						alt=""
+						class="menu_thumnail dessert"
+					/>
+					<div>
+						<h2 class="menu_name">롱치즈스틱(1pc)</h2>
+						<h2 class="menu_price">1800</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="dessert">
+					<img
+						src="/kiosk/static/img/menu/de_sheck.png"
+						alt=""
+						class="menu_thumnail dessert"
+					/>
+					<div>
+						<h2 class="menu_name">쉑쉑치킨</h2>
+						<h2 class="menu_price">2500</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="dessert">
+					<img
+						src="/kiosk/static/img/menu/de_cheezestick_R.png"
+						alt=""
+						class="menu_thumnail dessert"
+					/>
+					<div>
+						<h2 class="menu_name">치즈스틱</h2>
+						<h2 class="menu_price">2000</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="dessert">
+					<img
+						src="/kiosk/static/img/menu/de_to_berry.png"
+						alt=""
+						class="menu_thumnail dessert"
+					/>
+					<div>
+						<h2 class="menu_name">토네이도(스트로베리)</h2>
+						<h2 class="menu_price">2400</h2>
+					</div>
+				</button>
+				<button class="menu" data-type="dessert">
+					<img
+						src="/kiosk/static/img/menu/de_to_choco.png"
+						alt=""
+						class="menu_thumnail dessert"
+					/>
+					<div>
+						<h2 class="menu_name">토네이도(초코쿠키)</h2>
+						<h2 class="menu_price">2300</h2>
+					</div>
+				</button>
+			</div>
+
+			<!-- The Modal -->
+			<div id="myModal" class="modal">
+				<!-- Modal content -->
+				<div class="modal_content">
+					<div class="modal_top">
+						<div class="modal_question">세트로 드시겠어요?</div>
+						<div class="modal_close">
+							<!-- x표시를 항상 박스 정가운데에 놓이게 하기 위해 div 추가 -->
+							<div class="modal_close_x">&times;</div>
+						</div>
+					</div>
+					<div class="modal_bottom">
+						<div class="burger_only">
+							<button class="burger_btn only">
+								<img
+									src="/kiosk/static/img/icon/burger.png"
+									alt=""
+									class="burger_img"
+								/>
+								<div class="burger_name">버거만</div>
+							</button>
+							<div class="burger_price only"></div>
+						</div>
+						<div class="burger_set">
+							<button class="burger_btn set">
+								<img
+									src="/kiosk/static/img/icon/burger_set.png"
+									alt=""
+									class="burger_img"
+								/>
+								<div class="burger_name">세트</div>
+							</button>
+							<div class="burger_price set"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- ***Modal Set  -->
+			<div id="modal_set" class="modal">
+				<div class="modal_content set">
+					<div class="modal_top set">
+						<div class="modal_question set">
+							세트디저트 1개를 선택해 주세요
+						</div>
+						<div class="modal_close_set">
+							<!-- x표시를 항상 박스 정가운데에 놓이게 하기 위해 div 추가 -->
+							<div class="modal_close_x">&times;</div>
+						</div>
+					</div>
+					<div class="modal_category">
+						<button
+							class="modal_category_btn dessert selected"
+							data-filter="set_dessert"
+						>
+							세트_디저트
+						</button>
+						<button
+							class="modal_category_btn drink"
+							data-filter="set_drink"
+						>
+							세트_드링크
+						</button>
+					</div>
+					<div class="modal_menu_set">
+						<button class="menu_set" data-type="set_dessert">
+							<img
+								src="/kiosk/static/img/menu/de_potato.png"
+								alt=""
+								class="menu_set_thumnail dessert"
+							/>
+							<div>
+								<h2 class="menu_dessert_name">포테이토</h2>
+								<h2 class="menu_dessert_price">0</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_dessert">
+							<img
+								src="/kiosk/static/img/menu/de_potato_s.png"
+								alt=""
+								class="menu_set_thumnail dessert"
+							/>
+							<div>
+								<h2 class="menu_dessert_name">양념감자</h2>
+								<h2 class="menu_dessert_price">500</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_dessert">
+							<img
+								src="/kiosk/static/img/menu/de_cheezestick.png"
+								alt=""
+								class="menu_set_thumnail dessert"
+							/>
+							<div>
+								<h2 class="menu_dessert_name">
+									롱치즈스틱(1pc)
+								</h2>
+								<h2 class="menu_dessert_price">300</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_dessert">
+							<img
+								src="/kiosk/static/img/menu/de_sheck.png"
+								alt=""
+								class="menu_set_thumnail dessert"
+							/>
+							<div>
+								<h2 class="menu_dessert_name">쉑쉑치킨</h2>
+								<h2 class="menu_dessert_price">1000</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_dessert">
+							<img
+								src="/kiosk/static/img/menu/de_cheezestick_R.png"
+								alt=""
+								class="menu_set_thumnail dessert d"
+							/>
+							<div>
+								<h2 class="menu_dessert_name">치즈스틱</h2>
+								<h2 class="menu_dessert_price">500</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_dessert">
+							<img
+								src="/kiosk/static/img/menu/de_to_berry.png"
+								alt=""
+								class="menu_set_thumnail dessert d"
+							/>
+							<div>
+								<h2 class="menu_dessert_name">
+									토네이도(스트로베리)
+								</h2>
+								<h2 class="menu_dessert_price">800</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_dessert">
+							<img
+								src="/kiosk/static/img/menu/de_to_choco.png"
+								alt=""
+								class="menu_set_thumnail dessert d"
+							/>
+							<div>
+								<h2 class="menu_dessert_name">
+									토네이도(초코쿠키)
+								</h2>
+								<h2 class="menu_dessert_price">800</h2>
+							</div>
+						</button>
+
+						<!-- set_drink -->
+						<button class="menu_set" data-type="set_drink">
+							<img
+								src="/kiosk/static/img/menu/d_coke.png"
+								alt=""
+								class="menu_set_thumnail drink"
+							/>
+							<div>
+								<h2 class="menu_drink_name">콜라(R)</h2>
+								<h2 class="menu_drink_price">0</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_drink">
+							<img
+								src="/kiosk/static/img/menu/d_cider.png"
+								alt=""
+								class="menu_set_thumnail drink"
+							/>
+							<div>
+								<h2 class="menu_drink_name">사이다(R)</h2>
+								<h2 class="menu_drink_price">0</h2>
+							</div>
+						</button>
+						<button class="menu_set" data-type="set_drink">
+							<img
+								src="/kiosk/static/img/menu/d_ame.png"
+								alt=""
+								class="menu_set_thumnail drink"
+							/>
+							<div>
+								<h2 class="menu_drink_name">아메리카노</h2>
+								<h2 class="menu_drink_price">300</h2>
+							</div>
+						</button>
+					</div>
+					<div class="modal_bottom_set">
+						<div class="modal_num">
+							<div class="modal_num_choice">
+								<div class="dot"></div>
+								<div class="many">선택수량 : __</div>
+							</div>
+							<div class="modal_num_left">
+								<div class="dot"></div>
+								<div class="many">잔여수량 : __</div>
+							</div>
+						</div>
+						<button class="modal_set_btn no">취소하기</button>
+						<button class="modal_set_btn yes">선택완료</button>
+					</div>
+				</div>
+			</div>
+
+			<!-- shopping list -->
+			<footer class="list">
+				<!-- check -->
+				<div class="check">
+					<h1>총 주문 내역</h1>
+					<h1 class="check_num">0개</h1>
+					<h1 class="check_price">0</h1>
+				</div>
+				<!-- basket -->
+				<div class="basket">
+					<ul class="basket_items">
+						<!-- li 태그 클래스 삭제 -->
+						<!-- 장바구니에 담기는 모습 예시 -->
+						<!-- <li>
+							<div class="li_wrapper">
+								<h3 class="item_name">새우버거 세트</h3>
+								<div class="item_amount">
+									<h3>1</h3>
+									<div>
+										<button class="item_numup"></button>
+										<button class="item_numdown"></button>
+									</div>
+								</div>
+								<div class="item_price">
+									<h3>6,400</h3>
+									<button>삭제</button>
+								</div>
+							</div>
+						</li> -->
+					</ul>
+				</div>
+				<!-- order -->
+				<div class="order">
+					<div class="icons">
+						<div class="icon">
+							<img
+								src="/kiosk/static/img/icon/disabled.png"
+								alt=""
+								class="icon_img disabled"
+							/>
+						</div>
+						<div class="icon">
+							<img
+								src="/kiosk/static/img/icon/magnifier.png"
+								alt=""
+								class="icon_img magnifier"
+							/>
+						</div>
+						<div class="icon">
+							<img
+								src="/kiosk/static/img/icon/volume.png"
+								alt=""
+								class="icon_img volume"
+							/>
+						</div>
+						<button
+							type="button"
+							onClick="location.href='/payment'"
+							class="icon"
+						>
+							<img
+								src="/kiosk/static/img/icon/back.png"
+								alt=""
+								class="icon_img back"
+							/>
+						</button>
+					</div>
+					<div class="btns">
+						<button class="order_cancle_btn">취소하기</button>
+						<button class="order_order_btn">결제하기</button>
+					</div>
+				</div>
+			</footer>
+		</div>
+	</body>
+</html>
