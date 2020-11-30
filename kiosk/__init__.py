@@ -33,6 +33,10 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
     
+    from . import order
+    app.register_blueprint(order.bp)
+    # app.add_url_rule('/', endpoint='index') # 필요한 코드??
+    
     
     return app
     
