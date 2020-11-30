@@ -9,7 +9,8 @@
 			href="{{ url_for('static', filename='css/payment.css') }}"
 		/>
 	</head> -->
-		<link rel="stylesheet" href="/kiosk/static/css/charge.css"> 
+        <link rel="stylesheet" href="/kiosk/static/css/charge.css"> 
+        <script src="/kiosk/static/js/charge.js" defer></script> 
 	<body>
 		<div class="container">
 			<header>
@@ -20,7 +21,13 @@
 					<span>日本語</span>
 				</div>
 			</header>
-            <div class="advertisement"></div>
+            <div class="advertisement">
+                <img
+					src="/kiosk/static/img/ad/military.png"
+					alt="ad"
+					class="ad_img"
+				/>
+            </div>
             
 
 <!-- main -->
@@ -101,11 +108,11 @@
                     <div class="step2">Step 2 결제를 선택하세요.</div>
                     <div class="step2_icon">
                         <button class="step2_icon_btn card">
-                            <img src="/kiosk/static/img/credit-cards.png" alt="" class="step2_img card">
+                            <img src="/kiosk/static/img/credit-cards.png" alt="" class="step2_img card" id="card">
                             <div class="step2_word">신용/ 체크카드</div>
                         </button>
                         <button class="step2_icon_btn mobile">
-                            <img src="/kiosk/static/img/coupon.png" alt="" class="step2_img card">
+                            <img src="/kiosk/static/img/coupon.png" alt="" class="step2_img card" id="mobile">
                             <div class="step2_word">모바일 /바코드 /페이류 (PAY)</div>
                         </button>
                     </div>
@@ -155,6 +162,23 @@
 					</div>
 				</div>
 			</footer>
-		</div>
+        </div>
+        
+
+<!-- card Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal_content">                                                            
+    <div class="content_top">신용/체크카드</div>
+    <div class="content_bottom">
+        <div class="discribe_1">신용카드 승인처리 중입니다.</div>
+        <div class="discribe_2">잠시만 기다려 주세요.</div>
+        <div><img src="/kiosk/static/img/card_in_process.jpg" alt="" class="discribe_img"></div>
+        <button class="modal_cancle_btn">취소</button>
+  </div>
+
+</div>
+
 	</body>
 </html>
