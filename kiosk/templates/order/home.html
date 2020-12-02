@@ -15,7 +15,7 @@
 
 	<body>
 		<div class="container">
-			<main onClick="location.href='{{url_for('order.payment')}}'">
+			<main onClick="location.href='{{ url_for('order.payment') }}'">
 				<div class="texts">
 					<h2>기다리지 않고 간편하게</h2>
 					<div class="h1">
@@ -28,9 +28,9 @@
 			</main>
 			<footer>
 				<div class="icons">
-					<img src="{{url_for('static', filename='img/icon/disabled.png')}}" />
+					<img src="{{ url_for('static', filename='img/icon/disabled.png') }}" />
 					<img src="{{ url_for('static', filename='img/icon/magnifier.png') }}" />
-					<img src="{{url_for('static', filename='img/icon/volume.png')}}" alt="" />
+					<img src="{{ url_for('static', filename='img/icon/volume.png') }}" alt="" />
 				</div>
 				<div class="select_lan">
 					<span>한국어</span>
