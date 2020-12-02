@@ -9,6 +9,12 @@ const step2 = document.querySelector(".step2");
 const card_btn = document.querySelector(".step2_icon_btn.card");
 const mobile_btn = document.querySelector(".step2_icon_btn.mobile");
 
+const togo_path = togo_img.getAttribute("data-togo_path") // togo_img에 저장
+const togo_check_path = togo_img.getAttribute("data-togo_check_path") // togo_img에 저장
+const here_path = here_img.getAttribute("data-here_path") // here_img에 저장
+const here_check_path = here_img.getAttribute("data-here_check_path") // here_img에 저장
+const bill2_path = step2.getAttribute("data-bill2_path") //step2 div에 저장
+const order_num_path = step2.getAttribute("data-order_num_path") //step2 div에 저장
 
 //step2 선택 
 function clickStep2(){
@@ -40,8 +46,8 @@ function clickStep1(){
     //포장
     togo_btn.onclick = function(){
         //**아래 네개(img.src) 사진 경로 설정 필요
-        togo_img.src = "/kiosk/static/img/togo_check.png"; 
-        here_img.src = "/kiosk/static/img/here.png"; 
+        togo_img.src = togo_check_path; // /kiosk/static/img/togo_check.png; 
+        here_img.src = here_path; // /kiosk/static/img/here.png"; 
         togo_btn.style.opacity = 1;
         here_btn.style.opacity = 0.5;
         clickStep2();
@@ -49,8 +55,8 @@ function clickStep1(){
     }
     //매장
     here_btn.onclick = function(){
-        here_img.src ="/kiosk/static/img/here_check.png";
-        togo_img.src = "/kiosk/static/img/togo.png";
+        here_img.src = here_check_path; // "../img/here_check.png";
+        togo_img.src = togo_path // "../img/togo.png";
         here_btn.style.opacity = 1;
         togo_btn.style.opacity = 0.5; 
         clickStep2();
@@ -84,7 +90,7 @@ function getModal(){
             content_bottom.innerHTML = `
             <div class="receipt_top">
                 <div class="receipt_left">
-                    <img src = "/kiosk/static/img/bill2.png" class="receipt_img">
+                    <img src = ${bill2_path} class="receipt_img">
                 </div>
                 <div class = "receipt_right">
                     <div class="discribe">
@@ -96,8 +102,8 @@ function getModal(){
                 </div>
             </div>
             <div class = "receipt_bottom">
-                <button class="receipt_btn yes" onClick="location.href='/order_num'">발행</button>
-                <button class="receipt_btn no" onClick="location.href='/order_num'">미발행</button>
+                <button class="receipt_btn yes" onClick="location.href=${order_num_path}">발행</button>
+                <button class="receipt_btn no" onClick="location.href=${order_num_path}">미발행</button>
             </div>
             `;
           }, 2000);
