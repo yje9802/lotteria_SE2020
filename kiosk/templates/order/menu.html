@@ -19,8 +19,8 @@
 		></script> -->
         
 
-		<link rel="stylesheet" href="/kiosk/static/css/menu.css"> 
-        <script src="/kiosk/static/js/menu.js" defer></script> 
+		<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"> 
+        <script src="{{ url_for('static', filename='js/menu.js') }}" defer></script> 
 		<title>MENU</title>
 	</head>
 	<body>
@@ -28,7 +28,7 @@
 			<!-- ad -->
 			<header class="ad">
 				<img
-					src="/kiosk/static/img/ad/military.png"
+					src="{{ url_for('static', filename='img/ad/military.png') }}"
 					alt="ad"
 					class="ad_img"
 				/>
@@ -55,7 +55,7 @@
 				<!-- hamburger -->
 				<button class="menu" data-type="hamburger">
 					<img
-						src="/kiosk/static/img/menu/b_military.png"
+						src="{{ url_for('static', filename='img/menu/b_military.png') }}"
 						alt=""
 						class="menu_thumnail hamburger"
 					/>
@@ -66,7 +66,7 @@
 				</button>
 				<button class="menu" data-type="hamburger">
 					<img
-						src="/kiosk/static/img/menu/b_polder.png"
+						src="{{ url_for('static', filename='img/menu/b_polder.png.png') }}"
 						alt=""
 						class="menu_thumnail hamburger"
 					/>
@@ -539,32 +539,32 @@
 					<div class="icons">
 						<div class="icon">
 							<img
-								src="/kiosk/static/img/icon/disabled.png"
+								src="{{ url_for('static', filename='img/icon/disabled.png') }}"
 								alt=""
 								class="icon_img disabled"
 							/>
 						</div>
 						<div class="icon">
 							<img
-								src="/kiosk/static/img/icon/magnifier.png"
+								src="{{ url_for('static', filename='img/icon/magnifier.png') }}"
 								alt=""
 								class="icon_img magnifier"
 							/>
 						</div>
 						<div class="icon">
 							<img
-								src="/kiosk/static/img/icon/volume.png"
+								src="{{ url_for('static', filename='img/icon/volume.png') }}"
 								alt=""
 								class="icon_img volume"
 							/>
 						</div>
 						<button
 							type="button"
-							onClick="location.href='/payment'"
+							onClick="location.href='{{ url_for('order.payment') }}'"
 							class="icon"
 						>
 							<img
-								src="/kiosk/static/img/icon/back.png"
+								src="{{ url_for('static', filename='img/icon/back.png') }}"
 								alt=""
 								class="icon_img back"
 							/>
@@ -572,7 +572,7 @@
 					</div>
 					<div class="btns">
 						<button class="order_cancle_btn">취소하기</button>
-						<button class="order_order_btn" onClick="location.href='/charge'">결제하기</button>
+						<button class="order_order_btn" onClick="location.href='{{ url_for('order.charge') }}'">결제하기</button>
 					</div>
 				</div>
 			</footer>
