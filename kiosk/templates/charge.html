@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<title>Charge</title>
+		<!-- <link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/payment.css') }}"
+		/>
+	</head> -->
+        <link rel="stylesheet" href="/kiosk/static/css/charge.css"> 
+        <script src="/kiosk/static/js/charge.js" defer></script> 
+	<body>
+		<div class="container">
+			<header>
+				<div class="select_lan">
+					<span>한국어</span>
+					<span>English</span>
+					<span>中國語</span>
+					<span>日本語</span>
+				</div>
+			</header>
+            <div class="advertisement">
+                <img
+					src="/kiosk/static/img/ad/military.png"
+					alt="ad"
+					class="ad_img"
+				/>
+            </div>
+            
+
+<!-- main -->
+			<main>
+                <div class="main_left">
+                    <div class="left_top">
+                        <div class="bag">
+                            <div class="bag_top">
+                                <div>제품</div>
+                                <div>수량</div>
+                                <div>금액</div>
+                            </div>
+                            <ul class="bag_lists">
+                                <li class="bag_list"></li>
+                                <li class="bag_list"></li>
+                                <li class="bag_list"></li>
+                                <li class="bag_list"></li>
+                                <li class="bag_list"></li>
+                                <li class="bag_list"></li>
+                            </ul>
+                        </div>
+                        <div class="bag_btn">
+                            <button class="tri left"></button>
+                            <div class="circle"></div>
+                            <button class="tri right"></button>
+                        </div>
+                    </div>
+                    
+                    <div class="left_bottom">
+                        <div class="charge">
+                            <div class="charge_order">
+                                <div class="charge_original">
+                                    <div class="charge_name original">주문금액</div>
+                                    <div class="charge_money original">5,000</div>
+                                </div>
+                                <div class="charge_discount">
+                                    <div class="charge_name discount">할인금액</div>
+                                    <div class="charge_money discount">5,000</div>
+                                </div>
+                            </div>
+                            
+                            <div class="charge_last">
+                                <div class="charge_last_name">결제할 금액</div>
+                                <div class="charge_last_money">0</div>
+                            </div>
+                            <div class="charge_already">
+                                <div class="charge_already_name">결제한 금액</div>
+                                <div class="charge_already_money">0</div>
+                            </div>
+                            <div class="charge_list">
+                                <div class="charge_list_name">
+                                    <div>결제종류</div>
+                                    <div>금액</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main_right">
+                    <div class="step1">Step 1 포장을 선택하세요.</div>
+                    <div class="step1_icon">
+                        <button class="step1_icon_btn togo">
+                            <img src="/kiosk/static/img/togo.png" alt="" class="step1_img togo">
+                            <div class="step1_word togo">
+                                <h2 class="word1">포장</h2>
+                                <h3 class="word2">(1회용기 제공)</h3>
+                            </div>
+                            
+                        </button>
+                        <button class="step1_icon_btn here">
+                            <img src="/kiosk/static/img/here.png" alt="" class="step1_img here">
+                            <div class="step1_word here">
+                                <h2 class="word1">매장</h2>
+                                <h3 class="word2">(다회용기 제공)</h3>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="step2">Step 2 결제를 선택하세요.</div>
+                    <div class="step2_icon">
+                        <button class="step2_icon_btn card">
+                            <img src="/kiosk/static/img/credit-cards.png" alt="" class="step2_img card" id="card">
+                            <div class="step2_word">신용/ 체크카드</div>
+                        </button>
+                        <button class="step2_icon_btn mobile">
+                            <img src="/kiosk/static/img/coupon.png" alt="" class="step2_img card" id="mobile">
+                            <div class="step2_word">모바일 /바코드 /페이류 (PAY)</div>
+                        </button>
+                    </div>
+                </div>
+            </main>
+
+<!-- footer -->
+			<footer>
+				<div class="order">
+					<div class="icons">
+						<div class="icon">
+							<img
+								src="/kiosk/static/img/icon/disabled.png"
+								alt=""
+								class="icon_img disabled"
+							/>
+						</div>
+						<div class="icon">
+							<img
+								src="/kiosk/static/img/icon/magnifier.png"
+								alt=""
+								class="icon_img magnifier"
+							/>
+						</div>
+						<div class="icon">
+							<img
+								src="/kiosk/static/img/icon/volume.png"
+								alt=""
+								class="icon_img volume"
+							/>
+						</div>
+						<button
+							type="button"
+							onClick="location.href='/menu'"
+							class="icon"
+						>
+							<img
+								src="/kiosk/static/img/icon/back.png"
+								alt=""
+								class="icon_img back"
+							/>
+						</button>
+					</div>
+					<div class="btns">
+						<button class="order_cancle_btn">결제취소</button>
+						<button class="order_order_btn">추가주문</button>
+					</div>
+				</div>
+			</footer>
+        </div>
+        
+
+<!-- card Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal_content">                                                            
+    <div class="content_top">신용/체크카드</div>
+    <div class="content_bottom">
+        <div class="discribe_1">신용카드 승인처리 중입니다.</div>
+        <div class="discribe_2">잠시만 기다려 주세요.</div>
+        <div><img src="/kiosk/static/img/card_in_process.jpg" alt="" class="discribe_img"></div>
+        <button class="modal_cancle_btn">취소</button>
+  </div>
+
+</div>
+
+	</body>
+</html>

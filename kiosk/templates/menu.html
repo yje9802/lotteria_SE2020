@@ -6,8 +6,14 @@
 		<!-- <link
 			rel="stylesheet"
 			href="{{ url_for('static', filename='css/menu.css') }}"
+		/> -->
+        <link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+			integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
+			crossorigin="anonymous"
 		/>
-		<script
+		<!-- <script
 			src="{{ url_for('static', filename='js/menu.js') }}"
 			defer
 		></script> -->
@@ -303,7 +309,8 @@
 						<div class="modal_question">세트로 드시겠어요?</div>
 						<div class="modal_close">
 							<!-- x표시를 항상 박스 정가운데에 놓이게 하기 위해 div 추가 -->
-							<div class="modal_close_x">&times;</div>
+							<!-- <div class="modal_close_x">&times;</div> -->
+                            <i class="fas fa-times"></i>
 						</div>
 					</div>
 					<div class="modal_bottom">
@@ -565,7 +572,7 @@
 					</div>
 					<div class="btns">
 						<button class="order_cancle_btn">취소하기</button>
-						<button class="order_order_btn">결제하기</button>
+						<button class="order_order_btn" onClick="location.href='/charge'">결제하기</button>
 					</div>
 				</div>
 			</footer>
