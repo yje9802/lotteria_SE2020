@@ -30,6 +30,6 @@ def charge():
     return render_template('order/charge.html')
 
 
-@bp.route('/register')
-def register():
-    return 'Successfully registered your order. Your order no is xx.' # 여기를 주문완료 html로 대체
+@bp.route('/order_num')
+def order_num():
+    return render_template('order/order_num.html')
