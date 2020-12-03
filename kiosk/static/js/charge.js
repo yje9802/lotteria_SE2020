@@ -90,7 +90,7 @@ function getModal(){
             content_bottom.innerHTML = `
             <div class="receipt_top">
                 <div class="receipt_left">
-                    <img src = ${bill2_path} class="receipt_img">
+                    <img src = "${bill2_path}" class="receipt_img">
                 </div>
                 <div class = "receipt_right">
                     <div class="discribe">
@@ -102,8 +102,8 @@ function getModal(){
                 </div>
             </div>
             <div class = "receipt_bottom">
-                <button class="receipt_btn yes" onClick="location.href=${order_num_path}">발행</button>
-                <button class="receipt_btn no" onClick="location.href=${order_num_path}">미발행</button>
+                <button class="receipt_btn yes" onClick="location.href='${order_num_path}'">발행</button>
+                <button class="receipt_btn no" onClick="location.href='${order_num_path}'">미발행</button>
             </div>
             `;
           }, 2000);
@@ -112,11 +112,6 @@ function getModal(){
     //카드 취소 버튼 클릭시 모달 종료
     cancle_btn.onclick = function(){
     modal.style.display = "none"};
-
-    //영수증 발행 or 미발행 클릭시 주문번호 보여주기
-    receipt_btn.onclick = function(){
-
-    }
 
 
     //배경화면 클릭시 모달 종료
