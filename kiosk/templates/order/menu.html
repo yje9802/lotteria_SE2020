@@ -3,24 +3,24 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- <link
+		<link
 			rel="stylesheet"
 			href="{{ url_for('static', filename='css/menu.css') }}"
-		/> -->
+		/>
         <link
 			rel="stylesheet"
 			href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
 			integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 			crossorigin="anonymous"
 		/>
-		<!-- <script
+		<script
 			src="{{ url_for('static', filename='js/menu.js') }}"
 			defer
-		></script> -->
+		></script>
         
 
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"> 
-        <script src="{{ url_for('static', filename='js/menu.js') }}" defer></script> 
+		<!-- <link rel="stylesheet" href="{{ url_for('static', filename='css/menu.css') }}"> 
+        <script src="{{ url_for('static', filename='js/menu.js') }}" defer></script> -->
 		<title>MENU</title>
 	</head>
 	<body>
@@ -349,7 +349,8 @@
 						</div>
 						<div class="modal_close_set">
 							<!-- x표시를 항상 박스 정가운데에 놓이게 하기 위해 div 추가 -->
-							<div class="modal_close_x">&times;</div>
+							<!-- <div class="modal_close_x">&times;</div> -->
+							<i class="fas fa-times"></i>
 						</div>
 					</div>
 					<div class="modal_category">
@@ -490,11 +491,15 @@
 						<div class="modal_num">
 							<div class="modal_num_choice">
 								<div class="dot"></div>
-								<div class="many">선택수량 : __</div>
+								<div class="many">
+									<span>선택수량 :&nbsp;</span><span>0</span>
+								</div>
 							</div>
 							<div class="modal_num_left">
-								<div class="dot"></div>
-								<div class="many">잔여수량 : __</div>
+								<div class="dot"></div>								
+								<div class="many">
+									<span>잔여수량 :&nbsp;</span><span>2</span>
+								</div>
 							</div>
 						</div>
 						<button class="modal_set_btn no">취소하기</button>
@@ -508,7 +513,10 @@
 				<!-- check -->
 				<div class="check">
 					<h1>총 주문 내역</h1>
-					<h1 class="check_num">0개</h1>
+					<div class="check_num_contain">
+						<h1 class="check_num">0</h1>
+						<h1>개</h1>
+					</div>
 					<h1 class="check_price">0</h1>
 				</div>
 				<!-- basket -->
@@ -522,8 +530,8 @@
 								<div class="item_amount">
 									<h3>1</h3>
 									<div>
-										<button class="item_numup"></button>
-										<button class="item_numdown"></button>
+										<button class="item_numup">&xutri;</button>
+										<button class="item_numdown">&xdtri;</button>
 									</div>
 								</div>
 								<div class="item_price">
@@ -571,8 +579,20 @@
 						</button>
 					</div>
 					<div class="btns">
-						<button class="order_cancle_btn">취소하기</button>
-						<button class="order_order_btn" onClick="location.href='{{ url_for('order.charge') }}'">결제하기</button>
+						<button
+							type="button"
+							onClick="location.href='{{ url_for('order.payment') }}'"
+							class="order_cancle_btn"
+							id="cancle_btn"
+						>
+							취소하기
+						</button>
+						<button
+							class="order_order_btn"
+							onClick="location.href='{{ url_for('order.charge') }}'"
+						>
+							결제하기
+						</button>
 					</div>
 				</div>
 			</footer>

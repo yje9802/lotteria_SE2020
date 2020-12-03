@@ -36,7 +36,6 @@ body {
   height: 1000px;
   display: flex;
   justify-content: center;
-  position: relative;
 }
 
 .container {
