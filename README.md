@@ -37,6 +37,8 @@ DB에 들어가지 않는 이미지 파일(로고 이미지 등) 등 정적 리�
 * MENU_CATEGORY 테이블의 CATEGORY_TAG 컬럼의 자료형을 INT에서 TEXT로 수정
 * INGREDIENT 테이블에 IMAGE_PATH 컬럼 추가
 * 리포지토리에 이미지가 있는 메뉴에 한해 IMAGE_PATH 수정
+* INGREDIENT의 일부 원재료명 수정
+  * 감자채 -> 감자, 콘옥수수 -> 옥수수
 * INGREDIENT의 일부 원재료에 더미 IMAGE_PATH 추가
   * 양상추, 양파, 패티류, 토핑류, 감자, 옥수수
 #### v0.03(20/11/28)
