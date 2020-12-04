@@ -38,7 +38,7 @@ header {
   color: #ff6b6b;
 }
 .advertisement {
-  background: url("/kiosk/static/img/burgers.jpeg");
+  background: var(--background-url);
   background-position: center;
   background-size: cover;
 }

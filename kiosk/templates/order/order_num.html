@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order number</title>
+    <link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='css/order_num.css') }}"
+	/>
+    <!-- <link rel="stylesheet" href="/kiosk/static/css/order_num.css">  -->
+</head>
+<body>
+    <body>
+		<div class="container">
+            <div class="top">
+                <img src="{{ url_for('static', filename='img/lotteria.png') }}" alt="" class="lotteria_img">
+                <div class="order_yes">결제가 되었습니다</div>
+            </div>
+            <div class="middle">
+                
+                <div class="order_num_discribe">주문번호</div>
+                <div class="order_num">130</div>
+                
+            </div>
+            
+            <div class="bottom">
+                <div class="order_discribe">메뉴가 준비 되면 주문 번호 호출 모니터로 안내해 드립니다.</div>
+                <div class="bill"><img src="{{ url_for('static', filename='img/bill1.png') }}" alt="" class="bill_img"></div>
+            </div>
+		</div>
+</body>
+</html>
