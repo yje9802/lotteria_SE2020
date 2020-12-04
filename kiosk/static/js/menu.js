@@ -169,20 +169,240 @@ function changeAmount(event) {
 		});
 	}
 }
-// (세트 메뉴) 디저트 옵션 
-function dessertOption(event) {
-	const btn = event.target;
 
-	if (btn.dataset === "set_dessert") {
-		const dessert_name = btn.querySelector(".menu_dessert_name").innerText;
-		dessert_info.push(dessert_name);
-		const dessert_price = parseInt(
-			btn.querySelector(".menu_dessert_price").innerHTML
-		);
-		dessert_info.push(dessert_price);
-		addToCartSet();
+// function nextToDrink(dessert) {
+// 	const modal_menus = document.querySelectorAll(".menu_set");
+// 	const active = document.querySelectorAll(".modal_category_btn")[0];
+// 	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
+// 	const modal_bottom_set = document.querySelector(".modal_bottom_set");
+// 	const counts = modal_bottom_set.querySelectorAll(".many");
+// 	const curr_count = counts[0].querySelectorAll("span")[1];
+// 	const remained_count = counts[1].querySelectorAll("span")[1];
+// 	const next_selection = modal_bottom_set.querySelectorAll("button")[1];
+// 	next_selection.addEventListener("click", function () {
+// 		if (parseInt(curr_count.innerHTML) === 1) {
+// 			let filter = drink_btn.dataset.filter;
+
+// 			active.classList.remove("selected");
+// 			drink_btn.classList.add("selected");
+// 			modal_menus.forEach((menu) => {
+// 				if (filter === menu.dataset.type) {
+// 					menu.classList.remove("invisible");
+// 				} else {
+// 					menu.classList.add("invisible");
+// 				}
+// 			});
+// 			active.addEventListener("click", function (event) {
+// 				filter = event.target.dataset.filter;
+// 				dessert = [];
+// 				active.classList.add("selected");
+// 				drink_btn.classList.remove("selected");
+// 				modal_menus.forEach((menu) => {
+// 					if (filter === menu.dataset.type) {
+// 						menu.classList.remove("invisible");
+// 					} else {
+// 						menu.classList.add("invisible");
+// 					}
+// 				});
+// 				curr_count.innerHTML = "0";
+// 				remained_count.innerHTML = "2";
+// 			});
+// 		}
+// 	});
+// 	return dessert;
+// }
+
+//지금 이 방식은 드링크 메뉴를 선택하면 디저트 선택이 초기화 되버린다는 문제가 있음
+// function selectDD() {
+// 	const modal_bottom_set = document.querySelector(".modal_bottom_set"),
+// 		counts = modal_bottom_set.querySelectorAll(".many"),
+// 		curr_count = counts[0].querySelectorAll("span")[1],
+// 		remained_count = counts[1].querySelectorAll("span")[1];
+// 	const modal_container = document.querySelector(".modal_menu_set");
+// 	const btns = modal_container.querySelectorAll("button");
+// 	const modal_set_btn_no = document.querySelector(".modal_set_btn.no");
+
+// 	btns.forEach(function (btn) {
+// 		btn.addEventListener("click", function inside() {
+// 			let dessert = [];
+// 			let drink = [];
+// 			if (btn.dataset.type === "set_dessert") {
+// 				const dessert_name = btn.querySelector(".menu_dessert_name")
+// 					.innerText;
+// 				dessert.push(dessert_name);
+// 				const dessert_price = parseInt(
+// 					btn.querySelector(".menu_dessert_price").innerHTML
+// 				);
+// 				dessert.push(dessert_price);
+// 				curr_count.innerHTML = "1";
+// 				remained_count.innerHTML = "1";
+// 				dessert = nextToDrink(dessert);
+// 			} else {
+// 				const drink_name = btn.querySelector(".menu_drink_name")
+// 					.innerHTML;
+// 				drink.push(drink_name);
+// 				const drink_price = parseInt(
+// 					btn.querySelector(".menu_drink_price").innerHTML
+// 				);
+// 				drink.push(drink_price);
+// 				curr_count.innerHTML = "2";
+// 				remained_count.innerHTML = "0";
+// 			}
+// 			// 취소하기 버튼 누르면 선택정보 삭제됨
+// 			modal_set_btn_no.onclick = function () {
+// 				modal_set.style.display = "none";
+// 				dessert = [];
+// 				drink = [];
+// 			};
+
+// 			if (dessert.length === 2) {
+// 				btn.removeEventListener("click", inside);
+// 			}
+// 			console.log(dessert);
+// 			return [dessert, drink];
+// 		});
+// 	});
+// }
+
+function drinkOption(d_name, d_price) {
+	const modal_category = document.querySelector(".modal_category");
+	const modal_question_set = document.querySelector(".modal_question.set");
+	const modal_menus = document.querySelectorAll(".menu_set");
+	const dessert_btn = document.querySelectorAll(".modal_category_btn")[0];
+	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
+	const modal_bottom_set = document.querySelector(".modal_bottom_set"),
+		counts = modal_bottom_set.querySelectorAll(".many"),
+		curr_count = counts[0].querySelectorAll("span")[1],
+		remained_count = counts[1].querySelectorAll("span")[1],
+		next_selection = modal_bottom_set.querySelectorAll("button")[1];
+	const modal_set_btn_no = document.querySelector(".modal_set_btn.no");
+
+	if (drink_info.length === 0) {
+		drink_info.push(d_name);
+		drink_info.push(d_price);
+		curr_count.innerHTML = "2";
+		remained_count.innerHTML = "0";
 	}
-	console.log(btn);
+	// 드링크 옵션을 또 선택하면, 이전 선택정보는 사라짐.
+	if (drink_info.length === 4) {
+		drink_info.splice(0, 2);
+	}
+	// 취소하기 버튼 누르면 선택정보 삭제됨
+	modal_set_btn_no.onclick = function () {
+		modal_set.style.display = "none";
+		dessert_info = [];
+		drink_info = [];
+		curr_count.innerHTML = "0";
+		remained_count.innerHTML = "2";
+
+		// 이후 다른 메뉴의 세트 모달을 띄웠을 때, 정상적으로 디저트 선택 모달부터 뜨도록
+		drink_btn.classList.remove("selected");
+		dessert_btn.classList.add("selected");
+		modal_menus.forEach((menu) => {
+			if ("set_dessert" === menu.dataset.type) {
+				menu.classList.remove("invisible");
+			} else {
+				menu.classList.add("invisible");
+			}
+		});
+		console.log(dessert_info, drink_info);
+	};
+	// addToCartSet()으로 넘어감
+	if (drink_info.length === 2) {
+		next_selection.addEventListener("click", function () {
+			modal_set.style.display = "none";
+			addToCartSet();
+			drink_btn.classList.remove("selected");
+			dessert_btn.classList.add("selected");
+			modal_menus.forEach((menu) => {
+				if ("set_dessert" === menu.dataset.type) {
+					menu.classList.remove("invisible");
+				} else {
+					menu.classList.add("invisible");
+				}
+			});
+		});
+	}
+	modal_category.addEventListener("click", (event) => {
+		const filter = event.target.dataset.filter;
+		if (filter == null) {
+			return;
+		}
+
+		if (event.target.dataset.filter === "set_dessert") {
+			modal_question_set.innerHTML = `
+			세트디저트 1개를 선택해 주세요`;
+			const filter = "set_dessert";
+
+			drink_btn.classList.remove("selected");
+			dessert_btn.classList.add("selected");
+			modal_menus.forEach((menu) => {
+				if (filter === menu.dataset.type) {
+					menu.classList.remove("invisible");
+				} else {
+					menu.classList.add("invisible");
+				}
+			});
+			dessert_info = [];
+			drink_info = [];
+			curr_count.innerHTML = "2";
+			remained_count.innerHTML = "0";
+		}
+	});
+}
+
+function dessertOption(d_name, d_price, name, price) {
+	const modal_menus = document.querySelectorAll(".menu_set");
+	const dessert_btn = document.querySelectorAll(".modal_category_btn")[0];
+	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
+	const modal_bottom_set = document.querySelector(".modal_bottom_set"),
+		counts = modal_bottom_set.querySelectorAll(".many"),
+		curr_count = counts[0].querySelectorAll("span")[1],
+		remained_count = counts[1].querySelectorAll("span")[1],
+		next_selection = modal_bottom_set.querySelectorAll("button")[1];
+	const modal_set_btn_no = document.querySelector(".modal_set_btn.no");
+	if (dessert_info.length === 0) {
+		dessert_info.push(d_name);
+		dessert_info.push(d_price);
+		dessert_info.push(name);
+		dessert_info.push(price);
+		console.log(dessert_info, drink_info);
+	}
+	// 디저트 옵션을 또 선택하면, 이전 선택정보는 사라짐
+	if (dessert_info.length === 8) {
+		dessert_info.splice(0, 4);
+	}
+	// 취소하기 버튼 누르면 선택정보 삭제됨
+	modal_set_btn_no.onclick = function () {
+		modal_set.style.display = "none";
+		dessert_info = [];
+		curr_count.innerHTML = "0";
+		remained_count.innerHTML = "2";
+	};
+
+	if (dessert_info.length === 4) {
+		curr_count.innerHTML = "1";
+		remained_count.innerHTML = "1";
+		// 선택완료 버튼을 누르면 음료 선택 창으로 넘어감
+		next_selection.addEventListener("click", function () {
+			const filter = drink_btn.dataset.filter;
+			const modal_question_set = document.querySelector(
+				".modal_question.set"
+			);
+
+			modal_question_set.innerHTML = `
+			세트드링크 1개를 선택해 주세요`;
+			dessert_btn.classList.remove("selected");
+			drink_btn.classList.add("selected");
+			modal_menus.forEach((menu) => {
+				if (filter === menu.dataset.type) {
+					menu.classList.remove("invisible");
+				} else {
+					menu.classList.add("invisible");
+				}
+			});
+		});
+	}
 }
 
 //똑같은 메뉴를 이미 선택한 적 있는지 체크
@@ -202,7 +422,7 @@ function findSameItem(name, price) {
 	}
 	return [curr_amount, curr_price];
 }
-// 메뉴 선택하면 -> html파일에 li태그 생성 
+
 function addToHtml(name, curr_amount, curr_price) {
 	// 버튼 클릭하면(메뉴 선택하면) li 태그 및 하위 여러 요소들 생성
 	const li = document.createElement("li"),
@@ -247,19 +467,33 @@ function addToHtml(name, curr_amount, curr_price) {
 	li.appendChild(li_wrapper);
 	ul.appendChild(li);
 }
-// 세트 메뉴
+
 function addToCartSet() {
-	const name = "hh";
-	let curr_price = dessert_info.pop(0);
+	const name = dessert_info[2];
+	let curr_price = dessert_info[3];
 	const id = "set";
 	// 중복검사 -> 똑같은거 또 고르면 수량 +1, +가격 됨
 	const result = findSameItem(name, curr_price);
 	const curr_amount = result[0];
-	curr_price = curr_price + result[1];
-	console.log(dessert_info);
+	curr_price = curr_price + dessert_info[1] + drink_info[1];
+	dessert_info.splice(2, 2);
 	addToHtml(name, curr_amount, curr_price);
+	const itemObj = {
+		name: name,
+		amount: curr_amount,
+		price: curr_price,
+		id: id,
+		dessert: dessert_info,
+		drink: drink_info,
+	};
+	itemsSelected.push(itemObj);
+	saveTotal();
+	updateCheck();
+	saveItems();
+	dessert_info = [];
+	drink_info = [];
 }
-// 버거 단품, 음료, 
+
 function addToCart(name, price) {
 	const id = "only";
 	// 중복검사 -> 똑같은거 또 고르면 수량 +1, +가격 됨
@@ -313,28 +547,27 @@ function chooseModalCategory(name, price) {
 	modal_menus.forEach((menu) => {
 		if (menu.dataset.type !== "set_dessert") {
 			menu.classList.add("invisible");
-			menu.setAttribute("onclick", "drinkOption(event)");
-			dessert_info.push([name, price]);
+			const drink_name = menu.querySelector(".menu_drink_name").innerHTML;
+			const drink_price = parseInt(
+				menu.querySelector(".menu_drink_price").innerHTML
+			);
+			menu.addEventListener("click", (event) =>
+				drinkOption(drink_name, drink_price)
+			);
 		} else {
-			menu.setAttribute("onclick", "dessertOption(event)");
+			const dessert_name = menu
+				.querySelector(".menu_dessert_name")
+				.innerHTML.trim();
+			const dessert_price = parseInt(
+				menu.querySelector(".menu_dessert_price").innerHTML
+			);
+			menu.addEventListener("click", (event) =>
+				dessertOption(dessert_name, dessert_price, name, price)
+			);
 		}
 	});
-	modal_category.addEventListener("click", (event) => {
-		const filter = event.target.dataset.filter;
-		if (filter == null) {
-			return;
-		}
 
-		if (event.target.dataset.filter === "set_drink") {
-			modal_question_set.innerHTML = `
-				세트드링크 1개를 선택해 주세요
-			`;
-		} else {
-			modal_question_set.innerHTML = `
-			세트디저트 1개를 선택해 주세요
-		`;
-		}
-	});
+	modal_question_set.innerHTML = "세트디저트 1개를 선택해 주세요";
 }
 
 // 세트 메뉴 선택시, 디저트/음료 선택 모달
@@ -347,11 +580,15 @@ function getSetModal(name, price) {
 
 	close_set_btn.onclick = function () {
 		modal_set.style.display = "none";
+		dessert_info = [];
+		drink_info = [];
 	};
 
 	window.onclick = function (event) {
 		if (event.target == modal_set) {
 			modal_set.style.display = "none";
+			dessert_info = [];
+			drink_info = [];
 		}
 	};
 }
@@ -450,7 +687,7 @@ function getModal(name, price) {
 	// 단품/세트 버튼 클릭 시
 	only_btn.onclick = function () {
 		modal.style.display = "none";
-		addToCart(name, price, id);
+		addToCart(name, price);
 	};
 	set_btn.onclick = function () {
 		name = name + "(세트)";
