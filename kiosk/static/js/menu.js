@@ -750,4 +750,4 @@ function init() {
 		menu.addEventListener("click", getValueFromBtn(menu));
 	}
 }
-init();
+init(); 
