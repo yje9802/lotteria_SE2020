@@ -284,7 +284,7 @@ INSERT INTO "INGREDIENT" VALUES (22,'휠레',6.0,'EA',NULL);
 INSERT INTO "INGREDIENT" VALUES (23,'윙',8.0,'EA',NULL);
 INSERT INTO "INGREDIENT" VALUES (24,'순살치킨조각',10.0,'EA',NULL);
 INSERT INTO "INGREDIENT" VALUES (25,'감자',200.0,'g','https://via.placeholder.com/150');
-INSERT INTO "INGREDIENT" VALUES (26,'콘옥수수',200.0,'g','https://via.placeholder.com/150');
+INSERT INTO "INGREDIENT" VALUES (26,'옥수수',200.0,'g','https://via.placeholder.com/150');
 INSERT INTO "MENU" VALUES (1,'스위트어스어썸버거','https://via.placeholder.com/150',5600,'글로벌 브랜드 스위트 어스(Sweet Earth) 식물성 패티를 사용하여 고기의 육식감, 풍미, 육즙을 그대로 재현한 대체육 버거',0,186.0,440.0,21.0,38.0,589.0,29.0,12.0,4.0,29.0,0.0,'밀, 대두, 아황산류');
 INSERT INTO "MENU" VALUES (2,'스위트어스어썸버거세트','https://via.placeholder.com/150',7400,'글로벌 브랜드 스위트 어스(Sweet Earth) 식물성 패티를 사용하여 고기의 육식감, 풍미, 육즙을 그대로 재현한 대체육 버거',0,692.0,835.0,24.0,44.0,925.0,46.0,43.0,8.0,50.0,0.0,'세트(팩/콤보) 제품의 알레르기 유발성분은 각 단품별 소개 페이지에서 확인 가능합니다');
 INSERT INTO "MENU" VALUES (3,'불고기버거','https://via.placeholder.com/150',3900,'불고기버거 볼륨 가득한 패티와 불고기 소스가 잘 조화된 영양만점의 햄버거',0,162.0,442.0,18.0,32.0,720.0,36.0,9.0,6.5,43.0,0.0,NULL);
