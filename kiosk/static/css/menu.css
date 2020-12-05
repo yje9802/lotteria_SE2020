@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700;900&display=swap");
 /* Noto Sans 폰트 추가 */
 
 :root {
@@ -130,7 +130,7 @@ h2 {
   align-items: center;
   padding: 0 30px;
 }
-.check_num_contain{
+.check_num_contain {
   display: flex;
   align-items: center;
 }
@@ -141,20 +141,11 @@ h2 {
   color: red;
 }
 
-.menu_thumnail.hamburger {
-  width: 150px;
-  height: 110px;
-}
-
-.menu_thumnail.dessert {
-  width: 150px;
-  height: 110px;
-}
-
+.menu_thumnail.hamburger,
+.menu_thumnail.dessert,
 .menu_thumnail.drink {
-  width: 80px;
+  width: 150px;
   height: 110px;
-  padding: 0 40px;
 }
 
 /* shopping list */
@@ -200,11 +191,11 @@ h2 {
   display: flex;
   /* align-items: center; */
 }
-.item_amount div{
+.item_amount div {
   display: flex;
   flex-direction: column;
 }
-.item_amount button{
+.item_amount button {
   height: 10px;
   font-size: 8px;
   padding: 0px 5px;
@@ -385,11 +376,10 @@ h2 {
   height: 80%;
   display: grid;
   grid-template-rows: 55px 55px 1fr 85px;
-
 }
 
 /* .modal_question.set { */
-  /* padding-left: 60px; */
+/* padding-left: 60px; */
 /* } */
 
 .modal_close_set {
@@ -464,11 +454,6 @@ h2 {
   height: 100px;
 }
 
-.menu_set_thumnail.drink,
-.menu_set_thumnail.d {
-  width: 80px;
-}
-
 .menu_drink_name,
 .menu_drink_price,
 .menu_dessert_name,
@@ -502,7 +487,7 @@ h2 {
   display: flex;
   align-items: center;
 }
-.modal_num .many{
+.modal_num.many {
   display: flex;
   align-items: center;
 }
@@ -568,7 +553,7 @@ h2 {
   justify-content: space-around;
   align-items: center;
   font-size: 10px;
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .select_lan span:first-child {
