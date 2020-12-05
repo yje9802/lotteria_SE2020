@@ -9,7 +9,10 @@
 </head>
 <body>
     <header>
-        <div class="blank"></div>
+        <!-- 이렇게 원래 페이지로 돌아가면 js적용된게 그대로있는건가..? -->
+        <button onClick="location.href='stock_manage.html'" class="back_btn" >
+            <img src="/kiosk/static/img/back.png" alt="">
+        </button>
         <div class="logo">롯데리아 - <span>재고관리</span> [1/1]</div>
         <div class="right_btn">
             <button class="stock_btn">주문확인</button>
@@ -62,10 +65,10 @@
                     </div>
                 </div> 
             </div>
-
-
-
         </div>
+
+
+    <!-- 재고상태 확인 -->
     </main>
     <footer>
         <div></div>
