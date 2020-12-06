@@ -33,6 +33,9 @@ DB에 들어가지 않는 이미지 파일(로고 이미지 등) 등 정적 리�
 ## 데모 데이터베이스
 개발할 때 쓰일 데모용 데이터베이스를 생성하는 기능을 추가하였습니다.
 ### 데이터베이스 변경사항(커밋 날짜 기준)
+#### v0.05(20/12/6)
+* `OPT_CHOICE` 테이블에서 `ITEM_NO`와 `ORDER_ID` 컬럼의 외래키 제약 수정
+  * `ORDER_ITEM` 테이블의 복합키 `(ITEM_NO, ORDER_ID)`를 참조하는 복합 외래키 `(ITEM_NO, ORDER_ID)`로 수정
 #### v0.04(20/12/5)
 * MENU_CATEGORY 테이블의 CATEGORY_TAG 컬럼의 자료형을 INT에서 TEXT로 수정
 * INGREDIENT 테이블에 IMAGE_PATH 컬럼 추가
