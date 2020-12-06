@@ -3,19 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stock management</title>
+    <title>Stock Management</title>
     <link rel="stylesheet" href="/kiosk/static/css/stock_manage.css"> 
     <script src="/kiosk/static/js/stock_manage.js" defer></script>
 </head>
 <body>
     <header>
-        <!-- 이렇게 원래 페이지로 돌아가면 js적용된게 그대로있는건가..? -->
+        <!-- 뒤로가기 경로설정 필요 -->
         <button onClick="location.href='stock_manage.html'" class="back_btn" >
             <img src="/kiosk/static/img/back.png" alt="">
         </button>
         <div class="logo">롯데리아 - <span>재고관리</span> [1/1]</div>
         <div class="right_btn">
-            <button class="stock_btn">주문확인</button>
+            <!-- order_manage.html (주문확인) 경로설정 필요 -->
+            <button onClick="location.href='#'"class="stock_btn">주문확인</button>
+            <!-- auth.html 경로설정 필요 -->
             <button class="manager_btn">
                 <img src="/kiosk/static/img/settings.png" alt="">
             </button>
