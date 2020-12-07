@@ -29,7 +29,7 @@ function categorySelect(){
 }
 
 
-//메뉴추가 버튼 클릭시 입력창 생성
+//메뉴추가, 메뉴수정, 메뉴 삭제 버튼 클릭시 입력창 생성
 function addMenubtn(){
     const add_btn = document.querySelector(".add_btn");
     const change_btn = document.querySelector(".change_btn");
@@ -37,16 +37,38 @@ function addMenubtn(){
     const input_container = document.querySelector(".input_container");
     const submit_btn = document.querySelector(".submit_btn");
     const clicked_class = "clicked";
+    //메뉴 추가 버튼 클릭시 
     add_btn.addEventListener("click",()=>{
         add_btn.classList.add(clicked_class);
+        remove_btn.classList.remove(clicked_class);
+        change_btn.classList.remove(clicked_class);
         input_container.style.display = 'block';
         // add_btn.addEventListener("click",()=>{
         //     hasClicked(add_btn, clicked_class);
         // })
+        //저장 버튼 클릭시 닫음 
+        submit_btn.addEventListener("click", ()=>{
+            input_container.style.display = "none";
+            add_btn.classList.remove(clicked_class);
+        })
     })
-    submit_btn.addEventListener("click", ()=>{
-        input_container.style.display = "none";
+    //메뉴 수정 버튼 클릭시 
+    change_btn.addEventListener("click", ()=>{
+        add_btn.classList.remove(clicked_class);
+        remove_btn.classList.remove(clicked_class);
+        change_btn.classList.add(clicked_class);
+        input_container.style.display = 'block';
     })
+
+    remove_btn.addEventListener("click", ()=>{
+        add_btn.classList.remove(clicked_class);
+        change_btn.classList.remove(clicked_class);
+        remove_btn.classList.add(clicked_class);
+        input_container.style.display = 'block';
+    })
+
+
+    
 
 }
 
