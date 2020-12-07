@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management</title>
+    <link rel="stylesheet" href="/kiosk/static/css/menu_manage.css"> 
+    <script src="/kiosk/static/js/menu_manage.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- 뒤로가기 경로설정 필요 -->
+        <button onClick="location.href='#'" class="back_btn" >
+            <img src="/kiosk/static/img/back.png" alt="">
+        </button>
+        <div class="logo">롯데리아 - <span>재고관리</span> [1/1]</div>
+        <div class="right_btn">
+            <!-- order_manage.html (주문확인) 경로설정 필요 -->
+            <button onClick="location.href='#'"class="stock_btn">주문확인</button>
+            <!-- auth.html 경로설정 필요 -->
+            <button class="manager_btn">
+                <img src="/kiosk/static/img/settings.png" alt="">
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="ad">
+            <img src="/kiosk/static/img/lotteria2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="container_top">
+                <div class="container_manage">
+                    <div class="menu_manage_btn">
+                        <button class="add_btn">메뉴 추가</button>
+                        <button class="change_btn">메뉴 수정</button>
+                        <button class="remove_btn">메뉴 삭제</button>
+                    </div>
+                    <div class="input_container">
+                        <div class="container_display">
+                            <div class="input_container_left">
+                                <div id="image_container"></div>
+                                <input type="file" id ="image" accept="image/*" onchange="setThumbnail(event);" class="input_img">
+                            </div>
+                            <div class="input_container_middle">
+                                <div class="input_1">
+                                    <label for="mCategory">카테고리:</label>
+                                    <input id="category" name="category"  type="text" value="" required/><br>
+                                    <label for="mID">식별번호:</label>
+                                    <input id="id" name="id"  type="number" value="" required/><br>
+                                    <label for="mName">메뉴이름:</label>
+                                    <input id="name" name="name"  type="text" value="" required/><br>
+                                    <label for="mPrice">가격:</label>
+                                    <input id="price" name="price" type="number" value="" required/><br>
+                                </div>
+                                <div class="input_2">
+                                    <label for="mDesc">설명:</label>
+                                    <input id="desc" name="desc" type="text" value="" required/><br>
+                                </div>
+                                <div class="input_3">
+                                    <label for="mWeight">중량:</label>
+                                    <input id="weight" name="weight" type="number" value="" required/><br>
+                                    <label for="mKcal">열량:</label>
+                                    <input id="kcal" name="kcal" type="number" value="" required/><br>
+                                    <label for="mProteinG">단백질(g):</label>
+                                    <input id="protein_g" name="protein_g" type="number" value="" required/><br>
+                                    <label for="mProteinPct">단백질(%):</label>
+                                    <input id="protein_pct" name="protein_pct" type="number" value="" required/><br>
+                                    <label for="mSodiumG">나트륨(g):</label>
+                                    <input id="sodium_g" name="sodium_g" type="number" value="" required/><br>
+                                    <label for="mSodiumPct">나트륨(%):</label>
+                                    <input id="sodium_pct" name="sodium_pct" type="number" value="" required/><br>
+                                </div>
+                                <div class="input_4">
+                                    <label for="mSugar">당:</label>
+                                    <input id="sugar" name="sugar" type="number" value="" required/><br>
+                                    <label for="mSatfatG">포화지방(g):</label>
+                                    <input id="satfat_g" name="satfat_g" type="number" value="" required/><br>	
+                                    <label for="mSatfatPct">포화지방(%):</label>
+                                    <input id="satfat_pct" name="satfat_pct" type="number" value="" required/><br>
+                                    <label for="mCaff">카페인:</label>
+                                    <input id="caff" name="caff" type="number" value="" required/><br>
+                                </div>
+                                <div class="input_5">
+                                    <label for="mAllergy">알러지정보:</label>
+                                    <input id="allergy" name="allergy"  type="number" value="" required/><br>
+                                </div>
+                            </div>
+                            <div class="input_container_right">
+                                <input type="submit" value="저장" class="submit_btn">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    
+                <div class="categories_btn">
+                    <button class="category burger" data-filter="burger">햄버거</button>
+                    <button class="category dessert" data-filter="dessert">디저트 /치킨</button>
+                    <button class="category drink" data-filter="drink">음료 /커피</button>
+                </div>    
+            </div>
+            <div class="container_bottom">
+                <!-- hamburger -->
+                <div class="menu_container">
+                    <div class="menus">
+                        <button class="menu" data-type="burger">
+                            <div class="menu_name">밀리터리 버거</div>
+                            <div class="menu_price">6,400</div>
+                        </button>
+                        <button class="menu" data-type="burger">
+                            <div class="menu_name">폴더버거 핫치킨</div>
+                            <div class="menu_price">5,700</div>
+                        </button>
+                        <button class="menu" data-type="burger">
+                            <div class="menu_name">리아미라클 버거</div>
+                            <div class="menu_price">5,800</div>
+                        </button>
+                        <button class="menu" data-type="burger">
+                            <div class="menu_name">와규에디션2</div>
+                            <div class="menu_price">5,800</div>
+                        </button>
+                        <button class="menu" data-type="burger">
+                            <div class="menu_name">새우버거</div>
+                            <div class="menu_price">3,900</div>
+                        </button>
+                        <button class="menu" data-type="burger">
+                            <div class="menu_name">T-Rex</div>
+                            <div class="menu_price">3,700</div>
+                        </button>
+
+                        <button class="menu" data-type="dessert">
+                            <div class="menu_name">디저트1</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="dessert">
+                            <div class="menu_name">디저트2</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="dessert">
+                            <div class="menu_name">디저트3</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="dessert">
+                            <div class="menu_name">디저트4</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="dessert">
+                            <div class="menu_name">디저트5</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="dessert">
+                            <div class="menu_name">디저트6</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+
+                        <button class="menu" data-type="drink">
+                            <div class="menu_name">음료1</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="drink">
+                            <div class="menu_name">음료2</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="drink">
+                            <div class="menu_name">음료3</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="drink">
+                            <div class="menu_name">음료4</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="drink">
+                            <div class="menu_name">음료5</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                        <button class="menu" data-type="drink">
+                            <div class="menu_name">음료6</div>
+                            <div class="menu_price">2,000</div>
+                        </button>
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+
+    <!-- 재고상태 확인 -->
+    </main>
+    <footer>
+        <div></div>
+    </footer>
+</body>
+</html>

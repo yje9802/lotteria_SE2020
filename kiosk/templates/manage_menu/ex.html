@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title> 메뉴 추가 </title>
+</head>
+<body>
+    <form name = "add_menu" action="/add_menu/add" method="POST">
+        <div>
+            <label for="mCategory">카테고리:</label>
+		    <input id="category" name="category"  type="text" value="" required/><br>
+        </div>
+		<div>
+            <label for="mID">식별번호:</label>
+            <input id="id" name="id"  type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mName">메뉴이름:</label>
+		    <input id="name" name="name"  type="text" value="" required/><br>
+        </div>
+		<div>
+            <label for="mImg">이미지:</label>
+		    <input id="img" name="img" type="text" value="" required/><br>
+        </div>
+		<div>
+            <label for="mPrice">가격:</label>
+		    <input id="price" name="price" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mDesc">설명:</label>
+		    <input id="desc" name="desc" type="text" value="" required/><br>
+        </div>
+		<div>
+            <label for="mWeight">중량:</label>
+		    <input id="weight" name="weight" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mKcal">열량:</label>
+		    <input id="kcal" name="kcal" type="number" value="" required/><br>	
+        </div>
+		<div>
+            <label for="mProteinG">단백질(g):</label>
+		    <input id="protein_g" name="protein_g" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mProteinPct">단백질(%):</label>
+		    <input id="protein_pct" name="protein_pct" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mSodiumG">나트륨(g):</label>
+		    <input id="sodium_g" name="sodium_g" type="number" value="" required/><br>	
+        </div>
+		<div>
+            <label for="mSodiumPct">나트륨(%):</label>
+		    <input id="sodium_pct" name="sodium_pct" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mSugar">당:</label>
+		    <input id="sugar" name="sugar" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mSatfatG">포화지방(g):</label>
+		    <input id="satfat_g" name="satfat_g" type="number" value="" required/><br>		
+        </div>
+		<div>
+            <label for="mSatfatPct">포화지방(%):</label>
+		    <input id="satfat_pct" name="satfat_pct" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mCaff">카페인:</label>
+		    <input id="caff" name="caff" type="number" value="" required/><br>
+        </div>
+		<div>
+            <label for="mAllergy">알러지정보:</label>
+		    <input id="allergy" name="allergy"  type="number" value="" required/><br>
+        </div>
+		
+		
+    	<input type="submit" value="메뉴추가">
+	</form>
+	<form name="add_menu" action="/add_menu/add" method="GET">
+		<input type="submit" value="햄버거" name="burger">
+		<input type="submit" value="디저트/치킨" name="dessert">
+		<input type="submit" value="음료/커피" name="beverage">
+	</form>
+	{% for i in data %}
+	{{ i[0] }}, {{ i[1] }}원<br>
+	{% endfor %}
+</body>
+</html>
