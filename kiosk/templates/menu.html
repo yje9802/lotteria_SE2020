@@ -245,7 +245,7 @@
 				</button>
 				<button class="menu" data-type="dessert">
 					<img
-						src="/static/img/menu/de_cheesestick.png"
+						src="/static/img/menu/de_cheezestick.png"
 						alt=""
 						class="menu_thumnail dessert"
 					/>
@@ -391,7 +391,7 @@
 						</button>
 						<button class="menu_set" data-type="set_dessert">
 							<img
-								src="/static/img/menu/de_cheesestick.png"
+								src="/static/img/menu/de_cheezestick.png"
 								alt=""
 								class="menu_set_thumnail dessert"
 							/>
@@ -525,7 +525,10 @@
 						<!-- 장바구니에 담기는 모습 예시 -->
 						<!-- <li>
 							<div class="li_wrapper">
-								<h3 class="item_name">새우버거 세트</h3>
+								<div class="item_name">
+									<h3>새우버거(세트)</h3>
+									<div>(포테이토, 콜라(R))</div>
+								</div>
 								<div class="item_amount">
 									<h3>1</h3>
 									<div>
@@ -587,10 +590,7 @@
 						>
 							취소하기
 						</button>
-						<button
-							class="order_order_btn"
-							onClick="location.href='/charge'"
-						>
+						<button class="order_order_btn" id="to_charge">
 							결제하기
 						</button>
 					</div>
