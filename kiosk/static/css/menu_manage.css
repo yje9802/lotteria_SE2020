@@ -75,7 +75,7 @@ header {
 .logo {
   color: var(--color-wihte);
   font-size: 28px;
-  margin-left: 100px;
+  margin-left: 190px;
 }
 
 .logo span {
@@ -87,10 +87,15 @@ header {
   align-items: center;
 }
 
-.stock_btn {
+.stock_btn,
+.order_btn {
   font-size: 23px;
   font-weight: 600;
   width: 120px;
+}
+
+.stock_btn {
+  margin-left: 10px;
 }
 
 .manager_btn {

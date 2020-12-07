@@ -13,14 +13,12 @@
         <button onClick="location.href='#'" class="back_btn" >
             <img src="/kiosk/static/img/back.png" alt="">
         </button>
-        <div class="logo">롯데리아 - <span>재고관리</span> [1/1]</div>
+        <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
         <div class="right_btn">
-            <!-- order_manage.html (주문확인) 경로설정 필요 -->
-            <button onClick="location.href='#'"class="stock_btn">주문확인</button>
-            <!-- auth.html 경로설정 필요 -->
-            <button class="manager_btn">
-                <img src="/kiosk/static/img/settings.png" alt="">
-            </button>
+            <!-- order_manage.html(주문확인) 경로설정 필요 -->
+            <button onClick="location.href='#'" class="order_btn">주문확인</button>
+            <!-- stock_manage.html(재고관리) 경로설정필요 -->
+            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
         </div>
     </header>
     <main>
@@ -82,7 +80,7 @@
                                 </div>
                                 <div class="input_5">
                                     <label for="mAllergy">알러지정보:</label>
-                                    <input id="allergy" name="allergy"  type="number" value="" required/><br>
+                                    <input id="allergy" name="allergy"  type="text" value="" required/><br>
                                 </div>
                             </div>
                             <div class="input_container_right">
