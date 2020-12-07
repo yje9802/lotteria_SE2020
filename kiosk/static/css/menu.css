@@ -193,6 +193,18 @@ h2 {
 }
 .item_name {
   width: 250px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+.item_name div{
+  width: 90px;
+  font-size: 12px;
+  overflow: hidden;
+  margin-left: 5px;
+}
+.item_name div:hover{
+  white-space: normal;
 }
 .item_amount {
   height: 100%;
