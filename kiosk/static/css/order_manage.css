@@ -166,6 +166,21 @@ button:hover {
   margin: auto;
 }
 
+.order_menu_list {
+  margin: 10px;
+}
+
+.order_menu_list li {
+  font-size: 19px;
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.menu .num {
+  margin-right: 5px;
+  font-weight: 800;
+}
+
 .menu_list {
   background-color: var(--color-wihte);
   margin: 5px;
