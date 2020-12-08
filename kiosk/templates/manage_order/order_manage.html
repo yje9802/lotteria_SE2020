@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
-    <link rel="stylesheet" href="/kiosk/static/css/order_manage.css"> 
-    <script src="/kiosk/static/js/order_manage.js" defer></script> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/order_manage.css') }}"> 
+    <script src="{{ url_for('static', filename='js/order_manage.js') }}" defer></script> 
 </head>
 <body>
     <header>
@@ -13,10 +13,10 @@
         <div class="logo">롯데리아 [1/1]</div>
         <div class="right_btn">
             <!-- stock_manage.html로 경로 설정 필요 -->
-            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
+            <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="stock_btn">재고관리</button>
             <!-- auth.html 페이지로 경로 설정 필요 -->
             <button onClick="location.href='#'"class="manager_btn">
-                <img src="/kiosk/static/img/settings.png" alt="">
+                <img src="{{ url_for('static', filename='img/settings.png') }}" alt="">
             </button>
         </div>
     </header>
