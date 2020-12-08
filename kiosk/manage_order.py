@@ -5,6 +5,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for
 )
 from werkzeug.exceptions import abort
+from math import ceil
 
 from kiosk.db import get_db
 
@@ -12,13 +13,40 @@ bp = Blueprint('manage_order', __name__, url_prefix='/manage_order')
 
 @bp.route('/orders')
 def orders():
-    # db = get_db()
-    # posts = db.execute(
-        # 'SELECT p.id, title, body, created, author_id, username'
-        # ' FROM post p JOIN user u ON p.author_id = u.id'
-        # ' ORDER BY created DESC'
-    # ).fetchall()
-    return render_template('manage_order/order_manage.html')
+    db = get_db()
+    cur = db.cursor()
+    cur_order = db.cursor()
+    orders = []
+    max_view = 8
+    cols = 4
+    fetch_waiting = 'SELECT ID, WAIT_NO, ORDERED_AT FROM ORDERS WHERE STATUS = "WAITING"'
+    cur_order.execute(fetch_waiting)
+    wait_rows = cur_order.fetchmany(max_view)
+    for row in wait_rows:
+        order = dict(row)
+        fetch_items = \
+        '''
+        SELECT ITEM_NO, NAME, SUM(QTY) AS QTY
+        FROM (ORDER_ITEM I INNER JOIN MENU M ON I.MAIN_DISH_ID = M.ID) 
+        INNER JOIN ORDERS O ON I.ORDER_ID = O.ID
+        WHERE ORDER_ID = ?
+        GROUP BY ORDER_ID, NAME
+        '''
+        cur.execute(fetch_items,(order["ID"],))
+        order['items'] = [dict(row) for row in cur]
+        items = order['items']
+        fetch_options = \
+        '''
+        SELECT M.NAME,OPT_QTY AS QTY
+        FROM OPT_CHOICE O INNER JOIN MENU M ON O.OPTION_ID = M.ID
+        WHERE ORDER_ID = ? AND ITEM_NO = ?
+        '''
+        for item in items: 
+            cur.execute(fetch_options, (order['ID'], item['ITEM_NO']))
+            item['options'] = [dict(row) for row in cur]
+        orders.append(order)
+    return render_template('manage_order/order_manage.html', orders=orders, 
+                            len=len(orders), max_len=max_view, cols=cols)
     
 
 @bp.route('/stock')
