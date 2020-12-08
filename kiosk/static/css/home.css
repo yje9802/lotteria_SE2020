@@ -59,7 +59,7 @@ main {
   height: 50px;
 }
 .image {
-  background: url("/kiosk/static/img/burgers.jpeg");
+  background: var(--background-url);
   background-position: center;
   background-size: cover;
 }
