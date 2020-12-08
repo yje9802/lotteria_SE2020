@@ -181,6 +181,10 @@ button:hover {
   font-weight: 800;
 }
 
+.menu.main {
+  font-weight: 800;
+}
+
 .menu_list {
   background-color: var(--color-wihte);
   margin: 5px;
