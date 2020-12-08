@@ -260,6 +260,10 @@ header {
   height: 170px;
 }
 
+#price {
+  width: 100px;
+}
+
 #desc {
   width: 1050px;
 }
