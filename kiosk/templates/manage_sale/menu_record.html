@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Record</title>
+    <link rel="stylesheet" href="/kiosk/static/css/menu_record.css"> 
+</head>
+<body>
+    <header>
+        <!-- back 경로설정 필요 -->
+        <button onClick="location.href='#'" class="back_btn" >
+            <img src="/kiosk/static/img/back.png" alt="">
+        </button>
+        <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
+        <div class="right_btn">
+            <!-- order_manage.html (주문확인) 경로설정 필요 -->
+            <button onClick="location.href='#'" class="order_btn">주문확인</button>
+            <!-- stock_manage.html (재고관리) 경로설정 필요 -->
+            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
+        </div>
+    </header>
+    <main>
+        <div class="ad">
+            <img src="/kiosk/static/img/lotteria2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="container_left">
+                <button class="category_btn burger">햄버거</button>
+                <button class="category_btn dessert">디저트/치킨</button>
+                <button class="category_btn drink">음료/커피</button>
+            </div>
+            <div class="container_right">
+                <div class="container_top">
+                    <input type='date'/ class="date">
+                    <div class="find_menu">
+                        <input type="text" placeholder="메뉴 검색" class="menu_input">
+                        <button class="menu_btn">검색</button>
+                    </div>
+                </div>
+                <div class="container_middle">
+                    <table border="1">
+                        <th class="th_1">순서</th>
+                        <th class="th_2">메뉴명</th>
+                        <th class="th_3">판매건수</th>
+                        <th class="th_4">매출액</th>
+                        <tr>
+                            <td>1</td>
+                            <td>밀리터리 버거</td>
+                            <td>8</td>
+                            <td>51,200</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>폴더버거 핫치킨</td>
+                            <td>5</td>
+                            <td>28,500</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>                
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </table>
+               </div>
+            </div>
+            
+           <div class="container_bottom">
+                <!-- 페이지 부분 수정 필요 -->
+                <div class="page">-</div>
+           </div>
+        </div>
+
+
+   
+    </main>
+    <footer>
+        <div></div>
+    </footer>
+</body>
+</html>
