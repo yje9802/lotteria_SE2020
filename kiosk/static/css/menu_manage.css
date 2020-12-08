@@ -10,6 +10,7 @@
   --color-lightgray: #e0e0e0;
   --color-gray: #bdbdbd;
   --color-darkgray: #757575;
+  --color-pink: #ffcdd2;
 
   /* Animation */
   --animation-duration: 300ms;
@@ -170,6 +171,7 @@ header {
   font-weight: 600;
   border-color: transparent;
 }
+
 /* input container */
 .input_container_left {
   height: 200px;
@@ -196,18 +198,30 @@ header {
   width: 100px;
 }
 
-.input_container_right input {
+.input_container_right input,
+.submit_btn.return {
   width: 90px;
   height: 35px;
   font-size: 18px;
+  font-weight: 600;
   cursor: pointer;
   background-color: var(--color-wihte);
   border-radius: 10px;
 }
 
-.input_container_right input:hover {
+.input_container_right input:hover,
+.submit_btn.return:hover {
   background-color: var(--color-gray);
   transition: all var(--animation-duration) ease;
+}
+
+.submit_btn.remove {
+  color: var(--color-red);
+  margin-top: 10px;
+}
+
+.submit_btn.remove:hover {
+  background-color: var(--color-pink);
 }
 
 .input_container_middle label {
@@ -313,6 +327,10 @@ header {
 .menu:hover {
   background-color: gray;
   transition: all var(--animation-duration) ease;
+}
+
+.menu.selected {
+  background-color: gray;
 }
 
 .menu.visible {

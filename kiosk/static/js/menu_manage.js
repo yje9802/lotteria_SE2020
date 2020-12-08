@@ -57,37 +57,55 @@ function addMenubtn(){
         add_btn.classList.remove(clicked_class);
         remove_btn.classList.remove(clicked_class);
         change_btn.classList.add(clicked_class);
-        input_container.style.display = 'block';
-    })
 
+        menus.forEach((menu)=>{
+            menu.addEventListener("click",()=>{
+                input_container.style.display = 'block';
+                submit_btn.value = "수정";
+            })
+        })
+    })
+    //메뉴 삭제 버튼 클릭시 
     remove_btn.addEventListener("click", ()=>{
         add_btn.classList.remove(clicked_class);
         change_btn.classList.remove(clicked_class);
         remove_btn.classList.add(clicked_class);
-        input_container.style.display = 'block';
+        const submit_container = document.querySelector(".input_container_right");
+        submit_container.innerHTML=`
+        <button class="submit_btn return">취소</button>
+        <input type="submit" value="삭제" class="submit_btn remove">
+        
+        `;
+        menus.forEach((menu)=>{
+            menu.addEventListener("click",(event)=>{  
+                input_container.style.display = 'block'; 
+            })
+        })
+        //취소 버튼 클릭
+        const submit_cancle_btn = document.querySelector(".submit_btn.return");
+        submit_cancle_btn.addEventListener("click", ()=>{
+            input_container.style.display = 'none';
+        })
+
+        //삭제 버튼 클릭
+        const submit_remove_btn = document.querySelector(".submit_btn.remove")
+        submit_remove_btn.addEventListener("click",()=>{
+            var returnValue = confirm("해당 메뉴를 '삭제'하시겠습니까?");
+            //경고창 버튼 선택
+            if(returnValue){
+                //삭제기능 추가해야함***
+                input_container.style.display = 'none'; 
+                alert("삭제되었습니다");
+            }
+        })
+        
+
     })
 
 
     
 
 }
-
-
-//메뉴 추가 버튼이 클릭되었는지 확인
-// function hasClicked(add_btn, clicked_class){
-//     console.log(add_btn);
-//     const hasClass = add_btn.classList.contains(clicked_class);
-//     if(hasClass){
-//         add_btn.classList.remove(clicked_class);
-//         input_container.style.display = "none";
-//     } else{
-//         add_btn.classList.add(clicked_class);
-//         input_container.style.display = 'block';
-//     }
-// }
-
-
-
 
 
 //이미지 첨부시 보여주기 (다시 다른걸 선택할 경우 문제 발생)
