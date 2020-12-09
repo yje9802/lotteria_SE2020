@@ -140,6 +140,7 @@ main {
 }
 .list_name{
   overflow: hidden;
+  white-space: nowrap;
   width: 140px;
 }
 .list_amount{
