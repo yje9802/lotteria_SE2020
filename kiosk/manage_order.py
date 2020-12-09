@@ -6,6 +6,7 @@ from flask import (
 )
 from werkzeug.exceptions import abort
 from math import ceil
+import datetime
 
 from kiosk.db import get_db
 
@@ -47,6 +48,28 @@ def orders():
         orders.append(order)
     return render_template('manage_order/order_manage.html', orders=orders, 
                             len=len(orders), max_len=max_view, cols=cols)
+    
+
+@bp.route('/<int:id>/call', methods=('GET',))
+def call(id):
+    error = None
+    if not id:
+        error = 'Id is required'
+    assert isinstance(id, int) == True
+    if error is not None:
+        flash(error)
+    else:
+        db = get_db()
+        mark_done = \
+        '''
+        UPDATE ORDERS
+        SET STATUS='SERVED', SERVED_AT=?
+        WHERE ID = ?
+        '''
+        db.execute(mark_done,(datetime.datetime.now().replace(microsecond=0), id))
+        db.commit()
+            
+    return redirect(url_for('manage_order.orders'))
     
 
 @bp.route('/stock')
