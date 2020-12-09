@@ -1,5 +1,6 @@
 "use strict";
-
+// '결제하기' 버튼
+const to_charge = document.querySelector("#to_charge");
 // Handle when category btn clicked
 const category = document.querySelector(".category");
 const menu_container = document.querySelector(".menu_container");
@@ -23,7 +24,7 @@ function categorySelect() {
 	//카테고리 선택 안했을때 -> hamburger
 	menus.forEach((menu) => {
 		if (menu.dataset.type !== "hamburger") {
-			console.log(menu.dataset.type);
+			// console.log(menu.dataset.type);
 			menu.classList.add("invisible");
 		}
 	});
@@ -54,8 +55,12 @@ function categorySelect() {
 // 로컬 스토리지에 선택한 메뉴 정보 업로드
 function saveItems() {
 	localStorage.setItem(ITEM, JSON.stringify(itemsSelected));
+	// 선택한 주문정보가 있다면 결제하기로 넘어갈 수 있음
+	if (itemsSelected.length !== 0) {
+		to_charge.setAttribute("onClick", "location.href='/charge'");
+	}
 }
-
+// 총수량 & 결제예상금액 로컬스토리지에 저장
 function saveTotal() {
 	let total_amount = 0;
 	itemsSelected.forEach(function (item) {
@@ -110,10 +115,24 @@ function deleteItem(event) {
 	// 화면에서 보여지는 삭제
 	ul.removeChild(li);
 	// 로컬스토리지에 저장된 정보 수정
-	const delete_name = wrapper.querySelector(".item_name").innerHTML;
+	const delete_name = wrapper.querySelector(".item_name").querySelector("h3")
+		.innerHTML;
+	const delete_name_opts = wrapper
+		.querySelector(".item_name")
+		.querySelector("div").innerHTML;
+
 	if (itemsSelected.length > 1) {
 		const cleanItems = itemsSelected.filter(function (item) {
-			return item.name !== delete_name;
+			if (item.id === "only") {
+				return item.name !== delete_name;
+			} else {
+				// 세트메뉴는 이름만 가지고는 안 됨. name이 둘 다 치킨버거(세트)여도 옵션이 다르면 다른 주문이기 때문. 그래서 만약 둘 다 메뉴명이 같다면 옵션으로 비교를 해줘야 정확한 삭제가 가능.
+				if (item.name === delete_name) {
+					let opts = `${item.dessert[0]},${item.drink[0]}`;
+					return opts !== delete_name_opts;
+				}
+				return item.name != delete_name;
+			}
 		});
 		// itemsSelected 배열에서도 삭제한 메뉴 지워줌 -> 로컬스토리지에 저장
 		itemsSelected = cleanItems;
@@ -125,6 +144,8 @@ function deleteItem(event) {
 		itemsSelected = [];
 		localStorage.clear();
 		updateCheck();
+		// 모두 삭제되고 선택된 주문 정보가 없다면 결제하기로 넘어갈 수 없음
+		to_charge.removeAttribute("onClick");
 	}
 }
 
@@ -135,7 +156,8 @@ function changeAmount(event) {
 	const amount_div = btn_div.parentNode;
 	const amount_text = amount_div.querySelector("h3");
 	const wrapper = amount_div.parentNode;
-	const menu_name = wrapper.querySelector(".item_name").innerHTML;
+	const menu_name = wrapper.querySelector(".item_name").querySelector("h3")
+		.innerHTML;
 	const price_div = wrapper.querySelector(".item_price");
 	const price_text = price_div.querySelector("h3");
 
@@ -170,103 +192,42 @@ function changeAmount(event) {
 	}
 }
 
-// function nextToDrink(dessert) {
-// 	const modal_menus = document.querySelectorAll(".menu_set");
-// 	const active = document.querySelectorAll(".modal_category_btn")[0];
-// 	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
-// 	const modal_bottom_set = document.querySelector(".modal_bottom_set");
-// 	const counts = modal_bottom_set.querySelectorAll(".many");
-// 	const curr_count = counts[0].querySelectorAll("span")[1];
-// 	const remained_count = counts[1].querySelectorAll("span")[1];
-// 	const next_selection = modal_bottom_set.querySelectorAll("button")[1];
-// 	next_selection.addEventListener("click", function () {
-// 		if (parseInt(curr_count.innerHTML) === 1) {
-// 			let filter = drink_btn.dataset.filter;
-
-// 			active.classList.remove("selected");
-// 			drink_btn.classList.add("selected");
-// 			modal_menus.forEach((menu) => {
-// 				if (filter === menu.dataset.type) {
-// 					menu.classList.remove("invisible");
-// 				} else {
-// 					menu.classList.add("invisible");
-// 				}
-// 			});
-// 			active.addEventListener("click", function (event) {
-// 				filter = event.target.dataset.filter;
-// 				dessert = [];
-// 				active.classList.add("selected");
-// 				drink_btn.classList.remove("selected");
-// 				modal_menus.forEach((menu) => {
-// 					if (filter === menu.dataset.type) {
-// 						menu.classList.remove("invisible");
-// 					} else {
-// 						menu.classList.add("invisible");
-// 					}
-// 				});
-// 				curr_count.innerHTML = "0";
-// 				remained_count.innerHTML = "2";
-// 			});
-// 		}
-// 	});
-// 	return dessert;
-// }
-
-//지금 이 방식은 드링크 메뉴를 선택하면 디저트 선택이 초기화 되버린다는 문제가 있음
-// function selectDD() {
-// 	const modal_bottom_set = document.querySelector(".modal_bottom_set"),
-// 		counts = modal_bottom_set.querySelectorAll(".many"),
-// 		curr_count = counts[0].querySelectorAll("span")[1],
-// 		remained_count = counts[1].querySelectorAll("span")[1];
-// 	const modal_container = document.querySelector(".modal_menu_set");
-// 	const btns = modal_container.querySelectorAll("button");
-// 	const modal_set_btn_no = document.querySelector(".modal_set_btn.no");
-
-// 	btns.forEach(function (btn) {
-// 		btn.addEventListener("click", function inside() {
-// 			let dessert = [];
-// 			let drink = [];
-// 			if (btn.dataset.type === "set_dessert") {
-// 				const dessert_name = btn.querySelector(".menu_dessert_name")
-// 					.innerText;
-// 				dessert.push(dessert_name);
-// 				const dessert_price = parseInt(
-// 					btn.querySelector(".menu_dessert_price").innerHTML
-// 				);
-// 				dessert.push(dessert_price);
-// 				curr_count.innerHTML = "1";
-// 				remained_count.innerHTML = "1";
-// 				dessert = nextToDrink(dessert);
-// 			} else {
-// 				const drink_name = btn.querySelector(".menu_drink_name")
-// 					.innerHTML;
-// 				drink.push(drink_name);
-// 				const drink_price = parseInt(
-// 					btn.querySelector(".menu_drink_price").innerHTML
-// 				);
-// 				drink.push(drink_price);
-// 				curr_count.innerHTML = "2";
-// 				remained_count.innerHTML = "0";
-// 			}
-// 			// 취소하기 버튼 누르면 선택정보 삭제됨
-// 			modal_set_btn_no.onclick = function () {
-// 				modal_set.style.display = "none";
-// 				dessert = [];
-// 				drink = [];
-// 			};
-
-// 			if (dessert.length === 2) {
-// 				btn.removeEventListener("click", inside);
-// 			}
-// 			console.log(dessert);
-// 			return [dessert, drink];
-// 		});
-// 	});
-// }
+// 세트모달창에서 '선택완료' 버튼을 누르면 일어나야 하는 일을 정의한 함수
+function selectionDone() {
+	const modal_menus = document.querySelectorAll(".menu_set");
+	const dessert_btn = document.querySelectorAll(".modal_category_btn")[0];
+	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
+	// set_drink
+	const filter = drink_btn.dataset.filter;
+	const modal_question_set = document.querySelector(".modal_question.set");
+	if (dessert_info.length === 4 && drink_info.length === 0) {
+		modal_question_set.innerHTML = `
+			세트드링크 1개를 선택해 주세요`;
+		dessert_btn.classList.remove("selected");
+		drink_btn.classList.add("selected");
+		modal_menus.forEach((menu) => {
+			if (filter === menu.dataset.type) {
+				menu.classList.remove("invisible");
+			} else {
+				menu.classList.add("invisible");
+			}
+		});
+	} else {
+		modal_set.style.display = "none";
+		addToCartSet();
+		drink_btn.classList.remove("selected");
+		dessert_btn.classList.add("selected");
+		modal_menus.forEach((menu) => {
+			if (menu.dataset.type === "set_dessert") {
+				menu.classList.remove("invisible");
+			} else {
+				menu.classList.add("invisible");
+			}
+		});
+	}
+}
 
 function drinkOption(d_name, d_price) {
-	const modal_category = document.querySelector(".modal_category");
-	const modal_question_set = document.querySelector(".modal_question.set");
 	const modal_menus = document.querySelectorAll(".menu_set");
 	const dessert_btn = document.querySelectorAll(".modal_category_btn")[0];
 	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
@@ -277,7 +238,7 @@ function drinkOption(d_name, d_price) {
 		next_selection = modal_bottom_set.querySelectorAll("button")[1];
 	const modal_set_btn_no = document.querySelector(".modal_set_btn.no");
 
-	if (drink_info.length === 0) {
+	if (drink_info.length === 0 || drink_info.length === 2) {
 		drink_info.push(d_name);
 		drink_info.push(d_price);
 		curr_count.innerHTML = "2";
@@ -309,64 +270,23 @@ function drinkOption(d_name, d_price) {
 	};
 	// addToCartSet()으로 넘어감
 	if (drink_info.length === 2) {
-		next_selection.addEventListener("click", function () {
-			modal_set.style.display = "none";
-			addToCartSet();
-			drink_btn.classList.remove("selected");
-			dessert_btn.classList.add("selected");
-			modal_menus.forEach((menu) => {
-				if ("set_dessert" === menu.dataset.type) {
-					menu.classList.remove("invisible");
-				} else {
-					menu.classList.add("invisible");
-				}
-			});
-		});
+		next_selection.addEventListener("click", selectionDone);
 	}
-	modal_category.addEventListener("click", (event) => {
-		const filter = event.target.dataset.filter;
-		if (filter == null) {
-			return;
-		}
-
-		if (event.target.dataset.filter === "set_dessert") {
-			modal_question_set.innerHTML = `
-			세트디저트 1개를 선택해 주세요`;
-			const filter = "set_dessert";
-
-			drink_btn.classList.remove("selected");
-			dessert_btn.classList.add("selected");
-			modal_menus.forEach((menu) => {
-				if (filter === menu.dataset.type) {
-					menu.classList.remove("invisible");
-				} else {
-					menu.classList.add("invisible");
-				}
-			});
-			dessert_info = [];
-			drink_info = [];
-			curr_count.innerHTML = "2";
-			remained_count.innerHTML = "0";
-		}
-	});
 }
-
+// 디저트 옵션 중 1개 선택하면
 function dessertOption(d_name, d_price, name, price) {
-	const modal_menus = document.querySelectorAll(".menu_set");
-	const dessert_btn = document.querySelectorAll(".modal_category_btn")[0];
-	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
 	const modal_bottom_set = document.querySelector(".modal_bottom_set"),
 		counts = modal_bottom_set.querySelectorAll(".many"),
 		curr_count = counts[0].querySelectorAll("span")[1],
 		remained_count = counts[1].querySelectorAll("span")[1],
 		next_selection = modal_bottom_set.querySelectorAll("button")[1];
 	const modal_set_btn_no = document.querySelector(".modal_set_btn.no");
-	if (dessert_info.length === 0) {
+
+	if (dessert_info.length === 0 || dessert_info.length === 4) {
 		dessert_info.push(d_name);
 		dessert_info.push(d_price);
 		dessert_info.push(name);
 		dessert_info.push(price);
-		console.log(dessert_info, drink_info);
 	}
 	// 디저트 옵션을 또 선택하면, 이전 선택정보는 사라짐
 	if (dessert_info.length === 8) {
@@ -384,39 +304,24 @@ function dessertOption(d_name, d_price, name, price) {
 		curr_count.innerHTML = "1";
 		remained_count.innerHTML = "1";
 		// 선택완료 버튼을 누르면 음료 선택 창으로 넘어감
-		next_selection.addEventListener("click", function () {
-			const filter = drink_btn.dataset.filter;
-			const modal_question_set = document.querySelector(
-				".modal_question.set"
-			);
-
-			modal_question_set.innerHTML = `
-			세트드링크 1개를 선택해 주세요`;
-			dessert_btn.classList.remove("selected");
-			drink_btn.classList.add("selected");
-			modal_menus.forEach((menu) => {
-				if (filter === menu.dataset.type) {
-					menu.classList.remove("invisible");
-				} else {
-					menu.classList.add("invisible");
-				}
-			});
-		});
+		next_selection.addEventListener("click", selectionDone);
 	}
 }
 
 //똑같은 메뉴를 이미 선택한 적 있는지 체크
-function findSameItem(name, price) {
+function findSameItem(name, price, id) {
 	let curr_amount = 1;
 	let curr_price = parseInt(price);
 	if (itemsSelected.length !== 0) {
 		itemsSelected.forEach(function (each) {
-			if (each.name === name) {
-				curr_amount = curr_amount + each.amount;
-				curr_price = curr_price + each.price;
-				// itemsSelected 배열 정보 업데이트
-				each.amount = curr_amount;
-				each.price = curr_price;
+			if (id === "only") {
+				if (each.name === name) {
+					curr_amount = curr_amount + each.amount;
+					curr_price = curr_price + each.price;
+					// itemsSelected 배열 정보 업데이트
+					each.amount = curr_amount;
+					each.price = curr_price;
+				}
 			}
 		});
 	}
@@ -427,7 +332,9 @@ function addToHtml(name, curr_amount, curr_price) {
 	// 버튼 클릭하면(메뉴 선택하면) li 태그 및 하위 여러 요소들 생성
 	const li = document.createElement("li"),
 		li_wrapper = document.createElement("div"),
-		item_name = document.createElement("h3"),
+		item_name = document.createElement("div"),
+		item_name_h3 = document.createElement("h3"),
+		item_name_opt = document.createElement("div"),
 		item_amount = document.createElement("div"),
 		amount_h3 = document.createElement("h3"),
 		amount_div = document.createElement("div"),
@@ -444,7 +351,13 @@ function addToHtml(name, curr_amount, curr_price) {
 	amount_up.classList.add("item_numup");
 	amount_down.classList.add("item_numdown");
 
-	item_name.innerHTML = `${name}`;
+	// 단품인 경우 length === 1
+	if (name.length === 1) {
+		item_name_h3.innerHTML = `${name}`;
+	} else {
+		item_name_h3.innerHTML = `${name[0]}`;
+		item_name_opt.innerHTML = `${name[1]}`;
+	}
 	amount_h3.innerText = `${curr_amount}`;
 	price_h3.innerHTML = `${numberWithCommas(curr_price)}`;
 	amount_up.innerHTML = "&xutri;";
@@ -455,6 +368,8 @@ function addToHtml(name, curr_amount, curr_price) {
 	// 삭제 버튼 누르면 아이템 삭제
 	del_btn.setAttribute("onclick", "deleteItem(event)");
 
+	item_name.appendChild(item_name_h3);
+	item_name.appendChild(item_name_opt);
 	amount_div.appendChild(amount_up);
 	amount_div.appendChild(amount_down);
 	item_amount.appendChild(amount_h3);
@@ -470,23 +385,26 @@ function addToHtml(name, curr_amount, curr_price) {
 
 function addToCartSet() {
 	const name = dessert_info[2];
+	// options는 디저트와 드링크 옵션 선택정보
+	const options = `${dessert_info[0]},${drink_info[0]}`;
 	let curr_price = dessert_info[3];
 	const id = "set";
-	// 중복검사 -> 똑같은거 또 고르면 수량 +1, +가격 됨
-	const result = findSameItem(name, curr_price);
-	const curr_amount = result[0];
+	const curr_amount = 1;
 	curr_price = curr_price + dessert_info[1] + drink_info[1];
 	dessert_info.splice(2, 2);
-	addToHtml(name, curr_amount, curr_price);
-	const itemObj = {
-		name: name,
-		amount: curr_amount,
-		price: curr_price,
-		id: id,
-		dessert: dessert_info,
-		drink: drink_info,
-	};
-	itemsSelected.push(itemObj);
+
+	if (curr_amount === 1) {
+		addToHtml([name, options], curr_amount, curr_price);
+		const itemObj = {
+			name: name,
+			amount: curr_amount,
+			price: curr_price,
+			id: id,
+			dessert: dessert_info,
+			drink: drink_info,
+		};
+		itemsSelected.push(itemObj);
+	}
 	saveTotal();
 	updateCheck();
 	saveItems();
@@ -497,13 +415,13 @@ function addToCartSet() {
 function addToCart(name, price) {
 	const id = "only";
 	// 중복검사 -> 똑같은거 또 고르면 수량 +1, +가격 됨
-	const result = findSameItem(name, price);
+	const result = findSameItem(name, price, id);
 	const curr_amount = result[0];
 	let curr_price = result[1];
 
 	// 이번이 처음 선택하는 메뉴라면
 	if (curr_amount === 1) {
-		addToHtml(name, curr_amount, curr_price);
+		addToHtml([name], curr_amount, curr_price);
 		const itemObj = {
 			name: name,
 			amount: curr_amount,
@@ -517,7 +435,9 @@ function addToCart(name, price) {
 		const lists = ul.querySelectorAll("li");
 		for (const list of lists) {
 			const amount_container = list.querySelector(".item_amount");
-			const its_name = list.querySelector(".item_name").innerHTML;
+			const its_name = list
+				.querySelector(".item_name")
+				.querySelector("h3").innerHTML;
 			const old_amount = amount_container.querySelector("h3");
 			const price_container = list.querySelector(".item_price");
 			const old_price = price_container.querySelector("h3");
@@ -540,10 +460,17 @@ function chooseModalCategory(name, price) {
 	const modal_menus = document.querySelectorAll(".menu_set");
 	const modal_question_set = document.querySelector(".modal_question.set");
 	const modal_set_btn_no = document.querySelector(".modal_set_btn.no");
-
+	const modal_bottom_set = document.querySelector(".modal_bottom_set"),
+		counts = modal_bottom_set.querySelectorAll(".many"),
+		curr_count = counts[0].querySelectorAll("span")[1],
+		remained_count = counts[1].querySelectorAll("span")[1];
+	const dessert_btn = document.querySelectorAll(".modal_category_btn")[0];
+	const drink_btn = document.querySelectorAll(".modal_category_btn")[1];
+	// x버튼을 누르면 창 닫음
 	modal_set_btn_no.onclick = function () {
 		modal_set.style.display = "none";
 	};
+	// 디저트 메뉴버튼을 클릭하면 dessertOption()함수가 동작하도록, 드링크 메뉴버튼은 drinkOption()
 	modal_menus.forEach((menu) => {
 		if (menu.dataset.type !== "set_dessert") {
 			menu.classList.add("invisible");
@@ -568,6 +495,43 @@ function chooseModalCategory(name, price) {
 	});
 
 	modal_question_set.innerHTML = "세트디저트 1개를 선택해 주세요";
+	drink_btn.classList.remove("selected");
+	dessert_btn.classList.add("selected");
+	modal_menus.forEach((menu) => {
+		if ("set_dessert" === menu.dataset.type) {
+			menu.classList.remove("invisible");
+		} else {
+			menu.classList.add("invisible");
+		}
+	});
+
+	// 드링크 옵션 선택 모달창에서 '세트_디저트' 탭 버튼을 누르면 디저트 옵션 선택 모달창으로 이동 + 디저트/드링크 선택정보 다 삭제됨 (처음부터 다시 선택)
+	modal_category.addEventListener("click", (event) => {
+		const filter = event.target.dataset.filter;
+		if (filter == null) {
+			return;
+		}
+
+		if (event.target.dataset.filter === "set_dessert") {
+			modal_question_set.innerHTML = `
+			세트디저트 1개를 선택해 주세요`;
+			const filter = "set_dessert";
+
+			drink_btn.classList.remove("selected");
+			event.target.classList.add("selected");
+			modal_menus.forEach((menu) => {
+				if (filter === menu.dataset.type) {
+					menu.classList.remove("invisible");
+				} else {
+					menu.classList.add("invisible");
+				}
+			});
+			dessert_info = [];
+			drink_info = [];
+			curr_count.innerHTML = "0";
+			remained_count.innerHTML = "2";
+		}
+	});
 }
 
 // 세트 메뉴 선택시, 디저트/음료 선택 모달
@@ -734,8 +698,31 @@ function getValueFromBtn(menu) {
 		}
 	});
 }
+// 결제 모듈에서 '이전'이나 '추가주문' 버튼을 눌러서 장바구니 선택 모듈로 돌아왔을 때
+function existingCart() {
+	const existing = localStorage.getItem("item");
+	const parsedExisting = JSON.parse(existing);
+	parsedExisting.forEach(function (parse) {
+		const parse_name = parse.name;
+		const parse_amt = parse.amount;
+		const parse_prc = parse.price;
+		if (parse.id === "set") {
+			const parse_opt = `${parse.dessert[0]},${parse.drink[0]}`;
+			addToHtml([parse_name, parse_opt], parse_amt, parse_prc);
+		} else {
+			addToHtml([parse_name], parse_amt, parse_prc);
+		}
+	});
+	itemsSelected = parsedExisting;
+	updateCheck();
+	// 선택한 주문정보가 있다면 결제하기로 넘어갈 수 있음
+	if (itemsSelected.length !== 0) {
+		to_charge.setAttribute("onClick", "location.href='/charge'");
+	}
+}
 
 function init() {
+	existingCart();
 	categorySelect();
 	for (const menu of menus) {
 		menu.addEventListener("click", getValueFromBtn(menu));
