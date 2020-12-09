@@ -122,9 +122,115 @@ function getModal(){
     }
 }
 
+function rightBtn() {
+	const bag_btn = document.querySelector(".bag_btn");
+	const tri_right = bag_btn.querySelector(".right");
+	tri_right.addEventListener("click", function () {
+		const bag = document.querySelector(".bag");
+		const ul_wrappers = bag.querySelectorAll(".ul_wrapper");
+		if (ul_wrappers.length === 1) {
+			return;
+		} else {
+			ul_wrappers.forEach(function (wrapper) {
+				const wrapper_class = wrapper.className;
+				if (wrapper_class.indexOf("invisible") === -1) {
+					wrapper.classList.add("invisible");
+				} else {
+					wrapper.classList.remove("invisible");
+				}
+			});
+		}
+	});
+}
 
+function addToHtml(name, amount, price) {
+	const ul = document.querySelector(".bag_lists");
+	const li = document.createElement("li"),
+		list_wrapper = document.createElement("div"),
+		list_name = document.createElement("div"),
+		list_amount = document.createElement("div"),
+		list_price = document.createElement("div");
 
+	li.classList.add("bag_list");
+	list_wrapper.classList.add("list_wrapper");
+	list_name.classList.add("list_name");
+	list_amount.classList.add("list_amount");
+	list_price.classList.add("list_price");
 
-clickStep1();
+	list_name.innerHTML = `${name}`;
+	list_amount.innerHTML = `${amount}`;
+	list_price.innerHTML = `${price}`;
+
+	list_wrapper.appendChild(list_name);
+	list_wrapper.appendChild(list_amount);
+	list_wrapper.appendChild(list_price);
+	li.appendChild(list_wrapper);
+	ul.appendChild(li);
+}
+
+// 세자리 마다 , 추가
+function numberWithCommas(x) {
+	return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+function chargedPrice() {
+	const charge_order = document.querySelector(".charge_order");
+	const charge_original = charge_order.querySelector(".charge_original");
+	const charge_money = charge_original.querySelector(".charge_money");
+	const charge_last = document.querySelector(".charge_last");
+	const charge_last_money = charge_last.querySelector(".charge_last_money");
+
+	const total = localStorage.getItem("total");
+	const parsedTotal = JSON.parse(total);
+	charge_money.innerHTML = `${numberWithCommas(parsedTotal.price)}`;
+	charge_last_money.innerHTML = `${numberWithCommas(parsedTotal.price)}`;
+}
+
+function listsShowing() {
+	const bag = document.querySelector(".bag");
+	// 우선 첫번째 ul은 기본적으로 있는 걸로
+	// const ul_wrapper = document.createElement("div");
+	// const ul = document.createElement("ul");
+	const itemsSelected = localStorage.getItem("item");
+	const parsedItemsSelected = JSON.parse(itemsSelected);
+	parsedItemsSelected.forEach(function (item) {
+		if (item.id === "set") {
+			const name = item.name;
+			const amount = item.amount;
+			let price = item.price;
+			const dessert_n = "-" + item.dessert[0];
+			const dessert_p = item.dessert[1];
+			const drink_n = "-" + item.drink[0];
+			const drink_p = item.drink[1];
+			price = price - dessert_p - drink_p;
+			addToHtml(name, amount, price);
+			addToHtml(dessert_n, 1, dessert_p);
+			addToHtml(drink_n, 1, drink_p);
+		} else {
+			const name = item.name;
+			const amount = item.amount;
+			const price = item.price;
+			addToHtml(name, amount, price);
+		}
+	});
+	const uls = document.querySelectorAll(".ul_wrapper");
+	const curr_ul = uls.forEach(function (ul) {
+		const ul_class = ul.className;
+		if (ul_class.indexOf("invisible") === -1) {
+			const lists = ul.querySelectorAll(".bag_list");
+			if (lists.length < 6) {
+				addToHtml("", "", "");
+			}
+		}
+	});
+	chargedPrice();
+}
+
+function init() {
+	listsShowing();
+	rightBtn();
+	clickStep1();
+}
+init();
 
 
