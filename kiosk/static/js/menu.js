@@ -735,16 +735,7 @@ function getValueFromBtn(menu) {
 	});
 }
 
-// 이전/취소하기 버튼을 눌렀을 때, local storage도 같이 비워줌
-function backBtns() {
-	localStorage.clear();
-}
 function init() {
-	const back_btn = document.querySelectorAll("#back_btn");
-	const cancle_btn = document.querySelectorAll("#cancle_btn");
-	back_btn.onclick = backBtns();
-	cancle_btn.onclick = backBtns();
-
 	categorySelect();
 	for (const menu of menus) {
 		menu.addEventListener("click", getValueFromBtn(menu));
