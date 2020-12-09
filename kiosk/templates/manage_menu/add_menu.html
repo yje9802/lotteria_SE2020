@@ -5,11 +5,9 @@
 	<title> 메뉴 추가 </title>
 </head>
 <body>
-	<form name = "add_menu" action="/add_menu/add" method="POST">
+	<form name = "add_menu" method="POST" action="http://127.0.0.1:5000/add_menu/add">
 		<label for="mCategory">카테고리:</label><br>
 		<input id="category" name="category"  type="text" value="" required/><br>
-		<label for="mID">식별번호:</label><br>
-		<input id="id" name="id"  type="number" value="" required/><br>
 		<label for="mName">메뉴이름:</label><br>
 		<input id="name" name="name"  type="text" value="" required/><br>
 		<label for="mImg">이미지:</label><br>
@@ -39,10 +37,10 @@
 		<label for="mCaff">카페인:</label><br>
 		<input id="caff" name="caff" type="number" value="" required/><br>
 		<label for="mAllergy">알러지정보:</label><br>
-		<input id="allergy" name="allergy"  type="number" value="" required/><br>
+		<input id="allergy" name="allergy"  type="text" value="" required/><br>
     	<input type="submit" value="메뉴추가">
 	</form>
-	<form name="add_menu" action="/add_menu/add" method="GET">
+	<form name="manage_menu" method="GET">
 		<input type="submit" value="햄버거" name="burger">
 		<input type="submit" value="디저트/치킨" name="dessert">
 		<input type="submit" value="음료/커피" name="beverage">
