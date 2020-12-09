@@ -1,0 +1,107 @@
+:root {
+  /* color */
+  --color-black: #212121;
+  --color-wihte: #fafafa;
+  --color-yellow: #ffeb3b;
+
+  /* Animation */
+  --animation-duration: 300ms;
+}
+
+body {
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-black);
+  margin: 0;
+  color: var(--color-wihte);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  width: 90vw;
+  height: 90vh;
+  display: grid;
+  grid-template-rows: 2fr 3fr;
+}
+
+/* container top */
+
+.container_top {
+  display: flex;
+  font-size: 70px;
+  font-weight: 600;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  text-align: center;
+  border-bottom: 3px solid var(--color-wihte);
+}
+
+.top_left {
+  color: var(--color-yellow);
+  border-right: 3px solid var(--color-wihte);
+}
+
+/* container bottom */
+
+.container_bottom {
+  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 100px;
+  font-weight: 600;
+}
+
+.bottom_left {
+  display: grid;
+  grid-template-rows: 2fr 5fr;
+  border-right: 3px solid var(--color-wihte);
+}
+
+.num_top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.num_bottom {
+  display: flex;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.line_1,
+.line_2 {
+  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.num.now {
+  font-weight: 700;
+  color: var(--color-yellow);
+  font-size: 120px;
+}
+
+.num {
+  text-align: center;
+  margin: 0;
+}
+
+.bottom_right {
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  margin: 40px;
+}
+
+.right_line1,
+.right_line2,
+.right_line3 {
+  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
