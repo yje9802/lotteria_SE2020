@@ -74,4 +74,18 @@ def call(id):
 
 @bp.route('/stock')
 def stock():
-    return render_template('manage_order/stock_manage.html')
+    burgers = fetch_category('햄버거')
+    desserts = fetch_category('디저트')
+    drinks = fetch_category('음료')
+    return render_template('manage_order/stock_manage.html', burgers=burgers, desserts=desserts, drinks=drinks)
+
+def fetch_category(menu_cat, max_view=8):
+    sql = \
+    '''
+    SELECT ID, NAME
+    FROM MENU M INNER JOIN MENU_CATEGORY C
+    ON M.ID=C.MENU_ID
+    WHERE CATEGORY_TAG=?
+    '''
+    db = get_db()
+    return db.execute(sql, (menu_cat,)).fetchmany(max_view)
