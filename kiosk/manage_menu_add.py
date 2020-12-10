@@ -12,50 +12,56 @@ from kiosk.db import get_db
 
 bp = Blueprint('add_menu', __name__, url_prefix='/add_menu')
 
+def set_query(n):
+    if n == 1:
+        return 'SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="햄버거")'
+    elif n == 2:
+        return 'SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="디저트" OR CATEGORY_TAG="치킨")'
+    elif n == 3:
+        return 'SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="음료"  OR CATEGORY_TAG="커피")'
 
 @bp.route('/', methods=['GET'])
 def view_menu():
     db = get_db()
     c = db.cursor()
-    c.execute('SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="햄버거")'
-                   )
+    
+    global category_tag    
+    category_tag=1
+    query = set_query(category_tag)
+    c.execute(query)
     info = c.fetchall()
     
     if request.method == 'GET':
         if request.args.get('burger'): 
-            db = get_db()
-            c = db.cursor()
-            c.execute('SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="햄버거")'
-                   )
+            category_tag=1
+            c.execute(query )
             info = c.fetchall()
             db.close()
-            return render_template('/manage_menu/add_menu.html', data=info)
+            return render_template('/manage_menu/add_menu.html', data=info, name=0)
         elif request.args.get('dessert'): 
-            db = get_db()
-            c = db.cursor()
-            c.execute('SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="디저트" OR CATEGORY_TAG="치킨")'
-                   )
+            category_tag=2
+            query = set_query(category_tag)
+            c.execute(query)
             info = c.fetchall()
             db.close()
-            return render_template('/manage_menu/add_menu.html', data=info)
+            return render_template('/manage_menu/add_menu.html', data=info, name=0)
         elif request.args.get('beverage'): 
-            db = get_db()
-            c = db.cursor()
-            c.execute('SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="음료"  OR CATEGORY_TAG="커피")'
-                   )
+            category_tag=3
+            query = set_query(category_tag)
+            c.execute(query)
             info = c.fetchall()
             db.close()
-            return render_template('/manage_menu/add_menu.html', data=info)
-    return render_template('/manage_menu/add_menu.html', data=info)
+            return render_template('/manage_menu/add_menu.html', data=info, name=0)
+    db.close()
+    return render_template('/manage_menu/add_menu.html', data=info, name=0)
 
 @bp.route('/add', methods=['POST'])
-def menu_add():
+def add_menu():
     db = get_db()
     c = db.cursor()
-    c.execute('SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG ="햄버거")'
-                   )
+    query=set_query(category_tag)
+    c.execute(query)
     info = c.fetchall()
-
     if request.method == 'POST':
         menu_name = request.form['name']
         menu_image = request.form['img']
@@ -74,7 +80,6 @@ def menu_add():
         menu_allergy = request.form['allergy']
         menu_category = request.form['category']
         
-
         error = None
     
         if db.execute(
@@ -94,9 +99,19 @@ def menu_add():
                 )
             db.commit()
             db.close()
-            return redirect(url_for('add_menu.view_menu'))
+            global name
+            name = menu_name
+            return redirect(url_for('add_menu.result', name=name))
 
         flash(error)
         db.close()
-        return render_template('/manage_menu/add_menu.html', data=info)
+        return render_template('/manage_menu/add_menu.html', data=info, name=0)
 
+@bp.route('/result')
+def result():
+    db = get_db()
+    c = db.cursor()
+    query=set_query(category_tag)
+    c.execute(query)
+    info = c.fetchall()
+    return render_template('/manage_menu/add_menu.html', data=info, menu_data=0, name=name)
