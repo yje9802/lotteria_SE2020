@@ -5,8 +5,19 @@
 	<title> 메뉴 삭제 </title>
 </head>
 <body>
+	<script type="text/javascript">
+		function button_event(){
+			var form=document.delete_menu;
+			var name=form.name.value;
+			if (confirm(name+"를(을) 삭제하시겠습니까?") == true){
+				form.submit();
+			}else{
+				return;
+			}
+		}
+	</script>
 	<form name = "delete_menu" method="POST" action="http://127.0.0.1:5000/delete_menu/delete">
-		{% if (menu_data == 0) %}
+		{% if ((menu_data == 0) and (name==0)) %}
 			<label for="mCategory">카테고리:</label><br>
 			<input id="category" name="category"  type="text" value="" required/><br>
 			<label for="mName">메뉴이름:</label><br>
@@ -39,6 +50,8 @@
 			<input id="caff" name="caff" type="number" value="" required/><br>
 			<label for="mAllergy">알러지정보:</label><br>
 			<input id="allergy" name="allergy"  type="text" value="" required/><br>
+		{% elif (menu_data==0): %}
+			* {{name}}이(가) 삭제되었습니다. 
 		{% else %}
 			{% for i in menu_data %}
 			<label for="mName">메뉴이름:</label><br>
@@ -71,11 +84,11 @@
 			<input id="caff" name="caff" type="number" value="{{i[13]}}"/><br>
 			<label for="mAllergy">알러지정보:</label><br>
 			<input id="allergy" name="allergy"  type="text" value="{{i[14]}}"/><br>
- 		   	<input type="submit" value="삭제" name="delete_query">
+ 		   	<input type="button" value="삭제" name="delete_query" onclick="button_event();">
 			{% endfor %}
  		{% endif %}
 	</form>
-	<form name="view_menu_list" method="GET">
+	<form name="view_menu_list" action="http://127.0.0.1:5000/delete_menu" method="GET">
 		<input type="submit" value="햄버거" name="burger">
 		<input type="submit" value="디저트/치킨" name="dessert">
 		<input type="submit" value="음료/커피" name="beverage">
@@ -89,4 +102,3 @@
 	</form>
 </body>
 </html>
-		
