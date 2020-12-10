@@ -2,7 +2,7 @@
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/views/ 참고
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/blog/ 참고
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 )
 from werkzeug.exceptions import abort
 from math import ceil
@@ -79,6 +79,21 @@ def stock():
     drinks = fetch_category('음료')
     return render_template('manage_order/stock_manage.html', burgers=burgers, desserts=desserts, drinks=drinks)
 
+
+@bp.route('/fetch_stock', methods=['POST'])
+def fetch_stock():
+    id = request.get_json()
+    sql = \
+    '''
+    SELECT I.NAME, I.STOCK, I.UNIT
+    FROM INGRD_USE U INNER JOIN INGREDIENT I ON U.INGRD_ID = I.ID
+    WHERE U.MENU_ID = ?
+    '''
+    db = get_db()
+    ingredients = [dict(row) for row in db.execute(sql, (id,))]
+    print(ingredients, type(ingredients))
+    return jsonify(ingredients=ingredients)
+    
 def fetch_category(menu_cat, max_view=8):
     sql = \
     '''

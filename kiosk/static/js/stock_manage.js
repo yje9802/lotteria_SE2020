@@ -31,47 +31,68 @@ function categorySelect(){
 //메뉴 클릭시 재고상태 확인 
 function selectMenu(){
     const container = document.querySelector(".container");
+	const stock_path = container.getAttribute('data-stock-path');
     menus.forEach((menu)=>{
         menu.addEventListener("click", function(event){
             container.classList.add("ingredients");
-            const name = menu.innerHTML;
-            container.innerHTML=`
+            const menu_id = menu.dataset.id;
+			const name = menu.innerHTML;
+			container.innerHTML=`
             <div class="ingredients_menu_container">
                 <div class="menu_name">${name}</div>
                 <button class="menu_btn">품절 상태로 변경</button>
             </div>
-            <div class="ingredients_table_container">
-                <table border="1">
-                <th>재고명</th>
-                <th>수량</th>
-                <tr>
-                    <td>빵</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>크리스피 치킨 패티</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>양상추 슬라이스</td>
-                    <td>67</td>
-                </tr>
-                <tr>
-                    <td class="need">토마토 슬라이스</td>
-                    <td class="need">3</td>
-                </tr>
-                <tr>
-                    <td>머스타드 크림소스</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </table>
-            </div>
+			<div class="ingredients_table_container">
+				<table border="1" id="stock_table">
+							<th>재고명</th>
+							<th>수량</th>
+							<th>단위</th>
+				</table>
+			</div>
             <div class="ingredients_discribe">*수량이 5 이하인 경우 빨간색으로 표시됩니다.</div>
             `;
+			$.ajax({
+                type: 'POST',
+                url: stock_path,
+                data: JSON.stringify(menu_id),
+                dataType : 'JSON',
+                contentType: "application/json",
+                success: function(data){
+					// console.log(data.ingredients);
+					if(!data.ingredients.length){
+							alert('재료 사용 정보가 db에 없습니다.');
+							//window.history.back();
+							return;
+					}
+					// document.getElementsByClassName("ingredients_table_container").innerHTML = `
+						// <table border="1" id="stock_table">
+						// <th>재고명</th>
+						// <th>수량</th>
+						// <th>단위</th>
+						// </table>`;
+					// document.getElementsByClassName("ingredients_describe").innerHTML = `*수량이 5 이하인 경우 빨간색으로 표시됩니다.`;
+                    $.each(data.ingredients, function(key,value){
+                         // alert(key + " : " + value.NAME + " " +value.STOCK+ " " + value.UNIT)
+                        // $('#div2').append('<div>'+ value.id + " " + value.password + " " + value.email  +'</div>')
+						let table = document.getElementById('stock_table');
+						let row = table.insertRow(-1);
+						$.each(value, function(key,value){
+							// alert(key + ":" + value);
+							let cell = row.insertCell(-1);
+							cell.innerHTML = value;
+							if(value <= 5){
+								cell.classList.add("need");
+							}
+						})
+						
+                    })
+                },
+                error: function(request, status, error){
+                    alert('ajax 통신 실패')
+                    alert(error);
+                }
+            })
+            
 
             turnMenuSoldout(menu);
         })
