@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title> 메뉴변동관리  </title>
+</head>
+<body>
+	<input type="button" value="메뉴추가" onClick="location.href='http://127.0.0.1:5000/add_menu'">
+	<input type="button" value="메뉴수정" onClick="location.href='http://127.0.0.1:5000/change_menu'">
+	<input type="button" value="메뉴삭제" onClick="location.href='http://127.0.0.1:5000/delete_menu'">
+	<form name="view_menu_list" action="http://127.0.0.1:5000/manage_menu" method="GET" >
+		<input type="submit" value="햄버거" name="burger">
+		<input type="submit" value="디저트/치킨" name="dessert">
+		<input type="submit" value="음료/커피" name="beverage">
+	</form>
+		{% for i in data %}
+		<button value={{i[0]}} name="view_name">
+		{{ i[0] }} <br> {{ i[1] }}원
+		</button><br>
+		{% endfor %}
+	</form>
+</body>
+</html>
+		
