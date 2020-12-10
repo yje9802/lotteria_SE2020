@@ -242,6 +242,39 @@ th {
 .total .money {
   color: var(--color-red);
 }
+
+.page_container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.page_middle {
+  display: flex;
+  align-items: center;
+}
+
+.tri {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.tri:hover {
+  transform: scale(1.2);
+  transition: all var(--animation-duration) ease;
+}
+
+.tri img {
+  height: 30px;
+}
+
+.page {
+  font-size: 28px;
+  width: 80px;
+  text-align: center;
+}
 /* footer */
 footer div {
   background-color: var(--color-black);
