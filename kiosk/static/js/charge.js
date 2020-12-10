@@ -14,7 +14,7 @@ const togo_check_path = togo_img.getAttribute("data-togo_check_path") // togo_im
 const here_path = here_img.getAttribute("data-here_path") // here_img에 저장
 const here_check_path = here_img.getAttribute("data-here_check_path") // here_img에 저장
 const bill2_path = step2.getAttribute("data-bill2_path") //step2 div에 저장
-const order_num_path = step2.getAttribute("data-order_num_path") //step2 div에 저장
+const register_path = step2.getAttribute("data-register_path") //step2 div에 저장
 
 //step2 선택 
 function clickStep2(){
@@ -102,10 +102,29 @@ function getModal(){
                 </div>
             </div>
             <div class = "receipt_bottom">
-                <button class="receipt_btn yes" onClick="location.href='${order_num_path}'">발행</button>
-                <button class="receipt_btn no" onClick="location.href='${order_num_path}'">미발행</button>
+                <button class="receipt_btn yes">발행</button>
+                <button class="receipt_btn no">미발행</button>
             </div>
             `;
+			const receipt_buttons = document.getElementsByClassName("receipt_btn");
+			for (const btn of receipt_buttons){
+				$( btn ).click(function(){
+					let total = JSON.parse(localStorage.getItem('total'));
+					let items = JSON.parse(localStorage.getItem('item'));
+					
+					let postdata = {
+						'total':total, 'items':items
+					}
+					$.ajax({
+						type: 'POST',
+						url: register_path,
+						data: JSON.stringify(postdata),
+						dataType: 'JSON',
+						contentType: "application/json",
+					})
+				})
+			}
+				
           }, 2000);
       }, 2000);
 
