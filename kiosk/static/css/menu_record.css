@@ -143,6 +143,10 @@ header {
   transition: all var(--animation-duration) ease;
 }
 
+.category_btn.selected {
+  background-color: gray;
+}
+
 .container_right {
   display: grid;
   grid-template-rows: 70px 1fr 60px;
