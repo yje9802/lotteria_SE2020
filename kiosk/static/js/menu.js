@@ -701,23 +701,25 @@ function getValueFromBtn(menu) {
 // 결제 모듈에서 '이전'이나 '추가주문' 버튼을 눌러서 장바구니 선택 모듈로 돌아왔을 때
 function existingCart() {
 	const existing = localStorage.getItem("item");
-	const parsedExisting = JSON.parse(existing);
-	parsedExisting.forEach(function (parse) {
-		const parse_name = parse.name;
-		const parse_amt = parse.amount;
-		const parse_prc = parse.price;
-		if (parse.id === "set") {
-			const parse_opt = `${parse.dessert[0]},${parse.drink[0]}`;
-			addToHtml([parse_name, parse_opt], parse_amt, parse_prc);
-		} else {
-			addToHtml([parse_name], parse_amt, parse_prc);
+	if (existing !== null) {
+		const parsedExisting = JSON.parse(existing);
+		parsedExisting.forEach(function (parse) {
+			const parse_name = parse.name;
+			const parse_amt = parse.amount;
+			const parse_prc = parse.price;
+			if (parse.id === "set") {
+				const parse_opt = `${parse.dessert[0]},${parse.drink[0]}`;
+				addToHtml([parse_name, parse_opt], parse_amt, parse_prc);
+			} else {
+				addToHtml([parse_name], parse_amt, parse_prc);
+			}
+		});
+		itemsSelected = parsedExisting;
+		updateCheck();
+		// 선택한 주문정보가 있다면 결제하기로 넘어갈 수 있음
+		if (itemsSelected.length !== 0) {
+			to_charge.setAttribute("onClick", "location.href='/charge'");
 		}
-	});
-	itemsSelected = parsedExisting;
-	updateCheck();
-	// 선택한 주문정보가 있다면 결제하기로 넘어갈 수 있음
-	if (itemsSelected.length !== 0) {
-		to_charge.setAttribute("onClick", "location.href='/charge'");
 	}
 }
 
