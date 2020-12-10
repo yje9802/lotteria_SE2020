@@ -2,6 +2,7 @@
 // '결제하기' 버튼
 const to_charge = document.querySelector("#to_charge");
 // Handle when category btn clicked
+const charge_path = to_charge.dataset.path;
 const category = document.querySelector(".category");
 const menu_container = document.querySelector(".menu_container");
 const menus = document.querySelectorAll(".menu");
@@ -57,7 +58,7 @@ function saveItems() {
 	localStorage.setItem(ITEM, JSON.stringify(itemsSelected));
 	// 선택한 주문정보가 있다면 결제하기로 넘어갈 수 있음
 	if (itemsSelected.length !== 0) {
-		to_charge.setAttribute("onClick", "location.href='/charge'");
+		to_charge.setAttribute("onClick", `location.href='${charge_path}'`);
 	}
 }
 // 총수량 & 결제예상금액 로컬스토리지에 저장
@@ -718,7 +719,7 @@ function existingCart() {
 		updateCheck();
 		// 선택한 주문정보가 있다면 결제하기로 넘어갈 수 있음
 		if (itemsSelected.length !== 0) {
-			to_charge.setAttribute("onClick", "location.href='/charge'");
+			to_charge.setAttribute("onClick", `location.href='${charge_path}'`);
 		}
 	}
 }
