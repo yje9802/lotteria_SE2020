@@ -12,6 +12,7 @@
   --color-darkgray: #757575;
   --color-orange: #ffa726;
   --color-darkorange: #ff6f00;
+  --color-lightblue: #e0f2f1;
 
   /* Animation */
   --animation-duration: 300ms;
@@ -131,6 +132,15 @@ header {
   justify-content: flex-end;
 }
 
+.describe_remove {
+  color: var(--color-wihte);
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  width: 600px;
+  display: none;
+}
+
 input {
   height: 36px;
   width: 200px;
@@ -145,11 +155,18 @@ input {
   font-size: 20px;
   font-weight: 600;
   margin-left: 20px;
+  outline: none;
 }
 
 .remove:hover {
   background-color: gray;
   transition: all var(--animation-duration) ease;
+}
+
+.remove.clicked {
+  border: 3px solid blue;
+  color: blue;
+  background-color: var(--color-lightblue);
 }
 
 /* table */
@@ -172,6 +189,14 @@ td {
   text-align: center;
   vertical-align: middle;
   height: 45px;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: transparent;
 }
 
 th {

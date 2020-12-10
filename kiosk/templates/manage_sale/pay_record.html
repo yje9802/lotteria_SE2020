@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sale Management</title>
     <link rel="stylesheet" href="/kiosk/static/css/pay_record.css"> 
+    <script src="/kiosk/static/js/pay_record.js" defer></script>
 </head>
 <body>
     <header>
@@ -25,94 +26,95 @@
         </div>
         <div class="container">
            <div class="container_top">
+            <div class="describe_remove">**삭제할 기록을 선택해 주세요**</div>
             <input type='date'/>
             <button class="remove">환불/삭제</button>
            </div>
            <div class="container_middle">
-                <table border="1">
+                <table border="1" id="table">
                     <th class="th_1">대기번호</th>
                     <th class="th_2">판매일</th>
                     <th class="th_3">판매시간</th>
                     <th class="th_4">가격</th>
                     <th class="th_5">메뉴</th>
-                    <tr>
+                    <tr class="line_1" onClick="HighLightTR(this, '#e0f2f1','cc3333'); ">
                         <td>334</td>
                         <td>2020-11-08</td>
                         <td>14:33</td>
                         <td>6,400</td>
                         <td>새우버거세트~</td>
                     </tr>
-                    <tr>
+                    <tr class="line_2" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td>333</td>
                         <td>2030-11-08</td>
                         <td>14:30</td>
                         <td>7,500</td>
                         <td>폴더버거 핫치킨~</td>
                     </tr>
-                    <tr>
+                    <tr class="line_3" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_4" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_5" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_6" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_7" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_8" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_9" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_10" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_11" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
-                    <tr>
+                    <tr class="line_12" onClick="HighLightTR(this, '#e0f2f1','cc3333');">
                         <td></td>
                         <td></td>
                         <td></td>
