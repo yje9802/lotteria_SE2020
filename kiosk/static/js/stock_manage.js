@@ -52,17 +52,18 @@ function selectMenu(){
 			</div>
             <div class="ingredients_discribe"></div>
             `;
-			// 품절 상태 반영 해 글자 처리 
 			let soldout_btn = document.getElementById(`soldout_btn_${menu_id}`);
 			let menu_name = document.getElementById(`menu_name_${menu_id}`);
+			
 			if(is_soldout){
 				menu_name.classList.add('need');
 				soldout_btn.innerHTML=`판매 가능으로 변경`;
 			}
-			// 버튼에 eventlistener 추가하기
+
 			soldout_btn.addEventListener("click", ()=>{
 						hasClicked(soldout_btn, menu_name);
 				})
+				
 			$.ajax({
                 type: 'POST',
                 url: stock_path,
@@ -70,10 +71,8 @@ function selectMenu(){
                 dataType : 'JSON',
                 contentType: "application/json",
                 success: function(data){
-					// console.log(data.ingredients);
 					if(!data.ingredients.length){
 							alert('재료 사용 정보가 db에 없습니다.');
-							//window.history.back();
 							return;
 					}
 					document.getElementById('stock_table').innerHTML = `
@@ -83,12 +82,9 @@ function selectMenu(){
 						`;
 					document.getElementsByClassName("ingredients_discribe")[0].innerHTML = `*수량이 5 이하인 경우 빨간색으로 표시됩니다.`;
                     $.each(data.ingredients, function(key,value){
-                         // alert(key + " : " + value.NAME + " " +value.STOCK+ " " + value.UNIT)
-                        // $('#div2').append('<div>'+ value.id + " " + value.password + " " + value.email  +'</div>')
 						let table = document.getElementById('stock_table');
 						let row = table.insertRow(-1);
 						$.each(value, function(key,value){
-							// alert(key + ":" + value);
 							let cell = row.insertCell(-1);
 							cell.innerHTML = value;
 							if(value <= 5){
