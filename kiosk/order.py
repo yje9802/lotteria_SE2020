@@ -42,7 +42,7 @@ def register():
     db = get_db()
     # orders 테이블 반영-price 
     now = datetime.datetime.now().replace(microsecond=0)# todo:wait_no, is togo, pay method
-    create_order = \ 
+    create_order = \
     '''
     INSERT INTO ORDERS (STATUS, ORDERED_AT, RECEIPT_TOTAL)
     VALUES ( ?, ?, ?)
