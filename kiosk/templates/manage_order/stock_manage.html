@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management</title>
+    <link rel="stylesheet" href="/kiosk/static/css/stock_manage.css"> 
+    <script src="/kiosk/static/js/stock_manage.js" defer></script>
+</head>
+<body>
+    <header>
+        <!-- 뒤로가기 경로설정 필요 -->
+        <button onClick="location.href='stock_manage.html'" class="back_btn" >
+            <img src="/kiosk/static/img/back.png" alt="">
+        </button>
+        <div class="logo">롯데리아 - <span>재고관리</span> [1/1]</div>
+        <div class="right_btn">
+            <!-- order_manage.html (주문확인) 경로설정 필요 -->
+            <button onClick="location.href='#'"class="stock_btn">주문확인</button>
+            <!-- auth.html 경로설정 필요 -->
+            <button class="manager_btn">
+                <img src="/kiosk/static/img/settings.png" alt="">
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="ad">
+            <img src="/kiosk/static/img/lotteria2.png" alt="">
+        </div>
+        <div class="container">
+            <div class="container_top">
+                <div></div>
+                <div class="discribe">*재고상태를 확인하고 싶은 메뉴를 선택하세요.</div>
+                <div class="categories_btn">
+                    <button class="category burger" data-filter="burger">햄버거</button>
+                    <button class="category dessert" data-filter="dessert">디저트 /치킨</button>
+                    <button class="category drink" data-filter="drink">음료 /커피</button>
+                </div>    
+            </div>
+            <div class="container_bottom">
+                <!-- hamburger -->
+                <div class="menu_container">
+                    <div class="menus">
+                        <button class="menu" data-type="burger">밀리터리 버거</button>
+                        <button class="menu" data-type="burger">폴더버거 핫 치킨</button>
+                        <button class="menu" data-type="burger">리아 미라클 버거</button>
+                        <button class="menu" data-type="burger">와규에디션2</button>
+                        <button class="menu" data-type="burger">새우버거</button>
+                        <button class="menu" data-type="burger">치킨버거</button>
+
+                        <button class="menu" data-type="dessert">디저트1</button>
+                        <button class="menu" data-type="dessert">디저트2</button>
+                        <button class="menu" data-type="dessert">디저트3</button>
+                        <button class="menu" data-type="dessert">디저트4</button>
+                        <button class="menu" data-type="dessert">디저트5</button>
+                        <button class="menu" data-type="dessert">디저트6</button>
+
+                        <button class="menu" data-type="drink">음료1</button>
+                        <button class="menu" data-type="drink">음료2</button>
+                        <button class="menu" data-type="drink">음료3</button>
+                        <button class="menu" data-type="drink">음료4</button>
+                        <button class="menu" data-type="drink">음료5</button>
+                        <button class="menu" data-type="drink">음료6</button>
+                    </div>
+                    <div class="discribe_red">
+                        *빨간색으로 표시한 메뉴는 현재 품절 상태
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+
+    <!-- 재고상태 확인 -->
+    </main>
+    <footer>
+        <div></div>
+    </footer>
+</body>
+</html>
