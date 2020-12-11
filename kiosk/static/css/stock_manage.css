@@ -159,11 +159,13 @@ header {
   border-radius: 5px;
   display: grid;
   grid-template-rows: 9fr 1fr;
+  max-height: 450px;
 }
 
 .menus {
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 .menu {
