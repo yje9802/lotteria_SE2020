@@ -108,6 +108,7 @@ def fetch_category(menu_cat, max_view=8):
 @bp.route('/toggle_soldout', methods=['POST'])
 def toggle_soldout():
     data = request.get_json()
+    print(data,type(data))
     sql = \
     '''
     UPDATE MENU

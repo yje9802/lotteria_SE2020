@@ -40,10 +40,11 @@ function selectMenu(){
             container.classList.add("ingredients");
             const menu_id = menu.dataset.id;
 			const name = menu.innerHTML;
+			const is_soldout = menu.classList.contains("need");
 			container.innerHTML=`
             <div class="ingredients_menu_container">
-                <div class="menu_name">${name}</div>
-                <button class="menu_btn" data-menu_id="${menu_id}">품절 상태로 변경</button>
+                <div class="menu_name" id="menu_name_${menu_id}">${name}</div>
+                <button class="soldout_btn" id="soldout_btn_${menu_id}" data-menu_id="${menu_id}">품절 상태로 변경</button>
             </div>
 			<div class="ingredients_table_container">
 				<table border="1" id="stock_table">
@@ -54,6 +55,17 @@ function selectMenu(){
 			</div>
             <div class="ingredients_discribe">*수량이 5 이하인 경우 빨간색으로 표시됩니다.</div>
             `;
+			// 품절 상태 반영 해 글자 처리 
+			let soldout_btn = document.getElementById(`soldout_btn_${menu_id}`);
+			let menu_name = document.getElementById(`menu_name_${menu_id}`);
+			if(is_soldout){
+				menu_name.classList.add('need');
+				soldout_btn.innerHTML=`판매 가능으로 변경`;
+			}
+			// 버튼에 eventlistener 추가하기
+			soldout_btn.addEventListener("click", ()=>{
+						hasClicked(soldout_btn, menu_name);
+				})
 			$.ajax({
                 type: 'POST',
                 url: stock_path,
@@ -95,22 +107,13 @@ function selectMenu(){
                     alert(error);
                 }
             })
-            
-
-            turnMenuSoldout(menu);
-        })
-
-        
+        }) 
     })
 }
 
 //품절 상태 변경 btn 클릭시 메뉴명 빨간색으로
-function turnMenuSoldout(menu){
-    const soldout_btn = document.querySelector(".menu_btn");
-    const menu_name = document.querySelector(".menu_name");
+function turnMenuSoldout(soldout_btn, menu_name){
 	const menu_id = soldout_btn.getAttribute("data-menu_id");
-    const soldout_class = "soldout";
-    soldout_btn.addEventListener("click",()=>{
 		let postdata = {'id': menu_id, 'is_soldout':1}
 		$.ajax({
                 type: 'POST',
@@ -120,41 +123,24 @@ function turnMenuSoldout(menu){
                 contentType: "application/json",
                 success: function(data){
                     alert(data.result)
-					// $('#div2').append('<div>'+ value.id + " " + value.password + " " + value.email  +'</div>')
-					soldout_btn.classList.add(soldout_class);
 					soldout_btn.innerHTML = `판매 가능으로 변경`;
 					menu_name.classList.add("need");
-					menu.classList.add("need");
-					soldout_btn.addEventListener("click", ()=>{
-						hasClicked(menu,soldout_btn, menu_name, soldout_class);
-
-					})
-                   
-                    
                 },
                 error: function(request, status, error){
                     alert('ajax 통신 실패')
                     alert(error);
                 }
-            })
-        
-    })
+       })
 }
 
 
 //판매 가능 버튼이 클릭되었는지 확인 
-function hasClicked(menu,soldout_btn, menu_name, soldout_class){
-    const hasClass = soldout_btn.classList.contains(soldout_class);
-    if(hasClass){
-        soldout_btn.classList.remove(soldout_class);
-        soldout_btn.innerHTML = `품절 상태로 변경`;
-        menu_name.classList.remove("need");
-        menu.classList.remove("need");
+function hasClicked(soldout_btn, menu_name){
+	const is_soldout = menu_name.classList.contains("need");
+    if(is_soldout){
+		turnMenuCanorder(soldout_btn, menu_name)
     } else{
-        soldout_btn.classList.add(soldout_class);
-        soldout_btn.innerHTML = `판매 가능으로 변경`;
-        menu_name.classList.add("need");
-        menu.classList.add("need");
+		turnMenuSoldout(soldout_btn, menu_name)
     }
     
 }
@@ -162,12 +148,25 @@ function hasClicked(menu,soldout_btn, menu_name, soldout_class){
 
 
 //판매 가능으로 변경
-function turnMenuCanorder(){
-    soldout_btn.onclick = function(){
-        menu_name.classList.remove("need");
-        soldout_btn.innerHTML = `품절 상태로 변경`;
-        menu.classList.remove("need");
-    }
+function turnMenuCanorder(soldout_btn, menu_name){
+	const menu_id = soldout_btn.getAttribute("data-menu_id");
+	let postdata = {'id': menu_id, 'is_soldout':0};
+	$.ajax({
+                type: 'POST',
+                url: soldout_path,
+                data: JSON.stringify(postdata),
+                dataType : 'JSON',
+                contentType: "application/json",
+                success: function(data){
+                    alert(data.result)
+					soldout_btn.innerHTML = `품절 상태로 변경`;
+					menu_name.classList.remove("need");
+                },
+                error: function(request, status, error){
+                    alert('ajax 통신 실패')
+                    alert(error);
+                }
+    })
 }
 
 categorySelect();
