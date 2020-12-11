@@ -1,5 +1,19 @@
 "use strict";
 
+var delete_btn = document.getElementById('delete_btn');
+delete_btn.addEventListener('click', function(){
+    var form=document.delete_menu;
+    var name=form.name.value;
+
+    if (confirm(name+"를(을) 삭제하시겠습니까?") == true){
+        form.submit();
+    }else{
+        return;
+    }
+})
+
+
+
 // 카테고리 btn 클릭
 const categories = document.querySelector(".categories_btn");
 const category = document.querySelector(".category");
@@ -68,8 +82,6 @@ function setThumbnail(event) {
         reader.readAsDataURL(image); 
         } 
     }
-
-
 
 
 categorySelect();
