@@ -117,14 +117,6 @@ function hasClicked(menu,soldout_btn, menu_name, soldout_class){
 
 
 
-//판매 가능으로 변경
-function turnMenuCanorder(){
-    soldout_btn.onclick = function(){
-        menu_name.classList.remove("need");
-        soldout_btn.innerHTML = `품절 상태로 변경`;
-        menu.classList.remove("need");
-    }
-}
 
 categorySelect();
 selectMenu();
