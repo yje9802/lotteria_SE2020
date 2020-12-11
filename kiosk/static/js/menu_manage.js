@@ -9,24 +9,17 @@ const menus = document.querySelectorAll(".menu");
 function categorySelect(){
     categories.addEventListener("click", (event)=>{
         const filter = event.target.dataset.filter;
-        if (filter == null) {
-            return;
-        }
+         if (filter == null) {
+             return;
+         }
 
         if (document.querySelector(".category.selected") !==null){
             document.querySelector(".category.selected").classList.remove("selected");
         }
         event.target.classList.add("selected");
-        
-        menus.forEach((menu)=>{
-            if (filter === menu.dataset.type ){
-                menu.classList.add("visible");
-            } else{
-                menu.classList.remove("visible");
-            }
-        })
     })
 }
+
 
 
 //메뉴추가, 메뉴수정, 메뉴 삭제 버튼 클릭시 입력창 생성

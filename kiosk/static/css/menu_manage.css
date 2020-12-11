@@ -291,6 +291,7 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  max-height: 450px;
 }
 
 .menu_container {
@@ -305,6 +306,7 @@ header {
 .menus {
   display: flex;
   flex-wrap: wrap;
+  overflow-y: scroll;
 }
 
 .menu {
@@ -321,7 +323,6 @@ header {
   justify-content: center;
   align-items: center;
   border-radius: 3px;
-  display: none;
 }
 
 .menu:hover {
