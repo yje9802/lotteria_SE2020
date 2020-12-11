@@ -97,10 +97,25 @@ def fetch_stock():
 def fetch_category(menu_cat, max_view=8):
     sql = \
     '''
-    SELECT ID, NAME
+    SELECT ID, NAME, IS_SOLDOUT
     FROM MENU M INNER JOIN MENU_CATEGORY C
     ON M.ID=C.MENU_ID
     WHERE CATEGORY_TAG=?
     '''
     db = get_db()
     return db.execute(sql, (menu_cat,)).fetchmany(max_view)
+    
+@bp.route('/toggle_soldout', methods=['POST'])
+def toggle_soldout():
+    data = request.get_json()
+    sql = \
+    '''
+    UPDATE MENU
+    SET IS_SOLDOUT=?
+    WHERE ID=? 
+    '''
+    db = get_db()
+    db.execute(sql, (data['is_soldout'], data['id']))
+    db.commit()
+    
+    return jsonify(result='품절 여부가 업데이트 되었습니다.')

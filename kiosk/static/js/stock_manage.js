@@ -6,6 +6,10 @@ const category = document.querySelector(".category");
 const menu_container = document.querySelector(".menu_container");
 const menus = document.querySelectorAll(".menu");
 
+const container = document.querySelector(".container");
+const stock_path = container.getAttribute('data-stock-path');
+const soldout_path = container.getAttribute('data-soldout-path');
+
 function categorySelect(){
     categories.addEventListener("click", (event)=>{
         const filter = event.target.dataset.filter;
@@ -30,8 +34,7 @@ function categorySelect(){
 
 //메뉴 클릭시 재고상태 확인 
 function selectMenu(){
-    const container = document.querySelector(".container");
-	const stock_path = container.getAttribute('data-stock-path');
+    
     menus.forEach((menu)=>{
         menu.addEventListener("click", function(event){
             container.classList.add("ingredients");
@@ -40,7 +43,7 @@ function selectMenu(){
 			container.innerHTML=`
             <div class="ingredients_menu_container">
                 <div class="menu_name">${name}</div>
-                <button class="menu_btn">품절 상태로 변경</button>
+                <button class="menu_btn" data-menu_id="${menu_id}">품절 상태로 변경</button>
             </div>
 			<div class="ingredients_table_container">
 				<table border="1" id="stock_table">
@@ -105,16 +108,36 @@ function selectMenu(){
 function turnMenuSoldout(menu){
     const soldout_btn = document.querySelector(".menu_btn");
     const menu_name = document.querySelector(".menu_name");
+	const menu_id = soldout_btn.getAttribute("data-menu_id");
     const soldout_class = "soldout";
     soldout_btn.addEventListener("click",()=>{
-        soldout_btn.classList.add(soldout_class);
-        soldout_btn.innerHTML = `판매 가능으로 변경`;
-        menu_name.classList.add("need");
-        menu.classList.add("need");
-        soldout_btn.addEventListener("click", ()=>{
-            hasClicked(menu,soldout_btn, menu_name, soldout_class);
+		let postdata = {'id': menu_id, 'is_soldout':1}
+		$.ajax({
+                type: 'POST',
+                url: soldout_path,
+                data: JSON.stringify(postdata),
+                dataType : 'JSON',
+                contentType: "application/json",
+                success: function(data){
+                    alert(data.result)
+					// $('#div2').append('<div>'+ value.id + " " + value.password + " " + value.email  +'</div>')
+					soldout_btn.classList.add(soldout_class);
+					soldout_btn.innerHTML = `판매 가능으로 변경`;
+					menu_name.classList.add("need");
+					menu.classList.add("need");
+					soldout_btn.addEventListener("click", ()=>{
+						hasClicked(menu,soldout_btn, menu_name, soldout_class);
 
-        })
+					})
+                   
+                    
+                },
+                error: function(request, status, error){
+                    alert('ajax 통신 실패')
+                    alert(error);
+                }
+            })
+        
     })
 }
 

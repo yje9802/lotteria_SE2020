@@ -28,7 +28,7 @@
         <div class="ad">
             <img src="{{ url_for('static', filename='img/lotteria2.png') }}" alt="">
         </div>
-        <div class="container" data-stock-path="{{ url_for('manage_order.fetch_stock') }}">
+        <div class="container" data-stock-path="{{ url_for('manage_order.fetch_stock') }}" data-soldout-path="{{ url_for('manage_order.toggle_soldout') }}">
             <div class="container_top">
                 <div></div>
                 <div class="discribe">*재고상태를 확인하고 싶은 메뉴를 선택하세요.</div>
