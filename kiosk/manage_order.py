@@ -94,7 +94,7 @@ def fetch_stock():
     print(ingredients, type(ingredients))
     return jsonify(ingredients=ingredients)
     
-def fetch_category(menu_cat, max_view=8):
+def fetch_category(menu_cat):
     sql = \
     '''
     SELECT ID, NAME, IS_SOLDOUT
@@ -103,7 +103,7 @@ def fetch_category(menu_cat, max_view=8):
     WHERE CATEGORY_TAG=?
     '''
     db = get_db()
-    return db.execute(sql, (menu_cat,)).fetchmany(max_view)
+    return db.execute(sql, (menu_cat,)).fetchall()
     
 @bp.route('/toggle_soldout', methods=['POST'])
 def toggle_soldout():
