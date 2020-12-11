@@ -172,6 +172,10 @@ header {
   border-color: transparent;
 }
 
+.manage_btn.selected {
+  background-color: gray;
+}
+
 /* input container */
 .input_container_left {
   height: 200px;
@@ -186,7 +190,6 @@ header {
   max-width: 1400px;
   padding: 10px;
   border-radius: 5px;
-  display: none;
   padding-bottom: 2px;
 }
 
