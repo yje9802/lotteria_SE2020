@@ -48,12 +48,9 @@ function selectMenu(){
             </div>
 			<div class="ingredients_table_container">
 				<table border="1" id="stock_table">
-							<th>재고명</th>
-							<th>수량</th>
-							<th>단위</th>
 				</table>
 			</div>
-            <div class="ingredients_discribe">*수량이 5 이하인 경우 빨간색으로 표시됩니다.</div>
+            <div class="ingredients_discribe"></div>
             `;
 			// 품절 상태 반영 해 글자 처리 
 			let soldout_btn = document.getElementById(`soldout_btn_${menu_id}`);
@@ -79,13 +76,12 @@ function selectMenu(){
 							//window.history.back();
 							return;
 					}
-					// document.getElementsByClassName("ingredients_table_container").innerHTML = `
-						// <table border="1" id="stock_table">
-						// <th>재고명</th>
-						// <th>수량</th>
-						// <th>단위</th>
-						// </table>`;
-					// document.getElementsByClassName("ingredients_describe").innerHTML = `*수량이 5 이하인 경우 빨간색으로 표시됩니다.`;
+					document.getElementById('stock_table').innerHTML = `
+						<th>재고명</th>
+						<th>수량</th>
+						<th>단위</th>
+						`;
+					document.getElementsByClassName("ingredients_discribe")[0].innerHTML = `*수량이 5 이하인 경우 빨간색으로 표시됩니다.`;
                     $.each(data.ingredients, function(key,value){
                          // alert(key + " : " + value.NAME + " " +value.STOCK+ " " + value.UNIT)
                         // $('#div2').append('<div>'+ value.id + " " + value.password + " " + value.email  +'</div>')
