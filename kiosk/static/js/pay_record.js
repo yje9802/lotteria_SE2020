@@ -13,7 +13,7 @@ function clickRemoveBtn(){
 }
 
 
-//클릭된 행 색상 변경 (삭제 후에 적용되지 않도록 재부팅(?) 필요할듯)
+//클릭된 행 색상 변경
 var orgBColor = '#ffffff';
 var orgTColor = '#000000';
 function HighLightTR(target, backColor,textColor) {
@@ -34,7 +34,7 @@ function HighLightTR(target, backColor,textColor) {
             }} 
     } 
 
-//환불/삭제 후 경고창
+//환불/삭제 후 경고창 (삭제 경고창 '확인'선택 후에도 색상이 지워지지 않아서 재부팅(?)필요할듯..)
 function func_confirm(){
     var do_remove;
     do_remove=confirm("해당 내용을 삭제하시겠습니까?")
@@ -42,10 +42,7 @@ function func_confirm(){
         alert("삭제되었습니다");
         remove_btn.classList.remove("clicked");
         describe_remove.style.display = "none";
-    } else{
-        //remove_btn.classList.remove("clicked");
-        describe_remove.style.display = "none";
-    }
+    } 
 }
 
 
