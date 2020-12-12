@@ -22,8 +22,24 @@ def payment():
 
 @bp.route('/menu')
 def menu():
-    return render_template('order/menu.html')
+    recommends = fetch_menu('추천메뉴')
+    burgers = fetch_menu('햄버거')
+    drinks = fetch_menu('음료')
+    desserts = fetch_menu('디저트')
     
+    return render_template('order/menu.html', recommends=recommends, burgers=burgers, drinks=drinks, desserts=desserts)
+    
+    
+def fetch_menu(category, max_view=8, path_prefix='/static%'):
+    sql = \
+    '''
+    SELECT ID, NAME, IMAGE_PATH, PRICE
+    FROM MENU M INNER JOIN MENU_CATEGORY C
+    ON M.ID = C.MENU_ID
+    WHERE CATEGORY_TAG=? AND IMAGE_PATH LIKE ?
+    '''
+    db = get_db()
+    return db.execute(sql,(category, path_prefix)).fetchmany(max_view)
 
 @bp.route('/charge')
 def charge():
