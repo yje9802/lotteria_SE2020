@@ -2,7 +2,7 @@
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/views/ 참고
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/blog/ 참고
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, jsonify
 )
 from werkzeug.exceptions import abort
 
@@ -41,6 +41,43 @@ def fetch_menu(category, max_view=8, path_prefix='/static%'):
     db = get_db()
     return db.execute(sql,(category, path_prefix)).fetchmany(max_view)
 
+
+@bp.route('/fetch_info', methods=['POST'])
+def fetch_info():
+    id = request.get_json()
+    print('id:', id)
+    sql_ingredients = \
+    '''
+    SELECT I.NAME
+    FROM (MENU M INNER JOIN INGRD_USE U ON M.ID=U.MENU_ID)
+    INNER JOIN INGREDIENT I ON U.INGRD_ID=I.ID
+    WHERE M.ID=?
+    '''
+    sql_desc = 'SELECT DESC FROM MENU WHERE ID=?'
+    sql_nutrients = \
+    '''
+    SELECT WEIGHT_G, KCAL, PROTEIN_G, SODIUM_MG, SUGAR_G, SAT_FAT_G, CAFFEINE_MG
+    FROM MENU
+    WHERE ID=?
+    '''
+    db = get_db()
+    db.row_factory = dict_factory
+    ingredients = db.execute(sql_ingredients, (id,)).fetchall()
+    desc = db.execute(sql_desc, (id,)).fetchall()
+    nutrients = db.execute(sql_nutrients, (id,)).fetchall()
+    print('ingredients:', ingredients)
+    print('desc:', desc)
+    print('nutrients', nutrients)
+    
+    return jsonify(ingredients=ingredients, desc=desc, nutrients=nutrients)
+
+def dict_factory(cursor, row):
+    d = {}
+    for idx, col in enumerate(cursor.description):
+        d[col[0]] = row[idx]
+    return d    
+    
+    
 @bp.route('/charge')
 def charge():
     return render_template('order/charge.html')
@@ -49,3 +86,4 @@ def charge():
 @bp.route('/order_num')
 def order_num():
     return render_template('order/order_num.html')
+

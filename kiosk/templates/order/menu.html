@@ -13,6 +13,7 @@
 			integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 			crossorigin="anonymous"
 		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script
 			src="{{ url_for('static', filename='js/menu.js') }}"
 			defer
@@ -26,7 +27,7 @@
 	<body>
 		<div class="container">
 			<!-- ad -->
-			<header class="ad">
+			<header class="ad" data-path_info="{{ url_for('order.fetch_info') }}">
 				<img
 					src="{{ url_for('static', filename='img/ad/military.png') }}"
 					alt="ad"
@@ -68,7 +69,7 @@
 				{% endfor %}
 				<!-- hamburger -->
 				{% for burger in burgers %}
-				<button class="menu" data-type="hamburger">
+				<button class="menu" data-type="hamburger" data-id="{{ burger['id'] }}">
 					<img
 						src="{{ burger['image_path']|safe }}"
 						alt=""
@@ -83,7 +84,7 @@
 				
 				<!-- drink -->
 				{% for drink in drinks %}
-				<button class="menu" data-type="drink">
+				<button class="menu" data-type="drink" data-id="{{ drink['id'] }}">
 					<img
 						src="{{ drink['image_path'] }}"
 						alt=""
@@ -98,7 +99,7 @@
 
 				{% for dessert in desserts %}
 				<!-- dessert -->
-				<button class="menu" data-type="dessert">
+				<button class="menu" data-type="dessert" data-id="{{ dessert['id'] }}">
 					<img
 						src="{{ dessert['image_path'] }}"
 						alt=""
