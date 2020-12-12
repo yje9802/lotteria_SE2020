@@ -49,5 +49,8 @@ def create_app(test_config=None):
     from . import manage_menu
     app.register_blueprint(manage_menu.bp)
     
+    from . import manage_order
+    app.register_blueprint(manage_order.bp)
+    
     return app
     

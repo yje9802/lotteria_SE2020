@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="refresh" content="5">
+    <title>Order</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/order_manage.css') }}"> 
+    <!-- <script src="{{ url_for('static', filename='js/order_manage.js') }}" defer></script>  -->
+</head>
+<body>
+    <header>
+        <div class="blank"></div>
+        <div class="logo">롯데리아 [1/1]</div>
+        <div class="right_btn">
+            <!-- stock_manage.html로 경로 설정 필요 -->
+            <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="stock_btn">재고관리</button>
+            <!-- auth.html 페이지로 경로 설정 필요 -->
+            <button onClick="location.href='#'"class="manager_btn">
+                <img src="{{ url_for('static', filename='img/settings.png') }}" alt="">
+            </button>
+        </div>
+    </header>
+    <main>
+        {% for order in orders %}
+		{% if loop.index == 1 %}
+		<div class="main_top">
+		{% elif loop.index % cols == 1 %}
+		</div>
+		<div class="main_bottom">
+		{% endif %}
+			<div class="order_container special" id="num{{loop.index}}">
+				<div class="container_top">
+					<div class="blank2"></div>
+					<div class="container_name">주문</div>
+					<form action="{{ url_for('manage_order.call', id=order['ID']) }}">
+						<button class="call_btn" type="submit">호출</button>
+					</form>
+				</div>
+				<div class="container_mid">
+					<div class="order_num">{{ order['ID'] }}</div>
+					<div class="order_time">{{ order['ORDERED_AT'] }}</div>
+					<div></div>
+				</div>
+				<div class="container_menu">
+					<ul class="order_menu_list">
+						{% for item in order['items'] %}
+							<li class="menu main"><span class="num">{{ item['QTY'] }} </span><span class="name">{{ item['NAME'] }}</span></li>
+							{% for option in item['options'] %}
+								<li class="menu"><span class="num">{{ option['QTY'] }}</span><span class="name">{{ option['NAME'] }}<span></li>
+							{% endfor  %}
+						{% endfor %}
+					</ul>
+
+				</div>
+				<div class="container_bottom"></div>
+			</div>
+		{% endfor %}
+		{% for i in range(len+1, max_len+1) %} 
+		{% if i == 1 %}
+		<div class="main_top">
+		{% elif i % cols == 1 %}
+		</div>
+		<div class="main_bottom">
+		{% endif %}
+            <div class="order_container" id="num{{ i }}">
+                <div class="container_top"></div>
+                <div class="container_mid">
+                    <div class="order_num"></div>
+                    <div class="order_time"></div>
+                    <div></div>
+                </div>
+                <div class="container_menu"></div>
+                <div class="container_bottom"></div>
+            </div>
+		{% if loop.last %}
+        </div>
+		{% endif %}
+		{% endfor %}
+		
+
+    </main>
+</body>
+</html>

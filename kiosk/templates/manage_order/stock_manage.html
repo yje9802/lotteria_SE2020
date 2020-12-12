@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/stock_manage.css') }}"> 
+	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="{{ url_for('static', filename='js/stock_manage.js') }}" defer></script>
+</head>
+<body>
+    <header>
+        <!-- 뒤로가기 경로설정 필요 -->
+        <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="back_btn" >
+            <img src="{{ url_for('static', filename='img/back.png') }}" alt="">
+        </button>
+        <div class="logo">롯데리아 - <span>재고관리</span> [1/1]</div>
+        <div class="right_btn">
+            <!-- order_manage.html (주문확인) 경로설정 필요 -->
+            <button onClick="location.href='{{ url_for('manage_order.orders') }}'"class="stock_btn">주문확인</button>
+            <!-- auth.html 경로설정 필요 -->
+            <button class="manager_btn">
+                <img src="{{ url_for('static', filename='img/settings.png') }}" alt="">
+            </button>
+        </div>
+    </header>
+    <main>
+        <div class="ad">
+            <img src="{{ url_for('static', filename='img/lotteria2.png') }}" alt="">
+        </div>
+        <div class="container" data-stock-path="{{ url_for('manage_order.fetch_stock') }}" data-soldout-path="{{ url_for('manage_order.toggle_soldout') }}">
+            <div class="container_top">
+                <div></div>
+                <div class="discribe">*재고상태를 확인하고 싶은 메뉴를 선택하세요.</div>
+                <div class="categories_btn">
+                    <button class="category burger" data-filter="burger">햄버거</button>
+                    <button class="category dessert" data-filter="dessert">디저트 /치킨</button>
+                    <button class="category drink" data-filter="drink">음료 /커피</button>
+                </div>    
+            </div>
+            <div class="container_bottom">
+                <!-- hamburger -->
+                <div class="menu_container">
+                    <div class="menus">
+						{% for burger in burgers %}
+						{% if burger['is_soldout'] %}
+						<button class="menu need" data-type="burger" data-id="{{ burger['id'] }}">{{ burger['name'] }}</button>
+						{% else %}
+						<button class="menu" data-type="burger" data-id="{{ burger['id'] }}">{{ burger['name'] }}</button>
+						{% endif %}
+						{% endfor %}
+						
+						{% for dessert in desserts %}
+						{% if dessert['is_soldout'] %}
+						<button class="menu need" data-type="dessert" data-id="{{ dessert['id'] }}">{{ dessert['name'] }}</button>
+						{% else %}
+						<button class="menu" data-type="dessert" data-id="{{ dessert['id'] }}">{{ dessert['name'] }}</button>
+						{% endif %}
+						{% endfor %}
+						
+						{% for drink in drinks %}
+						{% if drink['is_soldout'] %}
+						<button class="menu need" data-type="drink" data-id="{{ drink['id'] }}">{{ drink['name'] }}</button>
+						{% else %}
+						<button class="menu" data-type="drink" data-id="{{ drink['id'] }}">{{ drink['name'] }}</button>
+						{% endif %}
+						{% endfor %}
+                    </div>
+                    <div class="discribe_red">
+                        *빨간색으로 표시한 메뉴는 현재 품절 상태
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+
+    <!-- 재고상태 확인 -->
+    </main>
+    <footer>
+        <div></div>
+    </footer>
+</body>
+</html>

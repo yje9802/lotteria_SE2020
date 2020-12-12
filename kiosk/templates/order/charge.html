@@ -10,6 +10,7 @@
 		/>
 	</head> 
         <!-- <link rel="stylesheet" href="/kiosk/static/css/charge.css"> -->
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="{{ url_for('static', filename='js/charge.js') }}" defer></script> 
 	<body data-static="{{ root_dir }}">
 		<div class="container">
@@ -40,14 +41,32 @@
                                 <div>수량</div>
                                 <div>금액</div>
                             </div>
-                            <ul class="bag_lists">
-                                <li class="bag_list"></li>
-                                <li class="bag_list"></li>
-                                <li class="bag_list"></li>
-                                <li class="bag_list"></li>
-                                <li class="bag_list"></li>
-                                <li class="bag_list"></li>
-                            </ul>
+                            <!-- <ul class="bag_lists">
+					<li class="bag_list">
+						<div class="list_wrapper">
+							<div class="list_name">
+								새우버거(세트)
+							</div>
+							<div class="list_amount">1</div>
+							<div class="list_price">3,900</div>
+						</div>
+					</li>
+					<li class="bag_list">
+						<div class="list_wrapper">
+							<div class="list_name set_opt">
+								-양념감자
+							</div>
+							<div class="list_amount">1</div>
+							<div class="list_price">500</div>
+						</div>
+					</li>
+					<li class="bag_list"></li>
+					<li class="bag_list"></li>
+					<li class="bag_list"></li>
+					<li class="bag_list"></li>
+				</ul> -->
+
+				<ul class="bag_lists"></ul>
                         </div>
                         <div class="bag_btn">
                             <button class="tri left"></button>
@@ -105,7 +124,7 @@
                             </div>
                         </button>
                     </div>
-                    <div class="step2" data-bill2_path="{{ url_for('static', filename='img/bill2.png') }}" data-order_num_path="{{ url_for('order.order_num') }}">Step 2 결제를 선택하세요.</div>
+                    <div class="step2" data-bill2_path="{{ url_for('static', filename='img/bill2.png') }}" data-register_path="{{ url_for('order.register') }}">Step 2 결제를 선택하세요.</div>
                     <div class="step2_icon">
                         <button class="step2_icon_btn card">
                             <img src="{{ url_for('static', filename='img/credit-cards.png') }}" alt="" class="step2_img card" id="card">
@@ -157,8 +176,8 @@
 						</button>
 					</div>
 					<div class="btns">
-						<button class="order_cancle_btn">결제취소</button>
-						<button class="order_order_btn">추가주문</button>
+						<button class="order_cancle_btn" onClick="location.href='{{ url_for('order.menu') }}'">결제취소</button>
+						<button class="order_order_btn" onClick="location.href='{{ url_for('order.menu') }}'">추가주문</button>
 					</div>
 				</div>
 			</footer>
