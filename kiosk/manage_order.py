@@ -2,7 +2,7 @@
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/views/ 참고
 # https://flask.palletsprojects.com/en/1.1.x/tutorial/blog/ 참고
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, jsonify
 )
 from werkzeug.exceptions import abort
 from math import ceil
@@ -74,4 +74,49 @@ def call(id):
 
 @bp.route('/stock')
 def stock():
-    return render_template('manage_order/stock_manage.html')
+    burgers = fetch_category('햄버거')
+    desserts = fetch_category('디저트')
+    drinks = fetch_category('음료')
+    return render_template('manage_order/stock_manage.html', burgers=burgers, desserts=desserts, drinks=drinks)
+
+
+@bp.route('/fetch_stock', methods=['POST'])
+def fetch_stock():
+    id = request.get_json()
+    sql = \
+    '''
+    SELECT I.NAME, I.STOCK, I.UNIT
+    FROM INGRD_USE U INNER JOIN INGREDIENT I ON U.INGRD_ID = I.ID
+    WHERE U.MENU_ID = ?
+    '''
+    db = get_db()
+    ingredients = [dict(row) for row in db.execute(sql, (id,))]
+    print(ingredients, type(ingredients))
+    return jsonify(ingredients=ingredients)
+    
+def fetch_category(menu_cat):
+    sql = \
+    '''
+    SELECT ID, NAME, IS_SOLDOUT
+    FROM MENU M INNER JOIN MENU_CATEGORY C
+    ON M.ID=C.MENU_ID
+    WHERE CATEGORY_TAG=?
+    '''
+    db = get_db()
+    return db.execute(sql, (menu_cat,)).fetchall()
+    
+@bp.route('/toggle_soldout', methods=['POST'])
+def toggle_soldout():
+    data = request.get_json()
+    print(data,type(data))
+    sql = \
+    '''
+    UPDATE MENU
+    SET IS_SOLDOUT=?
+    WHERE ID=? 
+    '''
+    db = get_db()
+    db.execute(sql, (data['is_soldout'], data['id']))
+    db.commit()
+    
+    return jsonify(result='품절 여부가 업데이트 되었습니다.')
