@@ -617,7 +617,7 @@ function menuShowdata(name, img, menu_id) {
                 </div>
                 <div class="menu_data_bottom">
                     <div class="menu_data_specific" id=desc_${menu_id}>메뉴 정보 추가할 곳</div>
-                    <div class="menu_data_ingredient" id=ing_${menu_id}>재료 이미지 추가할 곳</div>
+                    <div class="menu_data_ingredient" id=ing_${menu_id}></div>
                 </div>
             </div>
         </div>
