@@ -108,4 +108,3 @@ def menu_data():
         return render_template('/manage_sale/menu_record.html', data=data)
         
             
-

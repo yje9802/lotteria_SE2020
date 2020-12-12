@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sale Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/pay_record.css')}}"> 
+    <script src="{{ url_for('static', filename='js/pay_record.js')}}" defer></script>
+</head>
+<body>
+    <header>
+        <button onClick="location.href='http://127.0.0.1:5000/manage_sale'" class="back_btn" >
+            <img src="{{ url_for('static', filename='img/back.png')}}" alt="">
+        </button>
+        <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
+        <div class="right_btn">
+            <!-- order_manage.html (주문확인) 경로설정 필요 -->
+            <button onClick="location.href='#'" class="order_btn">주문확인</button>
+            <!-- stock_manage.html (재고관리) 경로설정 필요 -->
+            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
+        </div>
+    </header>
+    <main>
+        <div class="ad">
+            <img src="{{ url_for('static', filename='img/lotteria2.png')}}" alt="">
+        </div>
+        <div class="container">
+           <div class="container_top">
+            <div class="describe_remove">**삭제할 기록을 선택해 주세요**</div>
+            <form name="date_input" action="http://127.0.0.1:5000/manage_sale/pay_data" method="POST">
+                <input type='date'name="date" required/>
+                <input type='submit' value="조회"/> 
+            </form>
+            <button class="remove">환불/삭제</button>
+           </div>
+           <div class="container_middle">
+                <table border="1" id="table">
+                    <th class="th_1">대기번호</th>
+                    <th class="th_2">판매일</th>
+                    <th class="th_3">판매시간</th>
+                    <th class="th_4">가격</th>
+                    <th class="th_5">메뉴</th>
+                    <form name="pay_data_list" action="http://127.0.0.1:5000/manage_sale/delete_data" method="POST">
+                        {% for i in data %}
+                        <tr class="line_1" onClick="HighLightTR(this, '#e0f2f1','cc3333',{{i[0]}});" >
+                            <td>{{i[1]}}</td>
+                            <td>{{i[2]}}</td>
+                            <td>{{i[3]}}</td>
+                            <td>{{i[4]}}</td>
+                            <td>{{i[5]}}</td>
+                        </tr>
+                        {% endfor %}
+                    <input type="hidden" id="order_id" name="order_id"/>
+                    </form>
+                </table>
+           </div>
+           <div class="container_bottom">
+                <div></div>
+                <!-- 페이지 부분 수정 필요 -->
+                <div class="page_container">
+                    <div class="page_middle">
+                        <button class="tri left">
+                            <img src="/kiosk/static/img/left_arrow.png" alt="">
+                        </button>
+                        <div class="page"><span>1</span>/<span>1</span></div>
+                        <button class="tri right">
+                            <img src="/kiosk/static/img/right_arrow.png" alt="">
+                        </button>
+                    </div>
+                    <div></div>
+                </div>
+                <div class="total_container">
+                    <div class="describe">총 매출액</div>
+                    <div class="total"><span class="money">{{ total[0][0] }}</span><span>원</span></div>
+                </div>
+           </div>
+        </div>
+
+
+   
+    </main>
+    <footer>
+        <div></div>
+    </footer>
+</body>
+</html>

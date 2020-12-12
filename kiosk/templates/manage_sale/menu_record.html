@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Record</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/menu_record.css')}}"> 
+    <script src="{{ url_for('static', filename='js/menu_record.js')}}" defer></script>
+</head>
+<body>
+    <header>
+        <!-- back 경로설정 필요 -->
+        <button onClick="location.href='http://127.0.0.1:5000/manage_sale'" class="back_btn" >
+            <img src="{{ url_for('static', filename='img/back.png')}}" alt="">
+        </button>
+        <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
+        <div class="right_btn">
+            <!-- order_manage.html (주문확인) 경로설정 필요 -->
+            <button onClick="location.href='#'" class="order_btn">주문확인</button>
+            <!-- stock_manage.html (재고관리) 경로설정 필요 -->
+            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
+        </div>
+    </header>
+    <main>
+        <div class="ad">
+            <img src="{{ url_for('static', filename='img/lotteria2.png')}}" alt="">
+        </div>
+        <div class="container">
+        <form name="select_category" action="http://127.0.0.1:5000/manage_sale/menu_data" method="GET"> 
+            <div class="container_left">
+                <button class="category_btn burger" data-filter="burger" name="burger" value="햄버거">햄버거</button>
+                <button class="category_btn dessert" data-filter="dessert" name="dessert" value="디저트/치킨">디저트/치킨</button>
+                <button class="category_btn drink" data-filter="drink" name="drink" value="음료/커피">음료/커피</button>
+            </div>
+        </form>
+            <div class="container_right">
+                <form name="select_date" action="http://127.0.0.1:5000/manage_sale/menu_data" method="POST">
+                <div class="container_top">
+                    <input type='date' / class="date" name='date' required>
+                    <div class="find_menu">
+                        <input type="text" placeholder="메뉴 검색" class="menu_input" name="menu_input" required>
+                        <button class="menu_btn" name="menu_query">검색</button>
+                    </div>
+                </div>
+                </form>
+                <div class="container_middle">
+                    <table border="1">
+                        <th class="th_1">순서</th>
+                        <th class="th_2">메뉴명</th>
+                        <th class="th_3">판매건수</th>
+                        <th class="th_4">매출액</th>
+
+                        {% for i in data%}
+                        <tr>
+                            <td>{{loop.index}}</td>
+                            <td>{{i[0]}}</td>
+                            <td>{{i[1]}}</td>
+                            <td>{{i[2]}}</td>
+                        </tr>
+                        {% endfor %}
+                     </table>
+               </div>
+               <div class="container_bottom">
+                <!-- 페이지 부분 수정 필요 -->
+                <div class="page_container">
+                    <div class="page_middle">
+                        <button class="tri left">
+                            <img src="{{ url_for('static', filename='img/left_arrow.png')}}" alt="">
+                        </button>
+                        <div class="page"><span>1</span>/<span>1</span></div>
+                        <button class="tri right">
+                            <img src="{{ url_for('static', filename='img/right_arrow.png')}}" alt="">
+                        </button>
+                    </div>
+                    <div></div>
+                </div>
+           </div>
+            </div>
+        </div>
+
+   
+    </main>
+    <footer>
+        <div></div>
+    </footer>
+</body>
+</html>

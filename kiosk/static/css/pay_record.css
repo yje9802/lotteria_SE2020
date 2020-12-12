@@ -1,0 +1,285 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Noto+Sans+KR:wght@400;700;900&display=swap");
+
+:root {
+  /* color */
+  --color-black: #212121;
+  --color-wihte: #fafafa;
+  --color-red: #b71c1c;
+  --color-lightgray: #e0e0e0;
+  --color-gray: #bdbdbd;
+  --color-darkgray: #757575;
+  --color-orange: #ffa726;
+  --color-darkorange: #ff6f00;
+  --color-lightblue: #e0f2f1;
+
+  /* Animation */
+  --animation-duration: 300ms;
+}
+
+body {
+  font-family: "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  width: 100%;
+  height: 100vh;
+  background-color: var(--color-black);
+  display: grid;
+  grid-template-rows: 70px 1fr;
+}
+
+main {
+  background-color: var(--color-wihte);
+  display: flex;
+  flex-direction: column;
+  display: grid;
+  grid-template-rows: 70px 1fr 8px;
+}
+
+main div {
+  width: 100%;
+}
+.right_btn button,
+.categories_btn button,
+.back_btn {
+  height: 50px;
+  padding: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  outline: none;
+}
+
+.right_btn button:hover,
+.categories_btn button:hover,
+.back_btn:hover {
+  background-color: var(--color-gray);
+  transition: all var(--animation-duration) ease;
+}
+
+/* header */
+header {
+  display: flex;
+  justify-content: space-between;
+  margin: auto 30px;
+  align-items: center;
+}
+
+/* .blank {
+  width: 190px;
+} */
+
+.back_btn img {
+  height: 34px;
+  width: 40px;
+  padding: 0 7px;
+}
+
+.logo {
+  color: var(--color-wihte);
+  font-size: 28px;
+  margin-left: 190px;
+}
+
+.logo span {
+  font-weight: 600;
+}
+
+.right_btn {
+  display: flex;
+  align-items: center;
+}
+
+.stock_btn,
+.order_btn {
+  font-size: 23px;
+  font-weight: 600;
+  width: 120px;
+}
+
+.stock_btn {
+  margin-left: 10px;
+}
+
+/* main */
+.ad {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.ad img {
+  height: 70px;
+  margin-right: 20px;
+}
+
+.container {
+  background-color: var(--color-red);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: grid;
+  grid-template-rows: 70px 1fr 60px;
+}
+
+.submit_btn:hover {
+  background-color: var(--color-darkorange);
+  transition: all var(--animation-duration) ease;
+  height: 50px;
+}
+
+/* container top */
+.container_top {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.describe_remove {
+  color: var(--color-wihte);
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  width: 600px;
+  display: none;
+}
+
+input {
+  height: 36px;
+  width: 200px;
+  font-size: 17px;
+}
+
+.remove {
+  width: 120px;
+  cursor: pointer;
+  border-radius: 5px;
+  border-color: transparent;
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 20px;
+  outline: none;
+}
+
+.remove:hover {
+  background-color: gray;
+  transition: all var(--animation-duration) ease;
+}
+
+.remove.clicked {
+  border: 3px solid blue;
+  color: blue;
+  background-color: var(--color-lightblue);
+}
+
+/* table */
+.container_middle {
+  width: 1500px;
+  height: 590px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background-color: var(--color-wihte);
+}
+
+th,
+td {
+  border: 1px solid var(--color-gray);
+  font-size: 21px;
+  font-weight: 500;
+  text-align: center;
+  vertical-align: middle;
+  height: 45px;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:hover {
+  background-color: transparent;
+}
+
+th {
+  background-color: var(--color-lightgray);
+}
+
+.th_1,
+.th_2,
+.th_3,
+.th_4 {
+  width: 150px;
+}
+
+/* contaier bottom */
+.container_bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.total_container {
+  display: flex;
+  width: 900px;
+  height: 50px;
+  background: var(--color-wihte);
+  justify-content: center;
+  align-items: center;
+}
+
+.describe,
+.total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.describe {
+  background-color: var(--color-gray);
+  height: 100%;
+}
+
+.total .money {
+  color: var(--color-red);
+}
+
+.page_container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+.page_middle {
+  display: flex;
+  align-items: center;
+}
+
+.tri {
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.tri:hover {
+  transform: scale(1.2);
+  transition: all var(--animation-duration) ease;
+}
+
+.tri img {
+  height: 30px;
+}
+
+.page {
+  font-size: 28px;
+  width: 80px;
+  text-align: center;
+}
+/* footer */
+footer div {
+  background-color: var(--color-black);
+  width: 100%;
+  height: 10px;
+}
