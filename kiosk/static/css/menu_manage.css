@@ -361,3 +361,22 @@ footer div {
   width: 100%;
   height: 10px;
 }
+
+/* manage describe */
+.container_describe {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.manage_describe {
+  font-size: 30px;
+  font-weight: 600;
+  width: 1200px;
+  height: 200px;
+  line-height: 200px;
+}
+
+form {
+}
