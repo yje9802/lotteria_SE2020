@@ -23,9 +23,12 @@
     </header>
     <main>
         {% for order in orders %}
-			{% if loop.index % cols == 1 %}
+		{% if loop.index == 1 %}
 		<div class="main_top">
-			{% endif %}
+		{% elif loop.index % cols == 1 %}
+		</div>
+		<div class="main_bottom">
+		{% endif %}
 			<div class="order_container special" id="num{{loop.index}}">
 				<div class="container_top">
 					<div class="blank2"></div>
@@ -35,7 +38,7 @@
 					</form>
 				</div>
 				<div class="container_mid">
-					<div class="order_num">{{ order['WAIT_NO'] }}</div>
+					<div class="order_num">{{ order['ID'] }}</div>
 					<div class="order_time">{{ order['ORDERED_AT'] }}</div>
 					<div></div>
 				</div>
@@ -53,11 +56,13 @@
 				<div class="container_bottom"></div>
 			</div>
 		{% endfor %}
-			{% for i in range(len+1, max_len+1) %} 
-				{% if i % cols == 1 %}
+		{% for i in range(len+1, max_len+1) %} 
+		{% if i == 1 %}
+		<div class="main_top">
+		{% elif i % cols == 1 %}
 		</div>
 		<div class="main_bottom">
-				{% endif %}
+		{% endif %}
             <div class="order_container" id="num{{ i }}">
                 <div class="container_top"></div>
                 <div class="container_mid">
@@ -68,8 +73,11 @@
                 <div class="container_menu"></div>
                 <div class="container_bottom"></div>
             </div>
-			{% endfor %}
+		{% if loop.last %}
         </div>
+		{% endif %}
+		{% endfor %}
+		
 
     </main>
 </body>
