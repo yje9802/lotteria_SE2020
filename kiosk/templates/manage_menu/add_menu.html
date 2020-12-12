@@ -32,7 +32,7 @@
                         <button class="change_btn" onClick="location.href='http://127.0.0.1:5000/change_menu'">메뉴 수정</button>
                         <button class="remove_btn" onClick="location.href='http://127.0.0.1:5000/delete_menu'">메뉴 삭제</button>
                     </div>
-					<form name = "add_menu" method="POST" action="http://127.0.0.1:5000/add_menu/add">
+					<form class="container_describe" name = "add_menu" method="POST" action="http://127.0.0.1:5000/add_menu/add">
                     {% if (name==0) %}				
                     <div class="input_container">
                     	<div class="container_display">
@@ -88,13 +88,12 @@
                             </div> 
                          </div>
                     </div>
-                        {% else %} 
-                            <br>
-                            <br>
-    						* {{name}} 메뉴가 추가되었습니다.
-                            <br>
-                            <br>
+                        {% else %}
+                        <div class="manage_describe">
+                            * {{name}} 메뉴가 추가되었습니다.
+                        </div> 
                         {% endif %}
+                        
                 </form>
                 </div>
 
