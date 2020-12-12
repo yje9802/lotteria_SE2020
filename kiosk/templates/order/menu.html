@@ -13,6 +13,7 @@
 			integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc"
 			crossorigin="anonymous"
 		/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script
 			src="{{ url_for('static', filename='js/menu.js') }}"
 			defer
@@ -26,7 +27,7 @@
 	<body>
 		<div class="container">
 			<!-- ad -->
-			<header class="ad">
+			<header class="ad" data-path_info="{{ url_for('order.fetch_info') }}">
 				<img
 					src="{{ url_for('static', filename='img/ad/military.png') }}"
 					alt="ad"
@@ -52,253 +53,64 @@
 
 			<!-- menus -->
 			<div class="menu_container">
+				<!-- best -->
+				{% for recom in recommends %}
+				<button class="menu" data-type="best" data-id="{{ recom['id'] }}">
+					<img
+						src="{{ recom['image_path'] }}"
+						alt=""
+						class="menu_thumnail hamburger"
+					/>
+					<div>
+						<h2 class="menu_name">{{ recom['name'] }}</h2>
+						<h2 class="menu_price">{{ recom['price'] }}</h2>
+					</div>
+				</button>
+				{% endfor %}
 				<!-- hamburger -->
-				<button class="menu" data-type="hamburger">
+				{% for burger in burgers %}
+				<button class="menu" data-type="hamburger" data-id="{{ burger['id'] }}">
 					<img
-						src="{{ url_for('static', filename='img/menu/b_military.png') }}"
+						src="{{ burger['image_path']|safe }}"
 						alt=""
 						class="menu_thumnail hamburger"
 					/>
 					<div>
-						<h2 class="menu_name">밀리터리 버거</h2>
-						<h2 class="menu_price">6400</h2>
+						<h2 class="menu_name">{{ burger['name'] }}</h2>
+						<h2 class="menu_price">{{ burger['price'] }}</h2>
 					</div>
 				</button>
-				<button class="menu" data-type="hamburger">
-					<img
-						src="{{ url_for('static', filename='img/menu/b_polder.png') }}"
-						alt=""
-						class="menu_thumnail hamburger"
-					/>
-					<div>
-						<h2 class="menu_name">폴더버거 핫치킨</h2>
-						<h2 class="menu_price">5700</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="hamburger">
-					<img
-						src="{{ url_for('static', filename='img/menu/b_miracle.png') }}"
-						alt=""
-						class="menu_thumnail hamburger"
-					/>
-					<div>
-						<h2 class="menu_name">리아미라클 버거</h2>
-						<h2 class="menu_price">5600</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="hamburger">
-					<img
-						src="{{ url_for('static', filename='img/menu/b_wagu.png') }}"
-						alt=""
-						class="menu_thumnail hamburger"
-					/>
-					<div>
-						<h2 class="menu_name">와규 에디션2</h2>
-						<h2 class="menu_price">5800</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="hamburger">
-					<img
-						src="{{ url_for('static', filename='img/menu/b_srimp.png') }}"
-						alt=""
-						class="menu_thumnail hamburger"
-					/>
-					<div>
-						<h2 class="menu_name">새우버거</h2>
-						<h2 class="menu_price">3900</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="hamburger">
-					<img
-						src="{{ url_for('static', filename='img/menu/b_chicken.png') }}"
-						alt=""
-						class="menu_thumnail hamburger"
-					/>
-					<div>
-						<h2 class="menu_name">치킨버거</h2>
-						<h2 class="menu_price">2900</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="hamburger">
-					<img
-						src="{{ url_for('static', filename='img/menu/b_trax.png') }}"
-						alt=""
-						class="menu_thumnail hamburger"
-					/>
-					<div>
-						<h2 class="menu_name">T-Rex</h2>
-						<h2 class="menu_price">3700</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="hamburger">
-					<img
-						src="{{ url_for('static', filename='img/menu/b_clasic.png') }}"
-						alt=""
-						class="menu_thumnail hamburger"
-					/>
-					<div>
-						<h2 class="menu_name">클래식 치즈 버거</h2>
-						<h2 class="menu_price">4400</h2>
-					</div>
-				</button>
-
+				{% endfor %}
+				
 				<!-- drink -->
-				<button class="menu" data-type="drink">
+				{% for drink in drinks %}
+				<button class="menu" data-type="drink" data-id="{{ drink['id'] }}">
 					<img
-						src="{{ url_for('static', filename='img/menu/d_coke.png') }}"
+						src="{{ drink['image_path'] }}"
 						alt=""
 						class="menu_thumnail drink"
 					/>
 					<div>
-						<h2 class="menu_name">콜라(R)</h2>
-						<h2 class="menu_price">1700</h2>
+						<h2 class="menu_name">{{ drink['name'] }}</h2>
+						<h2 class="menu_price">{{ drink['price'] }}</h2>
 					</div>
 				</button>
-				<button class="menu" data-type="drink">
-					<img
-						src="{{ url_for('static', filename='img/menu/d_cider.png') }}"
-						alt=""
-						class="menu_thumnail drink"
-					/>
-					<div>
-						<h2 class="menu_name">사이다(R)</h2>
-						<h2 class="menu_price">1700</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="drink">
-					<img
-						src="{{ url_for('static', filename='img/menu/d_ame.png') }}"
-						alt=""
-						class="menu_thumnail drink"
-					/>
-					<div>
-						<h2 class="menu_name">아메리카노</h2>
-						<h2 class="menu_price">2000</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="drink">
-					<img
-						src="{{ url_for('static', filename='img/menu/d_milk.png') }}"
-						alt=""
-						class="menu_thumnail drink"
-					/>
-					<div>
-						<h2 class="menu_name">우유</h2>
-						<h2 class="menu_price">1500</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="drink">
-					<img
-						src="{{ url_for('static', filename='img/menu/d_oragej.png') }}"
-						alt=""
-						class="menu_thumnail drink"
-					/>
-					<div>
-						<h2 class="menu_name">오렌지주스(PET)</h2>
-						<h2 class="menu_price">2500</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="drink">
-					<img
-						src="{{ url_for('static', filename='img/menu/d_icetea.png') }}"
-						alt=""
-						class="menu_thumnail drink"
-					/>
-					<div>
-						<h2 class="menu_name">아이스티</h2>
-						<h2 class="menu_price">2200</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="drink">
-					<img
-						src="{{ url_for('static', filename='img/menu/d_iceame_R.png') }}"
-						alt=""
-						class="menu_thumnail drink"
-					/>
-					<div>
-						<h2 class="menu_name">아이스 아메리카노</h2>
-						<h2 class="menu_price">2000</h2>
-					</div>
-				</button>
+				{% endfor %}
 
+				{% for dessert in desserts %}
 				<!-- dessert -->
-				<button class="menu" data-type="dessert">
+				<button class="menu" data-type="dessert" data-id="{{ dessert['id'] }}">
 					<img
-						src="{{ url_for('static', filename='img/menu/de_potato.png') }}"
+						src="{{ dessert['image_path'] }}"
 						alt=""
 						class="menu_thumnail dessert"
 					/>
 					<div>
-						<h2 class="menu_name">포테이토</h2>
-						<h2 class="menu_price">1500</h2>
+						<h2 class="menu_name">{{ dessert['name'] }}</h2>
+						<h2 class="menu_price">{{ dessert['price'] }}</h2>
 					</div>
 				</button>
-				<button class="menu" data-type="dessert">
-					<img
-						src="{{ url_for('static', filename='img/menu/de_potato_s.png') }}"
-						alt=""
-						class="menu_thumnail dessert"
-					/>
-					<div>
-						<h2 class="menu_name">양념감자</h2>
-						<h2 class="menu_price">2000</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="dessert">
-					<img
-						src="{{ url_for('static', filename='img/menu/de_cheezestick.png') }}"
-						alt=""
-						class="menu_thumnail dessert"
-					/>
-					<div>
-						<h2 class="menu_name">롱치즈스틱(1pc)</h2>
-						<h2 class="menu_price">1800</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="dessert">
-					<img
-						src="{{ url_for('static', filename='img/menu/de_sheck.png') }}"
-						alt=""
-						class="menu_thumnail dessert"
-					/>
-					<div>
-						<h2 class="menu_name">쉑쉑치킨</h2>
-						<h2 class="menu_price">2500</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="dessert">
-					<img
-						src="{{ url_for('static', filename='img/menu/de_cheezestick_R.png') }}"
-						alt=""
-						class="menu_thumnail dessert"
-					/>
-					<div>
-						<h2 class="menu_name">치즈스틱</h2>
-						<h2 class="menu_price">2000</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="dessert">
-					<img
-						src="{{ url_for('static', filename='img/menu/de_to_berry.png') }}"
-						alt=""
-						class="menu_thumnail dessert"
-					/>
-					<div>
-						<h2 class="menu_name">토네이도(스트로베리)</h2>
-						<h2 class="menu_price">2400</h2>
-					</div>
-				</button>
-				<button class="menu" data-type="dessert">
-					<img
-						src="{{ url_for('static', filename='img/menu/de_to_choco.png') }}"
-						alt=""
-						class="menu_thumnail dessert"
-					/>
-					<div>
-						<h2 class="menu_name">토네이도(초코쿠키)</h2>
-						<h2 class="menu_price">2300</h2>
-					</div>
-				</button>
+				{% endfor %}
 			</div>
 
 			<!-- The Modal -->

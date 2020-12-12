@@ -582,7 +582,7 @@ function getSetModal(name, price) {
 }
 
 // **추가. 햄버거 선택시 관련 정보 보여줌
-function menuShowdata(name, img) {
+function menuShowdata(name, img, menu_id) {
 	const ad_container = document.querySelector(".ad");
 	ad_container.innerHTML = `
 	<div class="menu_data_container">
@@ -604,13 +604,14 @@ function menuShowdata(name, img) {
                     <button class="menu_data_btn">영양성분</button>
                 </div>
                 <div class="menu_data_bottom">
-                    <div class="menu_data_specific">메뉴 정보 추가할 곳</div>
-                    <div class="menu_data_ingredient">재료 이미지 추가할 곳</div>
+                    <div class="menu_data_specific" id=desc_${menu_id}>메뉴 정보 추가할 곳</div>
+                    <div class="menu_data_ingredient" id=ing_${menu_id}></div>
                 </div>
             </div>
         </div>
     </div>
 	`;
+	
 	const menu_data_bottom = document.querySelector(".menu_data_bottom");
 	const menu_data_btn = document.querySelector(".menu_data_btn");
 	// console.log(menu_data_btn);
@@ -620,7 +621,7 @@ function menuShowdata(name, img) {
 		<table border="1" bordercolor="black" width ="410" height="75" align = "center" >
     <tr align = "center">
 		<td>원산지</td>
-		<td colspan="5">명태연육-미국산, 새우-베트남산</td>
+		<td colspan="5" id=allergy_${menu_id}>명태연육-미국산, 새우-베트남산</td>
     </tr>
     <tr>
 		<td  align = "center">알러지</td>
@@ -635,7 +636,7 @@ function menuShowdata(name, img) {
 		<td>당류g</td>
 		<td>포화지방g(%)</td>
     </tr>
-    <tr align = "center">
+    <tr align = "center" id=row_${menu_id}>
 		<td>179</td>
 		<td>492</td>
 		<td>15 (27)</td>
@@ -646,6 +647,34 @@ function menuShowdata(name, img) {
 </table>
 		`;
 	};
+	const fetch_info_path = ad_container.getAttribute("data-path_info");
+	let desc = document.getElementById(`desc_${menu_id}`);
+	let ing_img = document.getElementById(`ing_${menu_id}`);
+	let row = document.getElementById(`row_${menu_id}`);
+	$.ajax({
+		type: 'POST',
+		url: fetch_info_path,
+		data: JSON.stringify(menu_id),
+		dataType : 'JSON',
+		contentType: "application/json",
+		success: function(data){
+			// alert('성공! 데이터 값');
+			console.log(data);
+			let desc_info = data['desc'][0]['DESC'];
+			desc.innerHTML = desc_info;
+			$.each(data.ingredients, function(key,value){
+				// alert(key + " : " + value)
+				// $('#div2').append('<div>'+ value.id + " " + value.password + " " + value.email  +'</div>')
+				// desc.innerHTML = 
+			})
+			
+		},
+		error: function(request, status, error){
+			alert('ajax 통신 실패')
+			alert(error);
+		}
+	})
+	
 }
 
 // 모달
@@ -710,15 +739,16 @@ function getValueFromBtn(menu) {
 		// get the name value from menu button
 		const name = div_inside_menu.querySelector(".menu_name").innerHTML;
 		const img = menu.querySelector("img");
+		const menu_id = menu.getAttribute("data-id");
 		let id = "only";
 
 		// 햄버거 메뉴만 선택 시 모달 창이 뜨도록
 		if (menu.dataset.type === "hamburger") {
 			getModal(name, price);
-			menuShowdata(name, img);
+			menuShowdata(name, img, menu_id);
 		} else {
-			addToCart(name, price, id);
-			menuShowdata(name, img);
+			addToCart(name, price, menu_id);
+			menuShowdata(name, img, menu_id);
 		}
 	});
 }
