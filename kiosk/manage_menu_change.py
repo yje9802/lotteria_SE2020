@@ -53,9 +53,8 @@ def view_menu():
 def view_detail():
     db = get_db()
     c = db.cursor()
-    category_tag='햄버거'
-    c.execute('SELECT NAME, PRICE FROM MENU WHERE ID IN (SELECT MENU_ID FROM MENU_CATEGORY WHERE CATEGORY_TAG =?)', (category_tag,)
-              )
+    query=set_query(category_tag)
+    c.execute(query)
     info = c.fetchall()
     if request.method=='POST':
         menu_name=request.form['view_name']
@@ -75,7 +74,7 @@ def change_menu():
     info = c.fetchall()
     if request.method=='POST':
         menu_name = request.form['name']
-        menu_image = request.form['img']
+        #menu_image = str(request.form['img'])
         menu_price = int(request.form['price'])
         menu_desc = request.form['desc']
         menu_weight = float(request.form['weight'])
@@ -93,7 +92,7 @@ def change_menu():
         c.execute('SELECT ID FROM MENU WHERE NAME=?', (original_name,))
         tmp = c.fetchone()
         menu_id=tmp[0]
-        db.execute('UPDATE MENU SET NAME=?, IMAGE_PATH=?, PRICE=?, DESC=?, WEIGHT_G=?, KCAL=?, PROTEIN_G=?, PROTEIN_PCENT=?, SODIUM_MG=?, SODIUM_PCENT=?, SUGAR_G=?, SAT_FAT_G=?, SAT_FAT_PCENT=?, CAFFEINE_MG=?, ALLERGY_INFO=? WHERE ID=?',(menu_name, menu_image, menu_price, menu_desc, menu_weight, menu_kcal, menu_protein_g, menu_protein_pct, menu_sodium_g, menu_sodium_pct, menu_sugar, menu_satfat_g, menu_satfat_pct, menu_caff, menu_allergy, menu_id)
+        db.execute('UPDATE MENU SET NAME=?, PRICE=?, DESC=?, WEIGHT_G=?, KCAL=?, PROTEIN_G=?, PROTEIN_PCENT=?, SODIUM_MG=?, SODIUM_PCENT=?, SUGAR_G=?, SAT_FAT_G=?, SAT_FAT_PCENT=?, CAFFEINE_MG=?, ALLERGY_INFO=? WHERE ID=?',(menu_name, menu_price, menu_desc, menu_weight, menu_kcal, menu_protein_g, menu_protein_pct, menu_sodium_g, menu_sodium_pct, menu_sugar, menu_satfat_g, menu_satfat_pct, menu_caff, menu_allergy, menu_id)
                    )
         db.commit()
         db.close()
