@@ -243,17 +243,16 @@ function makeList(item) {
 	const uls = document.querySelectorAll(".bag_lists");
 	const name = item.name;
 	const amount = item.amount;
-	let price = item.price;
+	const price = item.price;
 	// 세트메뉴면 밑에 디저트랑 드링크 옵션내역도 표시해 줘야 함
 	if (item.id === "set") {
 		const dessert_n = "-" + item.dessert[0];
 		const dessert_p = item.dessert[1];
 		const drink_n = "-" + item.drink[0];
 		const drink_p = item.drink[1];
-		price = price - dessert_p - drink_p;
 		const main = addToHtml(name, amount, price);
-		const dessert = addToHtml(dessert_n, 1, dessert_p);
-		const drink = addToHtml(drink_n, 1, drink_p);
+		const dessert = addToHtml(dessert_n, amount, dessert_p * amount);
+		const drink = addToHtml(drink_n, amount, drink_p * amount);
 
 		// 아래 과정은 한 ul에서 li가 6개가 채워지면, 그 다음 생성되는 li부터는 새로운 ul을 만들어서 append
 		//ul이 아직 하나만 있을 때
