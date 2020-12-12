@@ -116,10 +116,10 @@ main {
   margin-left: 30px;
 }
 
-.ul_wrapper{
+.bag_lists {
   height: 250px;
 }
-.ul_wrapper.invisible{
+.bag_lists.invisible{
   display: none;
 }
 

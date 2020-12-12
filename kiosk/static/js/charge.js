@@ -141,50 +141,67 @@ function getModal(){
     }
 }
 
+// 취소하기 버튼 누르면 장바구니 내역 초기화
+function handleCancleBtn() {
+	const btns = document.querySelector(".btns");
+	const order_cancle_btn = btns.querySelector(".order_cancle_btn");
+	order_cancle_btn.addEventListener("click", function () {
+		localStorage.clear();
+	});
+}
+
+// 왼쪽 삼각형 버튼
+function leftBtn() {
+	const bag_btn = document.querySelector(".bag_btn");
+	const tri_left = bag_btn.querySelector(".left");
+	tri_left.addEventListener("click", function () {
+		const bag = document.querySelector(".bag");
+		const uls = bag.querySelectorAll(".bag_lists");
+		if (uls.length === 1) {
+			return;
+		} else {
+			const uls_len = uls.length;
+			for (let i = uls_len - 1; i > -1; i--) {
+				let ul_class = uls[i].className;
+				if (ul_class.indexOf("invisible") === -1) {
+					if (i === 0) {
+						break;
+					} else {
+						uls[i].classList.add("invisible");
+						uls[i - 1].classList.remove("invisible");
+						break;
+					}
+				}
+			}
+		}
+	});
+}
+
+// 오른쪽 삼각형 버튼
 function rightBtn() {
 	const bag_btn = document.querySelector(".bag_btn");
 	const tri_right = bag_btn.querySelector(".right");
 	tri_right.addEventListener("click", function () {
 		const bag = document.querySelector(".bag");
-		const ul_wrappers = bag.querySelectorAll(".ul_wrapper");
-		if (ul_wrappers.length === 1) {
+		const uls = bag.querySelectorAll(".bag_lists");
+		if (uls.length === 1) {
 			return;
 		} else {
-			ul_wrappers.forEach(function (wrapper) {
-				const wrapper_class = wrapper.className;
-				if (wrapper_class.indexOf("invisible") === -1) {
-					wrapper.classList.add("invisible");
-				} else {
-					wrapper.classList.remove("invisible");
+			const uls_len = uls.length;
+			for (let i = 0; i < uls_len; i++) {
+				let ul_class = uls[i].className;
+				if (ul_class.indexOf("invisible") === -1) {
+					if (i === uls_len - 1) {
+						break;
+					} else {
+						uls[i].classList.add("invisible");
+						uls[i + 1].classList.remove("invisible");
+						break;
+					}
 				}
-			});
+			}
 		}
 	});
-}
-
-function addToHtml(name, amount, price) {
-	const ul = document.querySelector(".bag_lists");
-	const li = document.createElement("li"),
-		list_wrapper = document.createElement("div"),
-		list_name = document.createElement("div"),
-		list_amount = document.createElement("div"),
-		list_price = document.createElement("div");
-
-	li.classList.add("bag_list");
-	list_wrapper.classList.add("list_wrapper");
-	list_name.classList.add("list_name");
-	list_amount.classList.add("list_amount");
-	list_price.classList.add("list_price");
-
-	list_name.innerHTML = `${name}`;
-	list_amount.innerHTML = `${amount}`;
-	list_price.innerHTML = `${price}`;
-
-	list_wrapper.appendChild(list_name);
-	list_wrapper.appendChild(list_amount);
-	list_wrapper.appendChild(list_price);
-	li.appendChild(list_wrapper);
-	ul.appendChild(li);
 }
 
 // 세자리 마다 , 추가
@@ -205,49 +222,165 @@ function chargedPrice() {
 	charge_last_money.innerHTML = `${numberWithCommas(parsedTotal.price)}`;
 }
 
-function listsShowing() {
+function addToHtml(name, amount, price) {
+	const li = document.createElement("li"),
+		list_wrapper = document.createElement("div"),
+		list_name = document.createElement("div"),
+		list_amount = document.createElement("div"),
+		list_price = document.createElement("div");
+
+	li.classList.add("bag_list");
+	list_wrapper.classList.add("list_wrapper");
+	list_name.classList.add("list_name");
+	list_amount.classList.add("list_amount");
+	list_price.classList.add("list_price");
+
+	list_name.innerHTML = `${name}`;
+	list_amount.innerHTML = `${amount}`;
+	list_price.innerHTML = `${price}`;
+
+	list_wrapper.appendChild(list_name);
+	list_wrapper.appendChild(list_amount);
+	list_wrapper.appendChild(list_price);
+	li.appendChild(list_wrapper);
+
+	return li;
+}
+
+// 새로운 ul 생성
+function newUL() {
 	const bag = document.querySelector(".bag");
-	// 우선 첫번째 ul은 기본적으로 있는 걸로
-	// const ul_wrapper = document.createElement("div");
-	// const ul = document.createElement("ul");
+	// 새로운 ul태그 생성
+	const new_ul = document.createElement("ul");
+	new_ul.classList.add("bag_lists");
+	new_ul.classList.add("invisible");
+	bag.appendChild(new_ul);
+	return new_ul;
+}
+
+function makeList(item) {
+	const uls = document.querySelectorAll(".bag_lists");
+	const name = item.name;
+	const amount = item.amount;
+	let price = item.price;
+	// 세트메뉴면 밑에 디저트랑 드링크 옵션내역도 표시해 줘야 함
+	if (item.id === "set") {
+		const dessert_n = "-" + item.dessert[0];
+		const dessert_p = item.dessert[1];
+		const drink_n = "-" + item.drink[0];
+		const drink_p = item.drink[1];
+		price = price - dessert_p - drink_p;
+		const main = addToHtml(name, amount, price);
+		const dessert = addToHtml(dessert_n, 1, dessert_p);
+		const drink = addToHtml(drink_n, 1, drink_p);
+
+		// 아래 과정은 한 ul에서 li가 6개가 채워지면, 그 다음 생성되는 li부터는 새로운 ul을 만들어서 append
+		//ul이 아직 하나만 있을 때
+		if (uls.length === 1) {
+			const lists = uls[0].querySelectorAll(".bag_list");
+			// li 태그가 하나라도 있다면
+			if (lists !== null) {
+				if (lists.length < 4) {
+					uls[0].appendChild(main);
+					uls[0].appendChild(dessert);
+					uls[0].appendChild(drink);
+				} else {
+					// 새로운 ul태그 생성
+					const new_ul = newUL();
+					if (lists.length === 4) {
+						uls[0].appendChild(main);
+						uls[0].appendChild(dessert);
+						new_ul.appendChild(drink);
+					} else {
+						if (lists.length === 5) {
+							uls[0].appendChild(main);
+							new_ul.appendChild(dessert);
+							new_ul.appendChild(drink);
+						}
+						new_ul.appendChild(main);
+						new_ul.appendChild(dessert);
+						new_ul.appendChild(drink);
+					}
+				}
+			} else {
+				uls[0].appendChild(main);
+				uls[0].appendChild(dessert);
+				uls[0].appendChild(drink);
+			}
+		} else {
+			const last_li = uls[uls.length - 1];
+			const lists = last_li.querySelectorAll(".bag_list");
+			if (lists.length < 4) {
+				last_li.appendChild(main);
+				last_li.appendChild(dessert);
+				last_li.appendChild(drink);
+			} else {
+				const new_ul = newUL();
+				if (lists.length === 4) {
+					last_li.appendChild(main);
+					last_li.appendChild(dessert);
+					new_ul.appendChild(drink);
+				} else {
+					if (lists.length === 5) {
+						last_li.appendChild(main);
+						new_ul.appendChild(dessert);
+						new_ul.appendChild(drink);
+					}
+					new_ul.appendChild(main);
+					new_ul.appendChild(dessert);
+					new_ul.appendChild(drink);
+				}
+			}
+		}
+	}
+	// 단품인 경우
+	else {
+		const main = addToHtml(name, amount, price);
+		if (uls.length === 1) {
+			const lists = uls[0].querySelectorAll(".bag_list");
+			if (lists !== null && lists.length === 6) {
+				const new_ul = newUL();
+				new_ul.appendChild(main);
+			} else {
+				uls[0].appendChild(main);
+			}
+		} else {
+			const last_li = uls[uls.length - 1];
+			const lists = last_li.querySelectorAll(".bag_list");
+			if (lists.length === 6) {
+				const new_ul = newUL();
+				new_ul.appendChild(main);
+			} else {
+				last_li.appendChild(main);
+			}
+		}
+	}
+}
+
+function listsShowing() {
 	const itemsSelected = localStorage.getItem("item");
 	const parsedItemsSelected = JSON.parse(itemsSelected);
 	parsedItemsSelected.forEach(function (item) {
-		if (item.id === "set") {
-			const name = item.name;
-			const amount = item.amount;
-			let price = item.price;
-			const dessert_n = "-" + item.dessert[0];
-			const dessert_p = item.dessert[1];
-			const drink_n = "-" + item.drink[0];
-			const drink_p = item.drink[1];
-			price = price - dessert_p - drink_p;
-			addToHtml(name, amount, price);
-			addToHtml(dessert_n, 1, dessert_p);
-			addToHtml(drink_n, 1, drink_p);
-		} else {
-			const name = item.name;
-			const amount = item.amount;
-			const price = item.price;
-			addToHtml(name, amount, price);
+		makeList(item);
+	});
+	const uls = document.querySelectorAll(".bag_lists");
+	// 남은 부분은 빈 리스트로 채움
+	uls.forEach(function (ul) {
+		const lists = ul.querySelectorAll(".bag_list");
+		for (let i = lists.length; i < 6; i++) {
+			const blank = addToHtml("", "", "");
+			ul.appendChild(blank);
 		}
 	});
-	const uls = document.querySelectorAll(".ul_wrapper");
-	const curr_ul = uls.forEach(function (ul) {
-		const ul_class = ul.className;
-		if (ul_class.indexOf("invisible") === -1) {
-			const lists = ul.querySelectorAll(".bag_list");
-			if (lists.length < 6) {
-				addToHtml("", "", "");
-			}
-		}
-	});
+	// 주문금액, 결제할 금액
 	chargedPrice();
 }
 
 function init() {
 	listsShowing();
 	rightBtn();
+	leftBtn();
+	handleCancleBtn();
 	clickStep1();
 }
 init();
