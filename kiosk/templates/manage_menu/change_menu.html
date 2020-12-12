@@ -32,7 +32,7 @@
                         <button class="change_btn" onClick="location.href='http://127.0.0.1:5000/change_menu'">메뉴 수정</button>
                         <button class="remove_btn" onClick="location.href='http://127.0.0.1:5000/delete_menu'">메뉴 삭제</button>
                     </div>
-					<form name = "change_menu" method="POST" action="http://127.0.0.1:5000/change_menu/change">
+					<form class="container_describe" name = "change_menu" method="POST" action="http://127.0.0.1:5000/change_menu/change">
 					{% if ((menu_data == 0) and (name==0)): %}
                     <div class="input_container">
                     	<div class="container_display">
@@ -82,8 +82,11 @@
                             </div>
                          </div>
                     </div>
+                    
                 {% elif (menu_data==0): %}
-					* {{name[0]}}이(가) {{name[1]}}(으)로 수정되었습니다.
+                <div class="manage_describe">
+                    * {{name[0]}}이(가) {{name[1]}}(으)로 수정되었습니다.
+                </div>
 				{% else %}
 					{% for i in menu_data %}
                     <div class="input_container">
