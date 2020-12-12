@@ -670,16 +670,10 @@ function menuShowdata(name, img, menu_id) {
 		dataType : 'JSON',
 		contentType: "application/json",
 		success: function(data){
-			alert('성공! 데이터 값');
+			// alert('성공! 데이터 값');
 			console.log(data);
-			// console.log(data['desc'][0]['desc']);
 			let desc_info = data['desc'][0]['DESC'];
 			desc.innerHTML = desc_info;
-			// console.log(data['ingredients']);
-			let ingredients = data['ingredients']
-			console.log(data['nutrients'][0]);
-			let nutrients = data['nutrients'][0];
-			row.innerHTML = `<td>${nutrients['WEIGHT_G']}</td><td>${nutrients['KCAL']}</td><td>${nutrients['PROTEIN_G']}</td><td>${nutrients['SODIUM_MG']}</td><td>${nutrients['SUGAR_G]}</td><td>${nutrients['SAT_FAT_G']}</td>`;
 			$.each(data.ingredients, function(key,value){
 				// alert(key + " : " + value)
 				// $('#div2').append('<div>'+ value.id + " " + value.password + " " + value.email  +'</div>')
