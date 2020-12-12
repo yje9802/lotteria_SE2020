@@ -16,7 +16,8 @@ function clickRemoveBtn(){
 //클릭된 행 색상 변경
 var orgBColor = '#ffffff';
 var orgTColor = '#000000';
-function HighLightTR(target, backColor,textColor) {
+function HighLightTR(target, backColor,textColor,order_id) {
+    sessionStorage.setItem("orderid", order_id);
     if (remove_btn.classList.contains("clicked")){
         var tbody = target.parentNode;
         var trs = tbody.getElementsByTagName('tr');
@@ -37,14 +38,17 @@ function HighLightTR(target, backColor,textColor) {
 //환불/삭제 후 경고창 (삭제 경고창 '확인'선택 후에도 색상이 지워지지 않아서 재부팅(?)필요할듯..)
 function func_confirm(){
     var do_remove;
+    var form=document.pay_data_list;
     do_remove=confirm("해당 내용을 삭제하시겠습니까?")
     if(do_remove){
         alert("삭제되었습니다");
         remove_btn.classList.remove("clicked");
         describe_remove.style.display = "none";
+        var order_id = sessionStorage.getItem("orderid");
+        form.order_id.value = order_id;
+        form.order_id.focus();
+        form.submit();
     } 
 }
-
-
 
 clickRemoveBtn();
