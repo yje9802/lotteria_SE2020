@@ -33,7 +33,8 @@ def view_menu():
     info = c.fetchall()
     if request.method == 'GET':
         if request.args.get('burger'):
-            category_tag=1
+            category_tag =1
+            query = set_query(category_tag)
             c.execute(query )
             info = c.fetchall()
         elif request.args.get('dessert'):
