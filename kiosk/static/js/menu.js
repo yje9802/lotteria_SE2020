@@ -70,7 +70,14 @@ function saveTotal() {
 	let total_price = 0;
 	if (itemsSelected.length !== 0) {
 		itemsSelected.forEach(function (each) {
-			total_price = total_price + parseInt(each.price);
+			if (each.id === "set") {
+				let set_price = each.price / each.amount;
+				set_price =
+					(set_price + each.dessert[1] + each.drink[1]) * each.amount;
+				total_price = total_price + set_price;
+			} else {
+				total_price = total_price + each.price;
+			}
 		});
 	}
 
@@ -165,10 +172,18 @@ function changeAmount(event) {
 	if (btn_type === "item_numup") {
 		itemsSelected.forEach(function (each) {
 			if (each.name === menu_name) {
+				let price_up = parseInt(price_text.innerHTML.replace(",", ""));
+				// 세트메뉴라면
+				if (each.id === "set") {
+					price_up = price_up / each.amount + price_up;
+				} else {
+					price_up = each.price / each.amount + each.price;
+				}
+				// 로컬 스토리지 업데이트를 위해
 				each.price = each.price / each.amount + each.price;
 				each.amount = each.amount + 1;
 				amount_text.innerHTML = `${each.amount}`;
-				price_text.innerHTML = `${numberWithCommas(each.price)}`;
+				price_text.innerHTML = `${numberWithCommas(price_up)}`;
 				saveItems();
 				saveTotal();
 				updateCheck();
@@ -179,10 +194,18 @@ function changeAmount(event) {
 			// 담긴 수량이 하나라면 더이상 수량을 줄일 수 없음.
 			if (each.amount > 1) {
 				if (each.name === menu_name) {
+					let price_down = parseInt(
+						price_text.innerHTML.replace(",", "")
+					);
+					if (each.id === "set") {
+						price_down = price_down - price_down / each.amount;
+					} else {
+						price_down = each.price - each.price / each.amount;
+					}
 					each.price = each.price - each.price / each.amount;
 					each.amount = each.amount - 1;
 					amount_text.innerHTML = `${each.amount}`;
-					price_text.innerHTML = `${numberWithCommas(each.price)}`;
+					price_text.innerHTML = `${numberWithCommas(price_down)}`;
 					saveItems();
 					saveTotal();
 					updateCheck();
@@ -398,7 +421,7 @@ function addToCartSet() {
 		const itemObj = {
 			name: name,
 			amount: curr_amount,
-			price: curr_price,
+			price: curr_price - dessert_info[1] - drink_info[1],
 			id: id,
 			dessert: dessert_info,
 			drink: drink_info,
