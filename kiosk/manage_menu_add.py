@@ -64,7 +64,7 @@ def add_menu():
     info = c.fetchall()
     if request.method == 'POST':
         menu_name = request.form['name']
-        menu_image = request.form['img']
+        menu_image = str(request.form['img'])
         menu_price = int(request.form['price'])
         menu_desc = request.form['desc']
         menu_weight = float(request.form['weight'])
