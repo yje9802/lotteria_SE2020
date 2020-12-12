@@ -124,15 +124,12 @@ def register():
     VALUES (?, ?, ?, ?, ?)
     '''
     db.executemany(insert_opt, insert_opt_list)
-    
+
     db.execute('COMMIT')
-    return redirect(url_for('order.order_num'))
+    return render_template('order/order_num.html', order_id=order_id)
     
 
 def fetch_menu_id(name):
     db = get_db()
     return db.execute('SELECT ID FROM MENU WHERE NAME=?', (name,)).fetchone()[0]
     
-@bp.route('/order_num') #, methods=['GET']
-def order_num():
-    return render_template('order/order_num.html')

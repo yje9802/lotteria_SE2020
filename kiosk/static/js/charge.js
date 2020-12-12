@@ -15,6 +15,7 @@ const here_path = here_img.getAttribute("data-here_path") // here_img에 저장
 const here_check_path = here_img.getAttribute("data-here_check_path") // here_img에 저장
 const bill2_path = step2.getAttribute("data-bill2_path") //step2 div에 저장
 const register_path = step2.getAttribute("data-register_path") //step2 div에 저장
+// const order_num_path = step2.getAttribute("data-order_num_path");
 
 //step2 선택 
 function clickStep2(){
@@ -119,8 +120,15 @@ function getModal(){
 						type: 'POST',
 						url: register_path,
 						data: JSON.stringify(postdata),
-						dataType: 'JSON',
+						dataType: 'html',
 						contentType: "application/json",
+						success: function(data){
+							document.body.innerHTML = data;
+						},
+						error: function(request, status, error){
+							alert('ajax 통신 실패')
+							alert(error);
+						}
 					})
 				})
 			}
