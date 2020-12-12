@@ -52,12 +52,12 @@ def register():
     order_id = db.execute(create_order, ('WAITING', now, receipt_total)).lastrowid 
     print('order id:', order_id)
     
-    # order_item
+    # ORDER_ITEM 테이블 구조에 맞는 형태로 입력을 변환한다.
     raw_list = []
     insert_list = []
     
+    # 형태 변환 전 1차 가공
     for item in items:
-        #item['MAIN_DISH_ID'] = 
         print('name:',item['name'])
         main_id = fetch_menu_id(item['name'])# MAIN_DISH_ID를 구한다
         main_dish_total = item['price']
@@ -70,25 +70,16 @@ def register():
             options.append((drink_id, 1, item['drink'][1]))
             item['options'] += options
             opt_total = item['dessert'][1] + item['drink'][1]
-            # MAIN_DISH_PRICE을 구한다
-            # main_dish_price = item['price'] - opt_total
             print('options:', options)
-        # MAIN_DISH_TOTAL을 구한다.
-        # main_dish_total = main_dish_price * item['amount']
         raw_list.append((order_id, main_id, item['amount'], main_dish_total, item['options']))
-    
     print('raw_list:', raw_list)
-    # 같은 MAIN_DISH끼리 QTY, OPTIONS를 합친다.
-    # for key, group in groupby(insert_list, lambda x: x[1]):
-        # # listOfThings = " and ".join([thing[1] for thing in group])
-        # item_no = min([thing])
-        # print(key + "s:  " + listOfThings + ".")
+    
+    
+    # 2차 가공: 같은 MAIN_DISH끼리 묶어 QTY, OPTIONS를 합치고 item_no를 부여한다.
     i = 1
     insert_opt_list = []
     raw_list = sorted(raw_list, key=lambda x: x[1])
     for key, group in groupby(raw_list, lambda x: x[1]):
-        # listOfThings = " and ".join([thing[1] for thing in group])
-        # print('i:', i)
         group_list = list(group)
         print('main_id_list:', [item[1] for item in group_list])
         order_id = group_list[0][0]
@@ -100,6 +91,7 @@ def register():
         for item in group_list:
             raw_options += item[4]
         raw_options = sorted(raw_options, key=lambda x: x[0])
+        # ORDER_ITEM 테이블 구조에 맞는 형태로 입력을 변환한다.
         for key, group in groupby(raw_options, lambda x: x[0]):
             group_list = list(group)
             print('option_group:',group_list)
