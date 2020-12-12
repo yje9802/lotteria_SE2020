@@ -172,6 +172,8 @@ input {
 /* table */
 .container_middle {
   width: 1500px;
+  height: 590px;
+  overflow: auto;
 }
 
 table {
