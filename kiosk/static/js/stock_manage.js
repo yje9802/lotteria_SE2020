@@ -6,6 +6,10 @@ const category = document.querySelector(".category");
 const menu_container = document.querySelector(".menu_container");
 const menus = document.querySelectorAll(".menu");
 
+const container = document.querySelector(".container");
+const stock_path = container.getAttribute('data-stock-path');
+const soldout_path = container.getAttribute('data-soldout-path');
+
 function categorySelect(){
     categories.addEventListener("click", (event)=>{
         const filter = event.target.dataset.filter;
@@ -30,87 +34,105 @@ function categorySelect(){
 
 //메뉴 클릭시 재고상태 확인 
 function selectMenu(){
-    const container = document.querySelector(".container");
+    
     menus.forEach((menu)=>{
         menu.addEventListener("click", function(event){
             container.classList.add("ingredients");
-            const name = menu.innerHTML;
-            container.innerHTML=`
+            const menu_id = menu.dataset.id;
+			const name = menu.innerHTML;
+			const is_soldout = menu.classList.contains("need");
+			container.innerHTML=`
             <div class="ingredients_menu_container">
-                <div class="menu_name">${name}</div>
-                <button class="menu_btn">품절 상태로 변경</button>
+                <div class="menu_name" id="menu_name_${menu_id}">${name}</div>
+                <button class="soldout_btn" id="soldout_btn_${menu_id}" data-menu_id="${menu_id}">품절 상태로 변경</button>
             </div>
-            <div class="ingredients_table_container">
-                <table border="1">
-                <th>재고명</th>
-                <th>수량</th>
-                <tr>
-                    <td>빵</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>크리스피 치킨 패티</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>양상추 슬라이스</td>
-                    <td>67</td>
-                </tr>
-                <tr>
-                    <td class="need">토마토 슬라이스</td>
-                    <td class="need">3</td>
-                </tr>
-                <tr>
-                    <td>머스타드 크림소스</td>
-                    <td>50</td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </table>
-            </div>
-            <div class="ingredients_discribe">*수량이 5 이하인 경우 빨간색으로 표시됩니다.</div>
+			<div class="ingredients_table_container">
+				<table border="1" id="stock_table">
+				</table>
+			</div>
+            <div class="ingredients_discribe"></div>
             `;
+			let soldout_btn = document.getElementById(`soldout_btn_${menu_id}`);
+			let menu_name = document.getElementById(`menu_name_${menu_id}`);
+			
+			if(is_soldout){
+				menu_name.classList.add('need');
+				soldout_btn.innerHTML=`판매 가능으로 변경`;
+			}
 
-            turnMenuSoldout(menu);
-        })
-
-        
+			soldout_btn.addEventListener("click", ()=>{
+						hasClicked(soldout_btn, menu_name);
+				})
+				
+			$.ajax({
+                type: 'POST',
+                url: stock_path,
+                data: JSON.stringify(menu_id),
+                dataType : 'JSON',
+                contentType: "application/json",
+                success: function(data){
+					if(!data.ingredients.length){
+							alert('재료 사용 정보가 db에 없습니다.');
+							return;
+					}
+					document.getElementById('stock_table').innerHTML = `
+						<th>재고명</th>
+						<th>수량</th>
+						<th>단위</th>
+						`;
+					document.getElementsByClassName("ingredients_discribe")[0].innerHTML = `*수량이 5 이하인 경우 빨간색으로 표시됩니다.`;
+                    $.each(data.ingredients, function(key,value){
+						let table = document.getElementById('stock_table');
+						let row = table.insertRow(-1);
+						$.each(value, function(key,value){
+							let cell = row.insertCell(-1);
+							cell.innerHTML = value;
+							if(value <= 5){
+								cell.classList.add("need");
+							}
+						})
+						
+                    })
+                },
+                error: function(request, status, error){
+                    alert('ajax 통신 실패')
+                    alert(error);
+                }
+            })
+        }) 
     })
 }
 
 //품절 상태 변경 btn 클릭시 메뉴명 빨간색으로
-function turnMenuSoldout(menu){
-    const soldout_btn = document.querySelector(".menu_btn");
-    const menu_name = document.querySelector(".menu_name");
-    const soldout_class = "soldout";
-    soldout_btn.addEventListener("click",()=>{
-        soldout_btn.classList.add(soldout_class);
-        soldout_btn.innerHTML = `판매 가능으로 변경`;
-        menu_name.classList.add("need");
-        menu.classList.add("need");
-        soldout_btn.addEventListener("click", ()=>{
-            hasClicked(menu,soldout_btn, menu_name, soldout_class);
-
-        })
-    })
+function turnMenuSoldout(soldout_btn, menu_name){
+	const menu_id = soldout_btn.getAttribute("data-menu_id");
+		let postdata = {'id': menu_id, 'is_soldout':1}
+		$.ajax({
+                type: 'POST',
+                url: soldout_path,
+                data: JSON.stringify(postdata),
+                dataType : 'JSON',
+                contentType: "application/json",
+                success: function(data){
+                    alert(data.result)
+					soldout_btn.innerHTML = `판매 가능으로 변경`;
+					menu_name.classList.add("need");
+                },
+                error: function(request, status, error){
+                    alert('ajax 통신 실패')
+                    alert(error);
+                }
+       })
 }
 
 
 //판매 가능 버튼이 클릭되었는지 확인 
-function hasClicked(menu,soldout_btn, menu_name, soldout_class){
-    const hasClass = soldout_btn.classList.contains(soldout_class);
-    if(hasClass){
-        soldout_btn.classList.remove(soldout_class);
-        soldout_btn.innerHTML = `품절 상태로 변경`;
-        menu_name.classList.remove("need");
-        menu.classList.remove("need");
+function hasClicked(soldout_btn, menu_name){
+	const is_soldout = menu_name.classList.contains("need");
+    if(is_soldout){
+		turnMenuCanorder(soldout_btn, menu_name)
     } else{
-        soldout_btn.classList.add(soldout_class);
-        soldout_btn.innerHTML = `판매 가능으로 변경`;
-        menu_name.classList.add("need");
-        menu.classList.add("need");
+		turnMenuSoldout(soldout_btn, menu_name)
     }
     
 }
@@ -118,12 +140,25 @@ function hasClicked(menu,soldout_btn, menu_name, soldout_class){
 
 
 //판매 가능으로 변경
-function turnMenuCanorder(){
-    soldout_btn.onclick = function(){
-        menu_name.classList.remove("need");
-        soldout_btn.innerHTML = `품절 상태로 변경`;
-        menu.classList.remove("need");
-    }
+function turnMenuCanorder(soldout_btn, menu_name){
+	const menu_id = soldout_btn.getAttribute("data-menu_id");
+	let postdata = {'id': menu_id, 'is_soldout':0};
+	$.ajax({
+                type: 'POST',
+                url: soldout_path,
+                data: JSON.stringify(postdata),
+                dataType : 'JSON',
+                contentType: "application/json",
+                success: function(data){
+                    alert(data.result)
+					soldout_btn.innerHTML = `품절 상태로 변경`;
+					menu_name.classList.remove("need");
+                },
+                error: function(request, status, error){
+                    alert('ajax 통신 실패')
+                    alert(error);
+                }
+    })
 }
 
 categorySelect();
