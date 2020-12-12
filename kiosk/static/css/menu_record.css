@@ -204,6 +204,8 @@ header {
 /* table */
 .container_middle {
   width: 1200px;
+  height: 590px;
+  overflow: auto;
 }
 
 table {
