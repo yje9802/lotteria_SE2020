@@ -681,7 +681,6 @@ function menuShowdata(name, img, menu_id) {
 function getModal(name, price) {
 	// Get the modal
 	var modal = document.getElementById("myModal");
-	// Get the <span> element that closes the modal
 	var close_btn = document.getElementsByClassName("modal_close")[0];
 
 	var modal_bottom = modal.querySelector(".modal_bottom");
@@ -689,15 +688,14 @@ function getModal(name, price) {
 	const only_btn = modal_bottom.querySelector(".burger_btn.only");
 	const set_btn = modal_bottom.querySelector(".burger_btn.set");
 
-	//this is the 'burger-price only' & 'burger-price set' div in the modal
 	const modal_price_only = modal.querySelector(".burger_price.only");
 	const modal_price_set = modal.querySelector(".burger_price.set");
 	//세트 가격은 임의로 단품 가격 + 2000으로 했습니다...
 	const set_price = parseInt(price) + 2000;
 
-	// When the user clicks on the button, open the modal
+	// 메뉴를 클릭하면 모달창 띄움
 	modal.style.display = "block";
-	// the value of 'burger-price only' and 'burger-price set' will be changed upon clicked-button's price value
+	// 모달 창에서 단품, 세트 가격 표시
 	modal_price_only.innerHTML = `${price}`;
 	modal_price_set.innerHTML = `${set_price}`;
 
@@ -714,35 +712,29 @@ function getModal(name, price) {
 
 	// When the user clicks on <span> (x), close the modal
 	close_btn.onclick = function () {
-		modal.style.display = "none";
 		// 닫음 버튼을 누르면 아무 것도 선택하지 않고 메뉴만 보여줌.
-		// 함수명 예시
-		// showDetails()
+		modal.style.display = "none";
 	};
 
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function (event) {
 		if (event.target == modal) {
-			modal.style.display = "none";
 			// 모달을 닫으면 아무 것도 선택하지 않고 메뉴만 보여줌.
-			// 함수명 예시
-			// showDetails()
+			modal.style.display = "none";
 		}
 	};
 }
 
 function getValueFromBtn(menu) {
 	menu.addEventListener("click", function (event) {
-		// get the price value from menu button
 		const div_inside_menu = menu.querySelector("div");
 		const price = div_inside_menu.querySelector(".menu_price").innerHTML;
-		// get the name value from menu button
 		const name = div_inside_menu.querySelector(".menu_name").innerHTML;
 		const img = menu.querySelector("img");
 		const menu_id = menu.getAttribute("data-id");
 		let id = "only";
 
-		// 햄버거 메뉴만 선택 시 모달 창이 뜨도록
+		// 햄버거 메뉴만 클릭했을  모달 창이 뜨도록
 		if (menu.dataset.type === "hamburger") {
 			getModal(name, price);
 			menuShowdata(name, img, menu_id);
@@ -777,7 +769,28 @@ function existingCart() {
 	}
 }
 
+//타임아웃용 변수
+let timer_id = null;
+// init()을 제외한 아래 세 개의 함수는 다음의 동작을 위한 것
+// 3분 간 아무런 동작이 없으며 홈화면으로 돌아감. 대신, 클릭 이벤트가 일어나면 기존의 타이머는 멈추고 클릭 이벤트 이후 새로운 타이머 작동
+function startTimer() {
+	timer_id = setTimeout("load('/')", 180000);
+}
+function cancleTimer() {
+	if (timer_id !== null) {
+		clearTimeout(timer_id);
+		startTimer();
+	}
+}
+function load(url) {
+	window.location = url;
+}
+
 function init() {
+	const container = document.querySelector(".container");
+	// 화면을 클릭하게 되면 타이머 멈춤
+	container.setAttribute("onClick", "cancleTimer()");
+	startTimer();
 	existingCart();
 	categorySelect();
 	for (const menu of menus) {

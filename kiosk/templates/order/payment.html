@@ -17,7 +17,7 @@
 	</head>
 
 	<body>
-		<div class="container">
+		<div class="container" onClick="cancleTimer()">
 			<header>
 				<div class="select_lan">
 					<span>한국어</span>
@@ -92,6 +92,22 @@
 		<script>
 			// 이 화면으로 돌아가면 장바구니 선택정보 초기화됨!
 			localStorage.clear();
+			
+			// 아무런 동작 없이 3분 지나면 홈화면으로, 클릭 이벤트가 발생하면 기존의 타이머는 멈추고 새로운 타이머 작동
+			let timer_id = null;
+			function startTimer() {
+				timer_id = setTimeout("load('/')", 180000);
+			}
+			function cancleTimer() {
+				if (timer_id !== null) {
+					clearTimeout(timer_id);
+					startTimer();
+				}
+			}
+			function load(url) {
+				window.location = url;
+			}
+			startTimer();
 		</script>
 	</body>
 </html>
