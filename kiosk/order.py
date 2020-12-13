@@ -28,8 +28,11 @@ def menu():
     burgers = fetch_menu('햄버거')
     drinks = fetch_menu('음료')
     desserts = fetch_menu('디저트')
-    
-    return render_template('order/menu.html', recommends=recommends, burgers=burgers, drinks=drinks, desserts=desserts)
+    set_desserts = fetch_opt('세트_디저트')
+    set_drinks = fetch_opt('세트_드링크')
+    return render_template('order/menu.html', recommends=recommends, burgers=burgers, 
+                            drinks=drinks, desserts=desserts, 
+                            set_desserts=set_desserts, set_drinks=set_drinks)
     
     
 def fetch_menu(category, max_view=8, path_prefix='/static%'):
@@ -43,6 +46,18 @@ def fetch_menu(category, max_view=8, path_prefix='/static%'):
     db = get_db()
     return db.execute(sql,(category, path_prefix)).fetchmany(max_view)
 
+
+def fetch_opt(category_tag, max_view=8, path_prefix='/static%'):
+    sql = \
+    '''
+    SELECT ID, NAME, IMAGE_PATH, OPT_PRICE
+    FROM MENU M INNER JOIN OPT_PRICE P
+    ON M.ID = P.MENU_ID
+    WHERE OPT_TAG = ? AND IMAGE_PATH LIKE ?
+    ORDER BY OPT_PRICE
+    '''
+    db = get_db()
+    return db.execute(sql,(category_tag, path_prefix)).fetchmany(max_view)
 
 @bp.route('/fetch_info', methods=['POST'])
 def fetch_info():
