@@ -1,6 +1,7 @@
 import os
 
-from flask import Flask
+from flask import Flask, render_template
+from kiosk.db import get_db
 
 
 def create_app(test_config=None):
@@ -28,14 +29,25 @@ def create_app(test_config=None):
     @app.route('/hello')
     def hello():
         return 'Hello, World!'
-
-    
+  
     from . import db
     db.init_app(app)
     
     from . import order
     app.register_blueprint(order.bp)
     # app.add_url_rule('/', endpoint='index') # 필요한 코드??
+
+    from . import manage_menu_add
+    app.register_blueprint(manage_menu_add.bp)
+
+    from . import manage_menu_delete
+    app.register_blueprint(manage_menu_delete.bp)
+
+    from . import manage_menu_change
+    app.register_blueprint(manage_menu_change.bp)
+
+    from . import manage_menu
+    app.register_blueprint(manage_menu.bp)
     
     from . import manage_order
     app.register_blueprint(manage_order.bp)
