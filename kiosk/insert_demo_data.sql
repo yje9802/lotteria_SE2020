@@ -372,7 +372,7 @@ INSERT INTO "MENU" VALUES (81,'볼빅','https://via.placeholder.com/150',1500,NU
 INSERT INTO "MENU" VALUES (82,'한우불고기세트','https://via.placeholder.com/150',7900,'100% 우리 한우로 만든 두툼한 패티와 부드럽고 촉촉한 포테이토번의 한우불고기버거',0,750.0,933.0,25.0,46.0,1089.0,55.0,46.0,14.0,NULL,NULL,'밀, 대두, 난류, 우유, 토마토, 쇠고기');
 INSERT INTO "MENU" VALUES (83,'AZ버거세트','https://via.placeholder.com/150',7500,'호주청정우로 만들어진 육즙 가득한 빅 사이즈 순 쇠고기 패티와 통밀발효종 효모가 사용되어 부드러운 브리오쉬 번 좋은 재료와 맛의 A to Z를 느낄 수 있는 프리미엄 제품',0,753.0,941.0,30.0,55.0,1071.0,54.0,40.0,20.0,NULL,NULL,'밀, 대두, 난류, 우유, 토마토, 쇠고기');
 INSERT INTO "MENU" VALUES (84,'DOUBLEX2세트','https://via.placeholder.com/150',6800,'순비프패티 2장, 치즈 2장을 활용한 맛이 조화로운 정통 아메리칸 버거제품',0,737.0,1125.0,29.0,54.0,1446.0,72.0,38.0,28.0,NULL,NULL,'밀, 대두, 난류, 우유, 쇠고기');
-INSERT INTO "MENU" VALUES (85,'리아미라클버거세트','https://via.placeholder.com/150',5500,'숯불갈비양념맛과 어니언의 풍미가 어우러진 한국적인 맛의 대체육 버거',0,720.0,965.0,23.0,42.0,1187.0,59.0,45.0,13.0,NULL,NULL,'밀, 대두 / 동물성 원재료 성분은 포함하지 않습니다. 단, 조리시 교차 혼입의 가능성이 있습니다.');
+INSERT INTO "MENU" VALUES (85,'리아미라클버거(세트)','https://via.placeholder.com/150',5500,'숯불갈비양념맛과 어니언의 풍미가 어우러진 한국적인 맛의 대체육 버거',0,720.0,965.0,23.0,42.0,1187.0,59.0,45.0,13.0,NULL,NULL,'밀, 대두 / 동물성 원재료 성분은 포함하지 않습니다. 단, 조리시 교차 혼입의 가능성이 있습니다.');
 INSERT INTO "MENU" VALUES (86,'핫크리스피버거세트','https://via.placeholder.com/150',6000,'토마토와 레타스 등의 야채와 하바네로향이 가미된 가슴살로 만든 매콤한 Premium 치킨버거',0,698.0,898.0,26.0,47.0,1265.0,63.0,36.0,11.0,NULL,NULL,'밀, 대두, 난류, 토마토, 닭고기');
 INSERT INTO "MENU" VALUES (87,'데리버거세트','https://via.placeholder.com/150',4000,'풍성한 레터스에 마요네즈, 독특한 데리소스가 포인트인 햄버거 세트',0,643.0,750.0,16.0,30.0,951.0,48.0,41.0,10.0,NULL,NULL,'밀, 대두, 난류, 우유, 쇠고기, 닭고기, 조개류');
 INSERT INTO "MENU" VALUES (88,'착한한우세트','https://via.placeholder.com/150',7900,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -390,6 +390,8 @@ INSERT INTO "MENU" VALUES (99,'토핑-슬라이스햄','https://via.placeholder.
 INSERT INTO "MENU" VALUES (100,'토핑-L치즈','https://via.placeholder.com/150',300,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "MENU" VALUES (101,'토핑-베이컨','https://via.placeholder.com/150',500,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "MENU" VALUES (102,'토핑-토마토','https://via.placeholder.com/150',300,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "MENU" VALUES (103,'새우버거(세트)','https://via.placeholder.com/150',5900,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+INSERT INTO "MENU" VALUES (104,'치킨버거(세트)','https://via.placeholder.com/150',4900,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "ORDER_ITEM" VALUES (1,1,2,1,7400);
 INSERT INTO "ORDER_ITEM" VALUES (2,1,4,2,7800);
 INSERT INTO "ORDER_ITEM" VALUES (3,1,5,2,37600);

@@ -180,124 +180,35 @@
 						</button>
 					</div>
 					<div class="modal_menu_set">
+						{% for set_dessert in set_desserts %}
 						<button class="menu_set" data-type="set_dessert">
 							<img
-								src="{{ url_for('static', filename='img/menu/de_potato.png') }}"
+								src="{{ set_dessert['image_path'] }}"
 								alt=""
 								class="menu_set_thumnail dessert"
 							/>
 							<div>
-								<h2 class="menu_dessert_name">포테이토</h2>
-								<h2 class="menu_dessert_price">0</h2>
+								<h2 class="menu_dessert_name">{{ set_dessert['name'] }}</h2>
+								<h2 class="menu_dessert_price">{{ set_dessert['opt_price'] }}</h2>
 							</div>
 						</button>
-						<button class="menu_set" data-type="set_dessert">
-							<img
-								src="{{ url_for('static', filename='img/menu/de_potato_s.png') }}"
-								alt=""
-								class="menu_set_thumnail dessert"
-							/>
-							<div>
-								<h2 class="menu_dessert_name">양념감자</h2>
-								<h2 class="menu_dessert_price">500</h2>
-							</div>
-						</button>
-						<button class="menu_set" data-type="set_dessert">
-							<img
-								src="{{ url_for('static', filename='img/menu/de_cheezestick.png') }}"
-								alt=""
-								class="menu_set_thumnail dessert"
-							/>
-							<div>
-								<h2 class="menu_dessert_name">
-									롱치즈스틱(1pc)
-								</h2>
-								<h2 class="menu_dessert_price">300</h2>
-							</div>
-						</button>
-						<button class="menu_set" data-type="set_dessert">
-							<img
-								src="{{ url_for('static', filename='img/menu/de_sheck.png') }}"
-								alt=""
-								class="menu_set_thumnail dessert"
-							/>
-							<div>
-								<h2 class="menu_dessert_name">쉑쉑치킨</h2>
-								<h2 class="menu_dessert_price">1000</h2>
-							</div>
-						</button>
-						<button class="menu_set" data-type="set_dessert">
-							<img
-								src="{{ url_for('static', filename='img/menu/de_cheezestick_R.png') }}"
-								alt=""
-								class="menu_set_thumnail dessert"
-							/>
-							<div>
-								<h2 class="menu_dessert_name">치즈스틱</h2>
-								<h2 class="menu_dessert_price">500</h2>
-							</div>
-						</button>
-						<button class="menu_set" data-type="set_dessert">
-							<img
-								src="{{ url_for('static', filename='img/menu/de_to_berry.png') }}"
-								alt=""
-								class="menu_set_thumnail dessert"
-							/>
-							<div>
-								<h2 class="menu_dessert_name">
-									토네이도(스트로베리)
-								</h2>
-								<h2 class="menu_dessert_price">800</h2>
-							</div>
-						</button>
-						<button class="menu_set" data-type="set_dessert">
-							<img
-								src="{{ url_for('static', filename='img/menu/de_to_choco.png') }}"
-								alt=""
-								class="menu_set_thumnail dessert"
-							/>
-							<div>
-								<h2 class="menu_dessert_name">
-									토네이도(초코쿠키)
-								</h2>
-								<h2 class="menu_dessert_price">800</h2>
-							</div>
-						</button>
+						{% endfor %}
+	
 
 						<!-- set_drink -->
+						{% for set_drink in set_drinks %}
 						<button class="menu_set" data-type="set_drink">
 							<img
-								src="{{ url_for('static', filename='img/menu/d_coke.png') }}"
+								src="{{ set_drink['image_path'] }}"
 								alt=""
 								class="menu_set_thumnail drink"
 							/>
 							<div>
-								<h2 class="menu_drink_name">콜라(R)</h2>
-								<h2 class="menu_drink_price">0</h2>
+								<h2 class="menu_drink_name">{{ set_drink['name'] }}</h2>
+								<h2 class="menu_drink_price">{{ set_drink['opt_price'] }}</h2>
 							</div>
 						</button>
-						<button class="menu_set" data-type="set_drink">
-							<img
-								src="{{ url_for('static', filename='img/menu/d_cider.png') }}"
-								alt=""
-								class="menu_set_thumnail drink"
-							/>
-							<div>
-								<h2 class="menu_drink_name">사이다(R)</h2>
-								<h2 class="menu_drink_price">0</h2>
-							</div>
-						</button>
-						<button class="menu_set" data-type="set_drink">
-							<img
-								src="{{ url_for('static', filename='img/menu/d_ame.png') }}"
-								alt=""
-								class="menu_set_thumnail drink"
-							/>
-							<div>
-								<h2 class="menu_drink_name">아메리카노</h2>
-								<h2 class="menu_drink_price">300</h2>
-							</div>
-						</button>
+						{% endfor %}
 					</div>
 					<div class="modal_bottom_set">
 						<div class="modal_num">
