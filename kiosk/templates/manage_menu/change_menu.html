@@ -14,10 +14,8 @@
         </button>
         <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
         <div class="right_btn">
-            <!-- order_manage.html(주문확인) 경로설정 필요 -->
-            <button onClick="location.href='#'" class="order_btn">주문확인</button>
-            <!-- stock_manage.html(재고관리) 경로설정필요 -->
-            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
+            <button onClick="location.href='http://127.0.0.1:5000/manage_order/orders'" class="order_btn">주문확인</button>
+            <button onClick="location.href='http://127.0.0.1:5000/manage_order/stock'" class="stock_btn">재고관리</button>
         </div>
     </header>
     <main>
@@ -92,7 +90,7 @@
                     <div class="input_container">
                     	<div class="container_display">
                     		<div class="input_container_left">
-                    			<div id="image_container"> <img src="{{ url_for('static', filename='img/menu/' + i[1] )}}"> </div>
+                    			<div id="image_container"> <img src="{{i[1]}}"> </div>
                              </div>
                             <div class="input_container_middle">
                                 <div class="input_1">
