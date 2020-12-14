@@ -13,7 +13,6 @@
 			rel="stylesheet"
 			href="{{ url_for('static', filename='css/payment.css') }}"
         />
-        <!-- <link rel="stylesheet" href="/kiosk/static/css/payment.css"> -->
 	</head>
 
 	<body>
@@ -90,10 +89,10 @@
 			</footer>
 		</div>
 		<script>
-			// 이 화면으로 돌아가면 장바구니 선택정보 초기화됨!
+			// 이 화면으로 돌아가면 장바구니 선택정보 초기화
 			localStorage.clear();
 			
-			// 아무런 동작 없이 3분 지나면 홈화면으로, 클릭 이벤트가 발생하면 기존의 타이머는 멈추고 새로운 타이머 작동
+			// 아무런 동작 없이 3분 지나면 홈화면
 			let timer_id = null;
 			function startTimer() {
 				timer_id = setTimeout("load('/order')", 180000);
