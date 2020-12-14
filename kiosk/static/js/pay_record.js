@@ -35,7 +35,7 @@ function HighLightTR(target, backColor,textColor,order_id) {
             }} 
     } 
 
-//환불/삭제 후 경고창 (삭제 경고창 '확인'선택 후에도 색상이 지워지지 않아서 재부팅(?)필요할듯..)
+//환불/삭제 후 경고창 
 function func_confirm(){
     var do_remove;
     var form=document.pay_data_list;

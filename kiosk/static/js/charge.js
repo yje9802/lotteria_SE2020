@@ -46,7 +46,6 @@ function clickStep2(){
 function clickStep1(){
     //포장
     togo_btn.onclick = function(){
-        //**아래 네개(img.src) 사진 경로 설정 필요
         togo_img.src = togo_check_path; // /kiosk/static/img/togo_check.png; 
         here_img.src = here_path; // /kiosk/static/img/here.png"; 
         togo_btn.style.opacity = 1;
@@ -84,8 +83,6 @@ function getModal(){
     
         //영수증 발행 
         setTimeout(function() {
-            //**<img src = ... > 1개 경로 설정 필요
-            //** onlcilck 2개 경로설정 필요 (대기번호 화면 (/order_num)으로 넘어가는 경로)
             console.log('Works!');
             content_top.innerHTML = `영수증을 발행 하시겠습니까?`;
             content_bottom.innerHTML = `
