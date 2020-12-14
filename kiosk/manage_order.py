@@ -12,6 +12,7 @@ from kiosk.db import get_db
 
 bp = Blueprint('manage_order', __name__, url_prefix='/manage_order')
 
+
 @bp.route('/orders')
 def orders():
     db = get_db()
@@ -20,28 +21,33 @@ def orders():
     orders = []
     max_view = 8
     cols = 4
-    fetch_waiting = 'SELECT ID, WAIT_NO, strftime("%H:%M",ORDERED_AT) AS ORDERED_AT FROM ORDERS WHERE STATUS = "WAITING"'
+    fetch_waiting = \
+        '''
+        SELECT ID, WAIT_NO, strftime("%H:%M",ORDERED_AT) AS ORDERED_AT 
+        FROM ORDERS 
+        WHERE STATUS = "WAITING"
+        '''
     cur_order.execute(fetch_waiting)
     wait_rows = cur_order.fetchmany(max_view)
     for row in wait_rows:
         order = dict(row)
         fetch_items = \
-        '''
-        SELECT ITEM_NO, NAME, SUM(QTY) AS QTY
-        FROM (ORDER_ITEM I INNER JOIN MENU M ON I.MAIN_DISH_ID = M.ID) 
-        INNER JOIN ORDERS O ON I.ORDER_ID = O.ID
-        WHERE ORDER_ID = ?
-        GROUP BY ORDER_ID, NAME
-        '''
-        cur.execute(fetch_items,(order["ID"],))
+            '''
+            SELECT ITEM_NO, NAME, SUM(QTY) AS QTY
+            FROM (ORDER_ITEM I INNER JOIN MENU M ON I.MAIN_DISH_ID = M.ID) 
+            INNER JOIN ORDERS O ON I.ORDER_ID = O.ID
+            WHERE ORDER_ID = ?
+            GROUP BY ORDER_ID, NAME
+            '''
+        cur.execute(fetch_items, (order["ID"],))
         order['items'] = [dict(row) for row in cur]
         items = order['items']
         fetch_options = \
-        '''
-        SELECT M.NAME,OPT_QTY AS QTY
-        FROM OPT_CHOICE O INNER JOIN MENU M ON O.OPTION_ID = M.ID
-        WHERE ORDER_ID = ? AND ITEM_NO = ?
-        '''
+            '''
+            SELECT M.NAME,OPT_QTY AS QTY
+            FROM OPT_CHOICE O INNER JOIN MENU M ON O.OPTION_ID = M.ID
+            WHERE ORDER_ID = ? AND ITEM_NO = ?
+            '''
         for item in items: 
             cur.execute(fetch_options, (order['ID'], item['ITEM_NO']))
             item['options'] = [dict(row) for row in cur]
@@ -61,12 +67,12 @@ def call(id):
     else:
         db = get_db()
         mark_done = \
-        '''
-        UPDATE ORDERS
-        SET STATUS='SERVED', SERVED_AT=?
-        WHERE ID = ?
-        '''
-        db.execute(mark_done,(datetime.datetime.now().replace(microsecond=0), id))
+            '''
+            UPDATE ORDERS
+            SET STATUS='SERVED', SERVED_AT=?
+            WHERE ID = ?
+            '''
+        db.execute(mark_done, (datetime.datetime.now().replace(microsecond=0), id))
         db.commit()
             
     return redirect(url_for('manage_order.orders'))
@@ -84,11 +90,11 @@ def stock():
 def fetch_stock():
     id = request.get_json()
     sql = \
-    '''
-    SELECT I.NAME, I.STOCK, I.UNIT
-    FROM INGRD_USE U INNER JOIN INGREDIENT I ON U.INGRD_ID = I.ID
-    WHERE U.MENU_ID = ?
-    '''
+        '''
+        SELECT I.NAME, I.STOCK, I.UNIT
+        FROM INGRD_USE U INNER JOIN INGREDIENT I ON U.INGRD_ID = I.ID
+        WHERE U.MENU_ID = ?
+        '''
     db = get_db()
     ingredients = [dict(row) for row in db.execute(sql, (id,))]
     print(ingredients, type(ingredients))
@@ -96,25 +102,25 @@ def fetch_stock():
     
 def fetch_category(menu_cat):
     sql = \
-    '''
-    SELECT ID, NAME, IS_SOLDOUT
-    FROM MENU M INNER JOIN MENU_CATEGORY C
-    ON M.ID=C.MENU_ID
-    WHERE CATEGORY_TAG=?
-    '''
+        '''
+        SELECT ID, NAME, IS_SOLDOUT
+        FROM MENU M INNER JOIN MENU_CATEGORY C
+        ON M.ID=C.MENU_ID
+        WHERE CATEGORY_TAG=?
+        '''
     db = get_db()
     return db.execute(sql, (menu_cat,)).fetchall()
     
 @bp.route('/toggle_soldout', methods=['POST'])
 def toggle_soldout():
     data = request.get_json()
-    print(data,type(data))
+    print(data, type(data))
     sql = \
-    '''
-    UPDATE MENU
-    SET IS_SOLDOUT=?
-    WHERE ID=? 
-    '''
+        '''
+        UPDATE MENU
+        SET IS_SOLDOUT=?
+        WHERE ID=? 
+        '''
     db = get_db()
     db.execute(sql, (data['is_soldout'], data['id']))
     db.commit()
