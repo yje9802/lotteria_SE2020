@@ -68,7 +68,7 @@ function addMenubtn(){
 
 
 
-//이미지 첨부시 보여주기 (다시 다른걸 선택할 경우 문제 발생)
+//이미지 첨부시 보여주기
 function setThumbnail(event) { 
     for (var image of event.target.files) { 
         var reader = new FileReader(); 

@@ -112,14 +112,14 @@ main {
 .bag_top div {
   padding: 0 20px;
 }
-.bag_top div:nth-child(2){
+.bag_top div:nth-child(2) {
   margin-left: 30px;
 }
 
 .bag_lists {
   height: 250px;
 }
-.bag_lists.invisible{
+.bag_lists.invisible {
   display: none;
 }
 
@@ -131,24 +131,24 @@ main {
   font-size: 18px;
   font-weight: 600;
 }
-.list_wrapper{
+.list_wrapper {
   height: 100%;
   padding: 0px 5px;
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.list_name{
+.list_name {
   overflow: hidden;
   white-space: nowrap;
   width: 140px;
 }
-.list_amount{
+.list_amount {
   width: 25px;
   text-align: center;
   padding-right: 10px;
 }
-.list_price{
+.list_price {
   width: 60px;
   text-align: right;
 }
@@ -405,8 +405,6 @@ footer {
 .order_order_btn:hover {
   background-color: var(--color-red);
 }
-
-/* card Modal */
 
 /* The Modal (background) */
 .modal {

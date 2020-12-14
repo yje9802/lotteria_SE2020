@@ -15,8 +15,6 @@
   --color-blue: #90caf9;
   --color-brightorange: #ffb74d;
 
-  /* Font size */
-
   /* Font weight */
   --weight-bold: 700;
   --weight-semi-bold: 600;
@@ -44,7 +42,6 @@ body {
   background-color: white;
   display: grid;
   grid-template-columns: 100%;
-  /* 광고란 사이즈 조정 */
   grid-template-rows: 180px 50px 2fr 1fr;
 }
 
@@ -151,7 +148,6 @@ h2 {
 /* shopping list */
 .list {
   display: grid;
-  /* 총주문 표시내역 크기 50px로 수정*/
   grid-template-rows: 50px 146px 60px;
 }
 
@@ -189,7 +185,6 @@ h2 {
   height: 100%;
   width: 150px;
   display: flex;
-  /* align-items: center; */
 }
 .item_amount div {
   display: flex;
@@ -274,11 +269,10 @@ h2 {
 .modal {
   display: none;
   position: absolute;
-  z-index: 1; /* Sit on top */
+  z-index: 1;
   text-align: center;
   width: 600px;
-  height: 1000px; /* 수정함 */
-  /* overflow: auto;  */ /* 수정함 */
+  height: 1000px;
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -286,11 +280,10 @@ h2 {
 /* Modal Content/Box */
 .modal_content {
   background-color: #fefefe;
-  margin: 45% auto; /* 15% from the top and centered */
+  margin: 45% auto;
   border: 1px solid #888;
   border-radius: 5px;
   width: 85%;
-  /* 사이즈 키움 */
   height: 260px;
   display: grid;
   grid-template-rows: 50px 1fr;
@@ -307,7 +300,6 @@ h2 {
 .modal_question {
   font-size: 25px;
   font-weight: 600;
-  /* padding-left: 135px; */
 }
 
 /* The Close Button */
@@ -316,23 +308,16 @@ h2 {
   float: right;
   font-size: 30px;
   font-weight: bold;
-  /* margin-left: 100px; */
   margin-left: 30px;
   border: 4px solid var(--color-blue);
   width: 30px;
   height: 30px;
   border-radius: 10px;
-  /* line-height: 30px; */
-  /* x표시가 박스 안에서 항상 정가운데에 놓이도록 */
   display: flex;
   justify-content: center;
   align-items: center;
 }
-/* .modal_close_x {
-  margin: 0;
-  x표시가 가운데로 안와서 padding억지로 넣었습니다
-  padding-bottom: 7px;
-} */
+
 .modal_close:hover,
 .modal_close:focus {
   color: black;
@@ -370,7 +355,7 @@ h2 {
   margin-top: 5px;
 }
 
-/* ***Modal Set  */
+/* Modal Set  */
 .modal_content.set {
   margin: 100px auto;
   height: 80%;
@@ -378,15 +363,10 @@ h2 {
   grid-template-rows: 55px 55px 1fr 85px;
 }
 
-/* .modal_question.set { */
-/* padding-left: 60px; */
-/* } */
-
 .modal_close_set {
   margin-left: 30px;
   color: var(--color-blue);
   float: right;
-  /* 폰트사이즈 조금 줄였어요 */
   font-size: 30px;
   font-weight: bold;
   border: 4px solid var(--color-blue);
@@ -395,7 +375,6 @@ h2 {
   padding: 0;
   border-radius: 10px;
   line-height: 25px;
-  /* x표시가 박스 안에서 항상 정가운데에 놓이도록 */
   display: flex;
   justify-content: center;
   align-items: center;
