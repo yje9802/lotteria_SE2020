@@ -13,9 +13,7 @@
         </button>
         <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
         <div class="right_btn">
-            <!-- 주문확인 경로설정 필요 -->
             <button onClick="location.href='{{ url_for('manage_order.orders') }}'" class="order_btn">주문확인</button>
-            <!-- 재고관리 경로설정 필요 -->
             <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="stock_btn">재고관리</button>
         </div>
     </header>
@@ -25,9 +23,7 @@
         </div>
         <div class="container">
            <div class="btn_container">
-               <!-- 결제 이력 페이지로 경로설정 필요 -->
                 <button onClick="location.href='{{ url_for('manage_sale.pay_record') }}'" class="btn day">결제 이력</button>
-                <!-- 메뉴별 매출 현황 페이지로 경로설정 필요 -->
                 <button onClick="location.href='{{ url_for('manage_sale.menu_record') }}'" class="btn menu">메뉴별 매출 현황</button>
            </div>
         </div>
