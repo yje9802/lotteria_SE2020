@@ -25,3 +25,7 @@ def index():
     db.commit()
     db.close()
     return render_template('/auth/auth.html', username=username, password=password)
+
+@bp.route('/manager')
+def manager_btn():
+    return render_template('/auth/manager_btn.html')
