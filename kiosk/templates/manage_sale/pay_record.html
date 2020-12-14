@@ -35,7 +35,7 @@
            </div>
            <div class="container_middle">
                 <table border="1" id="table">
-                    <th class="th_1">대기번호</th>
+                    <th class="th_1">주문번호</th>
                     <th class="th_2">판매일</th>
                     <th class="th_3">판매시간</th>
                     <th class="th_4">가격</th>
@@ -43,7 +43,7 @@
                     <form name="pay_data_list" action="http://127.0.0.1:5000/manage_sale/delete_data" method="POST">
                         {% for i in data %}
                         <tr class="line_1" onClick="HighLightTR(this, '#e0f2f1','cc3333',{{i[0]}});" >
-                            <td>{{i[1]}}</td>
+                            <td>{{i[0]}}</td>
                             <td>{{i[2]}}</td>
                             <td>{{i[3]}}</td>
                             <td>{{i[4]}}</td>
