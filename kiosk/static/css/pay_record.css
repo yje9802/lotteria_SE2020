@@ -64,10 +64,6 @@ header {
   align-items: center;
 }
 
-/* .blank {
-  width: 190px;
-} */
-
 .back_btn img {
   height: 34px;
   width: 40px;
@@ -141,10 +137,25 @@ header {
   display: none;
 }
 
+.date_container {
+  height: 40px;
+  display: flex;
+  align-items: center;
+}
+
 input {
   height: 36px;
   width: 200px;
   font-size: 17px;
+}
+
+.date_btn {
+  color: var(--color-wihte);
+  background-color: var(--color-black);
+  width: 60px;
+  height: 40px;
+  padding: 0;
+  cursor: pointer;
 }
 
 .remove {
@@ -277,6 +288,7 @@ th {
   width: 80px;
   text-align: center;
 }
+
 /* footer */
 footer div {
   background-color: var(--color-black);
