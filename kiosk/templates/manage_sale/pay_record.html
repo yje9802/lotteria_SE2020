@@ -9,15 +9,13 @@
 </head>
 <body>
     <header>
-        <button onClick="location.href='http://127.0.0.1:5000/manage_sale'" class="back_btn" >
+        <button onClick="location.href='{{ url_for('manage_sale.sale_btn') }}'" class="back_btn" >
             <img src="{{ url_for('static', filename='img/back.png')}}" alt="">
         </button>
         <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
         <div class="right_btn">
-            <!-- order_manage.html (주문확인) 경로설정 필요 -->
-            <button onClick="location.href='#'" class="order_btn">주문확인</button>
-            <!-- stock_manage.html (재고관리) 경로설정 필요 -->
-            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
+            <button onClick="location.href='{{ url_for('manage_order.orders') }}'" class="order_btn">주문확인</button>
+            <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="stock_btn">재고관리</button>
         </div>
     </header>
     <main>
@@ -27,9 +25,9 @@
         <div class="container">
            <div class="container_top">
             <div class="describe_remove">**삭제할 기록을 선택해 주세요**</div>
-            <form name="date_input" action="http://127.0.0.1:5000/manage_sale/pay_data" method="POST">
+            <form name="date_input" action="{{ url_for('manage_sale.pay_data') }}" method="POST" class="date_container">
                 <input type='date'name="date" required/>
-                <input type='submit' value="조회"/> 
+                <input class="date_btn" type='submit' value="조회"/> 
             </form>
             <button class="remove">환불/삭제</button>
            </div>
@@ -60,11 +58,11 @@
                 <div class="page_container">
                     <div class="page_middle">
                         <button class="tri left">
-                            <img src="/kiosk/static/img/left_arrow.png" alt="">
+                            <img src="{{ url_for('static', filename='img/left_arrow.png')}}" alt="">
                         </button>
                         <div class="page"><span>1</span>/<span>1</span></div>
                         <button class="tri right">
-                            <img src="/kiosk/static/img/right_arrow.png" alt="">
+                            <img src="{{ url_for('static', filename='img/right_arrow.png')}}" alt="">
                         </button>
                     </div>
                     <div></div>
