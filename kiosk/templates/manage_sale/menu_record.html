@@ -9,16 +9,13 @@
 </head>
 <body>
     <header>
-        <!-- back 경로설정 필요 -->
-        <button onClick="location.href='http://127.0.0.1:5000/manage_sale'" class="back_btn" >
+        <button onClick="location.href='{{ url_for('manage_sale.sale_btn') }}'" class="back_btn" >
             <img src="{{ url_for('static', filename='img/back.png')}}" alt="">
         </button>
         <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
         <div class="right_btn">
-            <!-- order_manage.html (주문확인) 경로설정 필요 -->
-            <button onClick="location.href='#'" class="order_btn">주문확인</button>
-            <!-- stock_manage.html (재고관리) 경로설정 필요 -->
-            <button onClick="location.href='#'" class="stock_btn">재고관리</button>
+            <button onClick="location.href='{{ url_for('manage_order.orders') }}'" class="order_btn">주문확인</button>
+            <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="stock_btn">재고관리</button>
         </div>
     </header>
     <main>
@@ -26,7 +23,7 @@
             <img src="{{ url_for('static', filename='img/lotteria2.png')}}" alt="">
         </div>
         <div class="container">
-        <form name="select_category" action="http://127.0.0.1:5000/manage_sale/menu_data" method="GET"> 
+        <form name="select_category" action="{{ url_for('manage_sale.menu_data') }}" method="GET"> 
             <div class="container_left">
                 <button class="category_btn burger" data-filter="burger" name="burger" value="햄버거">햄버거</button>
                 <button class="category_btn dessert" data-filter="dessert" name="dessert" value="디저트/치킨">디저트/치킨</button>
@@ -34,7 +31,7 @@
             </div>
         </form>
             <div class="container_right">
-                <form name="select_date" action="http://127.0.0.1:5000/manage_sale/menu_data" method="POST">
+                <form name="select_date" action="{{ url_for('manage_sale.menu_data') }}" method="POST">
                 <div class="container_top">
                     <input type='date' / class="date" name='date' required>
                     <div class="find_menu">
