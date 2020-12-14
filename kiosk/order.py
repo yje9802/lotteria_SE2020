@@ -35,29 +35,29 @@ def menu():
                             set_desserts=set_desserts, set_drinks=set_drinks)
     
     
-def fetch_menu(category, max_view=8, path_prefix='/static%'):
+def fetch_menu(category):
     sql = \
     '''
-    SELECT ID, NAME, IMAGE_PATH, PRICE
+    SELECT ID, NAME, IMAGE_PATH, PRICE, IS_SOLDOUT
     FROM MENU M INNER JOIN MENU_CATEGORY C
     ON M.ID = C.MENU_ID
-    WHERE CATEGORY_TAG=? AND IMAGE_PATH LIKE ?
+    WHERE CATEGORY_TAG=? AND IS_SOLDOUT=0
     '''
     db = get_db()
-    return db.execute(sql,(category, path_prefix)).fetchmany(max_view)
+    return db.execute(sql,(category,)).fetchall()
 
 
-def fetch_opt(category_tag, max_view=8, path_prefix='/static%'):
+def fetch_opt(category_tag):
     sql = \
     '''
     SELECT ID, NAME, IMAGE_PATH, OPT_PRICE
     FROM MENU M INNER JOIN OPT_PRICE P
     ON M.ID = P.MENU_ID
-    WHERE OPT_TAG = ? AND IMAGE_PATH LIKE ?
+    WHERE OPT_TAG = ? AND IS_SOLDOUT=0
     ORDER BY OPT_PRICE
     '''
     db = get_db()
-    return db.execute(sql,(category_tag, path_prefix)).fetchmany(max_view)
+    return db.execute(sql,(category_tag, )).fetchall()
 
 @bp.route('/fetch_info', methods=['POST'])
 def fetch_info():
