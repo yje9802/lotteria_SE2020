@@ -8,15 +8,13 @@
 </head>
 <body>
     <header>
-        <button onClick="location.href='http://127.0.0.1:5000/auth'" class="back_btn" >
+        <button onClick="location.href='{{ url_for('auth.index') }}'" class="back_btn" >
             <img src="{{ url_for('static', filename='img/back.png')}}" alt="">
         </button>
         <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
         <div class="right_btn">
-            <!-- order_manage.html(주문확인) 경로설정 필요 -->
-            <button onClick="location.href='http://127.0.0.1:5000/manage_order/orders'" class="order_btn">주문확인</button>
-            <!-- stock_manage.html(재고관리) 경로설정필요 -->
-            <button onClick="location.href='http://127.0.0.1:5000/manage_order/stock'" class="stock_btn">재고관리</button>
+            <button onClick="location.href='{{ url_for('manage_order.orders') }}'" class="order_btn">주문확인</button>
+            <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="stock_btn">재고관리</button>
         </div>
     </header>
     <main>
@@ -25,8 +23,8 @@
         </div>
         <div class="container">
            <div class="btn_container">
-               <button class="manage_menu_btn" onClick="location.href='http://127.0.0.1:5000/manage_menu'">메뉴 변동 관리</button>
-               <button class="manage_slae_btn" onClick="location.href='http://127.0.0.1:5000/manage_sale'">매출 관리</button>
+               <button class="manage_menu_btn" onClick="location.href='{{ url_for('manage_menu.view_menu') }}'">메뉴 변동 관리</button>
+               <button class="manage_slae_btn" onClick="location.href='{{ url_for('manage_sale.sale_btn') }}'">매출 관리</button>
            </div>
         </div>
 
