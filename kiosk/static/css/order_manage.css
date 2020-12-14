@@ -87,9 +87,6 @@ button:hover {
 
 /* main */
 .order_container {
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
   margin: 10px 5px;
   background-color: var(--color-lightgray);
   border-radius: 5px;
