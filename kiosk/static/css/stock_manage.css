@@ -61,10 +61,6 @@ header {
   align-items: center;
 }
 
-/* .blank {
-  width: 190px;
-} */
-
 .back_btn img {
   height: 34px;
   width: 40px;
@@ -210,12 +206,6 @@ footer div {
   height: 10px;
 }
 
-/* 재고상태 확인 때문에 잠시 block*/
-/* .container_top,
-.container_bottom {
-  display: none;
-} */
-
 .container.ingredients {
   display: grid;
   grid-template-rows: 2fr 5fr 1fr;
@@ -233,7 +223,6 @@ footer div {
   background-color: var(--color-wihte);
   display: flex;
   align-items: center;
-  /* justify-content: center; */
 }
 
 .menu_name {
