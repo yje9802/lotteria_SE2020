@@ -55,5 +55,8 @@ def create_app(test_config=None):
     from . import manage_sale
     app.register_blueprint(manage_sale.bp)
     
+    from . import auth
+    app.register_blueprint(auth.bp)
+    
     return app
     
