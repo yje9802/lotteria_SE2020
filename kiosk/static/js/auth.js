@@ -8,7 +8,7 @@ function login(username, password){
 	id += "";
 	pwd += "";
 	if ((id == username) && (pwd == password)){
-		return window.location.href='http://127.0.0.1:5000/manage_sale';
+		return window.location.href='{{ url_for('auth.manager') }}';
 	}
 	else{
 		alert('로그인 실패');
