@@ -285,108 +285,37 @@ INSERT INTO "INGREDIENT" VALUES (23,'윙',8.0,'EA',NULL);
 INSERT INTO "INGREDIENT" VALUES (24,'순살치킨조각',10.0,'EA',NULL);
 INSERT INTO "INGREDIENT" VALUES (25,'감자',200.0,'g','https://via.placeholder.com/150');
 INSERT INTO "INGREDIENT" VALUES (26,'옥수수',200.0,'g','https://via.placeholder.com/150');
-
-
-
 INSERT INTO "MENU" VALUES (4,'새우버거','/static/img/menu/b_srimp.png',3900,'더 커지고, 더 맛있어진 새우 패티로 고유의 맛을 강화한 오리지널 새우버거',0,179.0,492.0,15.0,27.0,810.0,40.0,7.0,4.7,31.0,0.0,NULL);
-
 INSERT INTO "MENU" VALUES (7,'콜라(S,스몰)','/static/img/menu/d_coke.png',1000,'햄버거에 필수 음료 콜라',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "MENU" VALUES (8,'사이다(S,스몰)','/static/img/menu/d_cider.png',1000,'톡톡 쏘는 청량감이 느껴지는 음료',0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "MENU" VALUES (9,'콜라','/static/img/menu/d_coke.png',1700,'햄버거에 필수 음료 콜라',0,420.0,128.0,0.0,1.0,14.0,1.0,31.0,0.0,0.0,0.0,NULL);
 INSERT INTO "MENU" VALUES (10,'사이다','/static/img/menu/d_cider.png',1700,'톡톡 쏘는 청량감이 느껴지는 음료',0,420.0,133.0,0.0,1.0,7.0,0.0,31.0,0.0,0.0,0.0,NULL);
 INSERT INTO "MENU" VALUES (12,'포테이토L','/static/img/menu/de_potato.png',1900,'신선도 높은 후라잉 오일에 바로 튀겨낸 바삭바삭하고 감칠맛 나는 맛의 후렌치 포테이토',0,130.0,389.0,5.6,10.0,471.0,24.0,0.0,5.0,NULL,NULL,'대두');
 INSERT INTO "MENU" VALUES (13,'치즈스틱','/static/img/menu/de_cheezestick_R.png',2000,'치즈에 파슬리를 첨가한 튀김옷을 입혀 바삭바삭하고 부드럽고 고소한 서구풍의 디저트 메뉴',0,49.0,160.0,8.7,16.0,183.0,9.0,0.0,3.0,1.0,0.0,'계란, 밀, 대두, 우유');
-
-
-
-
-
 INSERT INTO "MENU" VALUES (19,'밀리터리버거','/static/img/menu/b_military.png',5400,'취향대로 조립해 먹는 "군대리아" 컨셉의 KIT타입 버거',0,329.0,813.0,27.0,48.0,1486.0,74.0,33.0,14.0,NULL,0.0,'난류, 밀, 대두, 우유, 토마토, 돼지고기, 조개류(굴), 쇠고기');
-
-
-
 INSERT INTO "MENU" VALUES (23,'와규에디션II','/static/img/menu/b_wagu.png',5800,'스테이크 소스로 즐기는 부드럽고 풍부한 맛의 가성비 와규버거',0,185.0,497.0,20.0,36.0,737.0,37.0,14.0,11.4,NULL,0.0,'밀, 대두, 난류, 우유, 토마토, 쇠고기');
-
-
 INSERT INTO "MENU" VALUES (26,'폴더버거핫치킨','/static/img/menu/b_polder.png',5700,'달콤, 매콤 소스에 핫치킨 토핑을 더한 화끈한 매운맛의 폴더버거',0,218.0,541.0,27.0,49.0,1075.0,54.0,15.0,12.0,NULL,0.0,'밀, 대두, 난류, 우유, 토마토, 쇠고기, 닭고기');
 INSERT INTO "MENU" VALUES (27,'리아미라클버거','/static/img/menu/b_miracle.png',5600,'숯불갈비양념맛과 어니언의 풍미가 어우러진 한국적인 맛의 대체육 버거',0,211.0,570.0,19.0,35.0,850.0,43.0,14.0,10.2,NULL,0.0,'밀, 대두 / 동물성 원재료 성분은 포함하지 않습니다. 단, 조리시 교차 혼입의 가능성이 있습니다.');
-
-
 INSERT INTO "MENU" VALUES (30,'클래식치즈버거','/static/img/menu/b_clasic.png',4400,'부드럽고 촉촉한 포테이토번과 풍부한 육즙의 두툼한 호주산 쇠고기패티로 본연의 맛을 꽉 채운 클래식 치즈버거',0,143.0,483.0,20.0,20.0,672.0,34.0,6.0,16.0,NULL,0.0,'밀, 대두, 난류, 우유, 쇠고기');
 INSERT INTO "MENU" VALUES (31,'T.REX(티렉스)','/static/img/menu/b_trax.png',4700,'빅사이즈 통다리살 치킨패티의 쥬시함과 부드럽고 달콤상큼한 소스 맛이 조화로운 제품',0,213.0,475.0,26.2,48.0,874.0,44.0,7.0,5.0,48.0,0.0,'밀, 대두, 난류, 우유, 닭고기, 땅콩');
 INSERT INTO "MENU" VALUES (32,'치킨버거','/static/img/menu/b_chicken.png',2900,'쫄깃한 닭다리 살 패티로 만든 육즙과 풍미가 뛰어난 고단백 치킨버거',0,141.0,355.0,15.0,28.0,619.0,31.0,8.0,3.8,NULL,0.0,'밀, 대두, 난류, 우유, 닭고기, 땅콩, 조개류');
-
-
-
-
 INSERT INTO "MENU" VALUES (37,'포테이토','/static/img/menu/de_potato.png',1500,'신선도 높은 후라잉 오일에 바로 튀겨낸 바삭바삭하고 감칠맛 나는 맛의 후렌치 포테이토',0,90.0,292.0,2.9,5.0,268.0,13.0,0.0,4.0,0.0,0.0,'대두');
 INSERT INTO "MENU" VALUES (38,'양념감자','/static/img/menu/de_potato_s.png',2000,'고객의 기호에 맞게 시즈닝(오니언, 치즈, 칠리)을 한가지를 선택해서 직접 뿌려먹는 포테이토',0,121.0,365.0,5.5,10.0,542.0,27.0,2.0,4.0,11.0,0.0,'어니언, 치즈: 대두, 우유 / 칠리: 밀, 대두, 우유, 토마토, 쇠고기');
 INSERT INTO "MENU" VALUES (39,'롱치즈스틱','/static/img/menu/de_cheezestick.png',1800,'기존 치즈스틱보다 길어진 모짜렐라치즈 물성의 특징인 늘어남과 고소한 풍미를 활용한 디저트 메뉴',0,49.0,156.0,7.8,14.0,236.0,12.0,0.0,7.0,3.0,0.0,'계란, 밀, 대두, 우유');
-
 INSERT INTO "MENU" VALUES (41,'쉑쉑치킨','/static/img/menu/de_sheck.png',2500,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-
 INSERT INTO "MENU" VALUES (43,'토네이도-쵸코쿠키','/static/img/menu/de_to_choco.png',2100,'부드러운 아이스크림에 달콤하고 깔끔한 초코쿠키를 넣어 어린 아이부터 주부에 이르기까지 보는 즐거움과 먹는 즐거움을 함께하는 아이스크림',0,175.0,308.0,4.5,8.0,122.0,6.0,27.0,10.0,180.0,0.0,'밀, 대두, 우유');
-
 INSERT INTO "MENU" VALUES (45,'토네이도-스토로베리','/static/img/menu/de_to_berry.png',3400,'딸기의 새콤달콤한 맛과 스트로베리 후레이크의 아삭 아삭한 맛이 좋아 천연 과일을 선호하는 고객을 위한 제품으로 보는 즐거움과 먹는 즐거움을 함께하는 아이스크림',0,177.0,272.0,3.5,6.0,54.0,3.0,29.0,8.0,196.0,0.0,'우유');
-
-
 INSERT INTO "MENU" VALUES (103,'새우버거(세트)','https://via.placeholder.com/150',5900,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "MENU" VALUES (104,'치킨버거(세트)','https://via.placeholder.com/150',4900,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "MENU" VALUES (85,'리아미라클버거(세트)','https://via.placeholder.com/150',5500,'숯불갈비양념맛과 어니언의 풍미가 어우러진 한국적인 맛의 대체육 버거',0,720.0,965.0,23.0,42.0,1187.0,59.0,45.0,13.0,NULL,NULL,'밀, 대두 / 동물성 원재료 성분은 포함하지 않습니다. 단, 조리시 교차 혼입의 가능성이 있습니다.');
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 INSERT INTO "MENU" VALUES (68,'아이스티L','/static/img/menu/d_icetea.png',2500,'달콤한 복숭아 맛의 시원한 대용량 아이스 드링크',0,467.0,232.0,0.0,0.0,0.0,0.0,56.0,0.0,0.0,0.0,'복숭아');
 INSERT INTO "MENU" VALUES (69,'콜라(L,라지)','/static/img/menu/d_coke.png',1900,'톡톡 쏘는 청량감이 느껴지는 음료',0,570.0,174.0,0.4,1.0,20.0,1.0,42.0,0.0,282.0,0.0,'-');
 INSERT INTO "MENU" VALUES (70,'사이다(L,라지)','/static/img/menu/d_cider.png',1900,'톡톡 쏘는 청량감이 느껴지는 음료',0,570.0,182.0,0.4,1.0,9.0,0.0,42.0,0.0,281.0,0.0,'-');
 INSERT INTO "MENU" VALUES (71,'아메리카노','/static/img/menu/d_ame.png',2000,'에스프레소 커피를 물로 희석하여 커피의 풍부한 맛을 살린 제품(고카페인 함유) *어린이, 임산부, 카페인 민감자는 섭취에 주의 바랍니다.',0,270.0,23.0,0.7,1.0,1.0,0.0,0.0,0.0,0.0,NULL,'-');
 INSERT INTO "MENU" VALUES (72,'아이스아메리카노','/static/img/menu/d_iceame_R.png',2000,'차갑게 즐기는 맛이 풍부한 에스프레소 커피 (고카페인 함유) *어린이, 임산부, 카페인 민감자는 섭취에 주의 바랍니다.',0,310.0,32.0,1.0,2.0,2.0,0.0,0.0,0.0,0.0,NULL,'-');
 INSERT INTO "MENU" VALUES (73,'아이스아메리카노(L,라지)','/static/img/menu/d_iceame_R.png',2500,'에스프레소 커피를 물로 희석하여 커피의 풍부한 맛을 살린 제품(고카페인 함유) *어린이, 임산부, 카페인 민감자는 섭취에 주의 바랍니다.',0,530.0,50.0,2.0,4.0,3.0,0.0,0.0,1.0,0.0,NULL,'-');
-
-
-
 INSERT INTO "MENU" VALUES (77,'우유','/static/img/menu/d_milk.png',1500,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-
 INSERT INTO "MENU" VALUES (79,'오렌지주스(PET)','/static/img/menu/d_oragej.png',2500,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 INSERT INTO "MENU" VALUES (80,'아이스티','/static/img/menu/d_icetea.png',2200,'달콤한 복숭아 맛의 시원한 아이스 드링크',0,310.0,160.0,0.0,0.0,0.0,0.0,39.0,0.0,NULL,0.0,'복숭아');
 INSERT INTO "MANAGER" VALUES (1, 'admin', '1234', '홍길동', '매니저'); 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 COMMIT;
