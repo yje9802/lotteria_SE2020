@@ -9,16 +9,13 @@
 </head>
 <body>
     <header>
-        <!-- 뒤로가기 경로설정 필요 -->
-        <button onClick="location.href='http://127.0.0.1:5000/auth/manager'" class="back_btn" >
+        <button onClick="location.href='{{ url_for('auth.manager') }}'" class="back_btn" >
             <img src="{{ url_for('static', filename='img/back.png')}}" alt="">
         </button>
         <div class="logo">롯데리아 - <span>관리자</span> [1/1]</div>
         <div class="right_btn">
-            <!-- order_manage.html(주문확인) 경로설정 필요 -->
-            <button onClick="location.href='http://127.0.0.1:5000/manage_order/orders'" class="order_btn">주문확인</button>
-            <!-- stock_manage.html(재고관리) 경로설정필요 -->
-            <button onClick="location.href='http://127.0.0.1:5000/manage_order/stock'" class="stock_btn">재고관리</button>
+            <button onClick="location.href='{{ url_for('manage_order.orders') }}'" class="order_btn">주문확인</button>
+            <button onClick="location.href='{{ url_for('manage_order.stock') }}'" class="stock_btn">재고관리</button>
         </div>
     </header>
     <main>
@@ -29,13 +26,13 @@
             <div class="container_top">
                 <div class="container_manage">
                     <div class="menu_manage_btn">
-                        <button class="add_btn" onClick="location.href='http://127.0.0.1:5000/add_menu'">메뉴 추가</button>                      
-                        <button class="change_btn" onClick="location.href='http://127.0.0.1:5000/change_menu'">메뉴 수정</button>
-                        <button class="remove_btn" onClick="location.href='http://127.0.0.1:5000/delete_menu'">메뉴 삭제</button>
+                        <button class="add_btn" onClick="location.href='{{ url_for('add_menu.view_menu') }}'">메뉴 추가</button>                      
+                        <button class="change_btn" onClick="location.href='{{ url_for('change_menu.view_menu') }}'">메뉴 수정</button>
+                        <button class="remove_btn" onClick="location.href='{{ url_for('delete_menu.view_menu') }}'">메뉴 삭제</button>
                     </div>
                 </div>            
                 <div class="categories_btn">
-                    <form name="view_menu_list" action="http://127.0.0.1:5000/manage_menu/" method="GET" >
+                    <form name="view_menu_list" action="{{ url_for('manage_menu.view_menu') }}" method="GET" >
 						<button class="category burger"  value="햄버거"  name="burger"> 햄버거 </button>
 						<button class = "category dessert" value="디저트/치킨" data-filter="dessert" name="dessert"> 디저트/치킨 </button>
 						<button class="category drink" value="음료/커피" data-filter="drink" name="beverage"> 음료/커피 </button> 
