@@ -1,5 +1,6 @@
 # lot_kiosk
-[여기](https://flask.palletsprojects.com/en/1.1.x/tutorial/layout/)에 나오는 리포지토리 구조를 모방하여 생성하였습니다.
+* 현재 이 리포지토리는 아카이브된 상태입니다. 코멘트 및 수정 작업이 불가합니다. 수정을 원하시면 연락바랍니다.
+* [여기](https://flask.palletsprojects.com/en/1.1.x/tutorial/layout/)에 나오는 리포지토리 구조를 모방하여 생성하였습니다.
 ## 프로젝트 시작하기
 1. `Flask`를 [설치](https://flask.palletsprojects.com/en/1.1.x/installation/#installation)하신 후 
 1. 프로젝트의 루트 디렉토리에서
